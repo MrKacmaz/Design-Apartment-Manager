@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info</title>
+</head>
+<style>
+    body{
+        background-image: url("https://kastamonupancar.com.tr/wp-content/uploads/2018/11/wallpaper.wiki-Desktop-Best-And-Website-background-2560x1600-PIC-WPD0012553.jpg");
+        background-repeat: no-repeat;
+            background-size: auto;
+            background-attachment: fixed;
+            font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
+            font-size: larger;
+    }
+    fieldset{
+        border-color: rgba(36, 0, 34, 0.253);
+        background-color: rgba(255, 0, 140, 0.150);    
+    }
+    legend{
+        color: rgb(90, 0, 50);
+        text-align: center;
+        
+    }
+    #kişiselBilgiler{
+        text-align: center;
+        height: auto;
+        line-height: 15px;
+        
+    }
+    #yapılacaklar{
+        line-height: 35px;
+    }
+    #şikayet{
+        line-height: 50px;
+    }
+
+    h1{
+        text-align: center;
+        color: white;
+        background-color: rgba(90, 0, 50, 0.5);
+    }
+
+
+table,#tablo1 td, #tablo1 th {
+    
+    border: 5px solid black;
+    text-align: center;
+    border-collapse: collapse;         
+    }
+
+th{
+    padding: 15px;
+    }
+
+td{
+    padding:15px;
+    }
+
+caption{
+    font-size: 32px;
+    border:  5px solid black;
+    color: rgb(90, 0, 50);
+    }    
+
+</style>
+<body>
+    
+    <fieldset id="yapılacaklar">
+        <legend><h2>To-Do</h2></legend>
+        <ul>
+            <p><b>To-Do in The Apartment</b></p>
+            <li>corridor cleaning</li>
+            <li>basement light problem</li>
+            <li>exterior door repair</li>
+        </ul>
+        <ul>
+            <p><b>Garden Arrangements</b></p>
+            <li>New land</li>
+            <li>New Saplings</li>
+            <li>Garden cleaning</li>
+        </ul>
+        <ul>
+            <p><b>Bill / Rent</b></p>
+            <li>Pay
+                <label for="pay"></label>
+                <input type="button" name="pay" id="pay" value="pay" onclick="window.location.href='payment.html'">
+            </li>
+        </ul>
+        </fieldset>
+
+        <fieldset id="şikayet">
+            <legend><h2>Complaint</h2></legend>
+    
+            <label for="şikayetVar">Complaint : </label>
+            <textarea name="şikayetVar" id="şikayetVar" cols="30" rows="8"></textarea>
+            <label for="fileSK">for Picture: </label>
+            <input type="file" id="fileSK" name="fileSK">
+            <br><br>
+    
+            <label for="şikayetGönder"></label>
+            <input type="button" name="şikayetGönder" id="şikayetGönder" value="Gönder">
+    
+            <!--ŞİKAEY SIFIRLA BUTONU ÇALIŞMIYOR-->
+            <label for="şikayetSıfırla"></label>
+            <input type="reset" name="reset" id="şikayetSıfırla">
+    
+        </fieldset><br>
+
+        <fieldset id="userID">
+            <legend><h2>Registered Persons in the Building</h2></legend>
+            <ul>
+                <li>
+                    <button type="button" onclick="getDaireNo(0)"><p id="DaireKişi0"></p></button>
+                    <p id="yeniKişi0"></p>
+                </li>
+                
+                <li>
+                    <button type="button" onclick="getDaireNo(1)"><p id="DaireKişi1"></p></button>
+                    <p id="yeniKişi1"></p>
+                </li>
+    
+                <li>
+                    <button type="button" onclick="getDaireNo(2)"><p id="DaireKişi2"></p></button>
+                    <p id="yeniKişi2"></p>
+                </li>
+    
+                <li><button type="button" onclick="getDaireNo(3)"><p id="DaireKişi3"></p></button>
+                    <p id="yeniKişi3"></p>
+                </li>
+    
+                <li><button type="button" onclick="getDaireNo(4)"><p id="DaireKişi4"></p></button>
+                    <p id="yeniKişi4"></p></li>
+    
+                <li><button type="button" onclick="getDaireNo(5)"><p id="DaireKişi5"></p></button>
+                    <p id="yeniKişi5"></p>
+                </li>
+                <li>
+                    <label for="Log-Out"></label>
+                    <input type="button" value="Log-Out" id="Log-Out" name="Log-Out" onclick="window.location.href = 'login_signup.html'">
+                </li>
+    
+            </ul>
+        <script>
+             var isimler = [];
+             isimler.push("alperen","ahmet","ali","sevgi","huriye","hacı amca");
+             var soyisimler = [];
+             soyisimler.push("kaçmaz","bisiklet","uçar","keklk","durmaz", "bilmemneoğulları");
+             var yaşlar = [];
+             yaşlar.push(21,50,39,35,45,40);
+             var daireler = [];
+             daireler.push(1,2,3,4,5,6);
+    
+            for(var i = 0 ; i<6 ; i++){
+                document.getElementById("DaireKişi" + i).innerHTML = daireler[i] + ": No Flat";
+                
+            }
+    
+            function getDaireNo(index){
+                var x = isimler[index];
+                var y = soyisimler[index];
+                var z = yaşlar[index];
+                var k = daireler[index];
+                alert(x + " "+ y + " yaş: " + z + " daire: " + k);           
+            }
+    
+        </script>
+        </fieldset><br><br>
+
+</body>
+</html>
