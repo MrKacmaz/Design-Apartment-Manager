@@ -1,69 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment</title>
 </head>
 <style>
-    body{
+    body {
         background-image: url("https://kastamonupancar.com.tr/wp-content/uploads/2018/11/wallpaper.wiki-Desktop-Best-And-Website-background-2560x1600-PIC-WPD0012553.jpg");
         background-repeat: no-repeat;
-            background-size: auto;
-            background-attachment: fixed;
-            font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
-            font-size: larger;
+        background-size: auto;
+        background-attachment: fixed;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: larger;
     }
-    fieldset{
+
+    fieldset {
         border-color: rgba(36, 0, 34, 0.253);
-        background-color: rgba(255, 0, 140, 0.150);    
+        background-color: rgba(255, 0, 140, 0.150);
     }
-    legend{
+
+    legend {
         color: rgb(90, 0, 50);
         text-align: center;
     }
 
-table,#tablo1 td, #tablo1 th {
-    
-    border: 5px solid black;
-    text-align: center;
-    border-collapse: collapse;         
+    table,
+    #tablo1 td,
+    #tablo1 th {
+
+        border: 5px solid black;
+        text-align: center;
+        border-collapse: collapse;
     }
 
-th{
-    padding: 5px;
+    th {
+        padding: 5px;
     }
 
-td{
-    padding:32px;
+    td {
+        padding: 32px;
     }
 
-caption{
-    font-size: 32px;
-    border:  5px solid black;
-    color: rgb(90, 0, 50);
-    }    
-
+    caption {
+        font-size: 32px;
+        border: 5px solid black;
+        color: rgb(90, 0, 50);
+    }
 </style>
+
 <body>
 
     <fieldset id="faturaVeKira">
-        <legend><h2>Bill / Rent Payment</h2></legend>
+        <legend>
+            <h2>Bill / Rent Payment</h2>
+        </legend>
         <p><b>LAST PAYMENT DATE : Wed Oct 28 2020 23:59:59 GMT+0300 (GMT+03:00)</b></p>
         <p id="demo"></p>
-        <button type="button"onclick="document.getElementById('demo').innerHTML = Date()">Display Date and Time</button>
-       
+        <button type="button" onclick="document.getElementById('demo').innerHTML = Date()">Display Date and
+            Time</button>
+
         <br><br>
-        <table id="tablo1" >
+        <table id="tablo1">
             <caption>Bill / Rent Payment</caption>
             <tr>
-                <th style="width: 20%;"><p>Rent</p></th>
-                <th style="width: 15%;"><p>Corridor Electricity Bill</p></th>
-                <th style="width: 15%;"><p>Corridor Water Bill</p></th>
-                <th style="width: 15%;"><p>Corridor Cleaning</p></th>
-                <th style="width: 15%;"><p>Sum</p></th>
-                <th style="width: 25%;"><p>Bill per Flat</p></th>
-                <th style="width: 15%;"><p>Pay</p></th>
+                <th style="width: 20%;">
+                    <p>Rent</p>
+                </th>
+                <th style="width: 15%;">
+                    <p>Corridor Electricity Bill</p>
+                </th>
+                <th style="width: 15%;">
+                    <p>Corridor Water Bill</p>
+                </th>
+                <th style="width: 15%;">
+                    <p>Corridor Cleaning</p>
+                </th>
+                <th style="width: 15%;">
+                    <p>Sum</p>
+                </th>
+                <th style="width: 25%;">
+                    <p>Bill per Flat</p>
+                </th>
+                <th style="width: 15%;">
+                    <p>Pay</p>
+                </th>
             </tr>
 
             <tr>
@@ -80,7 +102,9 @@ caption{
     </fieldset><br>
 
     <fieldset>
-        <legend><h3>Complaint</h3></legend>
+        <legend>
+            <h3>Complaint</h3>
+        </legend>
         <label for="şikayetVar">Complaint : </label>
         <textarea name="şikayetVar" id="şikayetVar" cols="30" rows="8"></textarea>
         <label for="fileSK">for Picture: </label>
@@ -98,4 +122,5 @@ caption{
     <label for=""></label>
     <input type="button" value="BACK" name="back" id="back" onclick="window.location.href = 'general_info.html'">
 </body>
+
 </html>
