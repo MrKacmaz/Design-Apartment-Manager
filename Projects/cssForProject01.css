@@ -1,0 +1,283 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.hero {
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("https://kastamonupancar.com.tr/wp-content/uploads/2018/11/wallpaper.wiki-Desktop-Best-And-Website-background-2560x1600-PIC-WPD0012553.jpg");
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+}
+.infoHero{
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("https://kastamonupancar.com.tr/wp-content/uploads/2018/11/wallpaper.wiki-Desktop-Best-And-Website-background-2560x1600-PIC-WPD0012553.jpg");
+    background-position: center;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.pay-hero{
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("https://kastamonupancar.com.tr/wp-content/uploads/2018/11/wallpaper.wiki-Desktop-Best-And-Website-background-2560x1600-PIC-WPD0012553.jpg");
+    background-position: center;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.complaint{
+    width: 320px;
+    height: 480px;
+    background-color: #fff;
+    position: relative;
+    padding: 5px;
+    border-radius: 30px;
+    top: -475px;
+    left: 415px;
+}
+.userId{
+    width: 480px;
+    height: 280px;
+    background-color: #fff;
+    position: relative;
+    padding: 5px;
+    border-radius: 30px;
+    top: -400px;
+    left: 120px ;
+}
+.bill-rent-table{
+    width: 700px;
+    height: 450px;
+    position: relative;
+    margin: 6% auto;
+    background-color: #fff;
+    padding: 5px;
+    overflow: hidden;
+    border-radius: 30px;
+}
+.to-do{
+    width: 320px;
+    height: 480px;
+    background-color: #fff;
+    position: relative;
+    padding: 5px;
+    border-radius: 30px;
+    top: 15px;
+    left: 15px;
+    
+}
+.comp-pay{
+    width: 380px;
+    height: 225px;
+    position: relative;
+    margin: 6% auto;
+    background-color: #fff;
+    padding: 5px;
+    overflow: hidden;
+    border-radius: 30px;
+}
+.cop-pay-but{
+    top: 0;
+    left: 0;
+    position: relative;
+    width: 50px;
+    height: 25px;
+    background: linear-gradient(to right, #1070ff, #ff0f93);
+    border-radius: 30px;
+    transition: .5s;
+}
+.list-to-do{
+    font-size: 24px;
+    
+}
+h2{
+    font-size: 36px;
+    text-align: center;
+}
+#pay{
+    top: 0;
+    left: 0;
+    position: relative;
+    width: 50px;
+    height: 25px;
+    background: linear-gradient(to right, #1070ff, #ff0f93);
+    border-radius: 30px;
+    transition: .5s;
+}
+#datebtn{
+    position: relative;
+    width: 22%;
+    height: 7%;
+    background: linear-gradient(to right, #1070ff, #ff0f93);
+    border-radius: 30px;
+    transition: .5s;  
+}
+#pay-bill{
+    position: relative;
+    width: auto;
+    height: auto;
+    background: linear-gradient(to right, #1070ff, #ff0f93);
+    border-radius: 15px;
+    transition: .5s;
+}
+
+.form-box {
+    width: 380px;
+    height: 500px;
+    position: relative;
+    margin: 6% auto;
+    background-color: #fff;
+    padding: 5px;
+    overflow: hidden;
+    border-radius: 30px;
+}
+.infoApt{
+    width: 380px;
+    height: 325px;
+    position: relative;
+    margin: 6% auto;
+    background-color: #fff;
+    padding: 5px;
+    overflow: hidden;
+    color: #555555;
+    border-radius: 30px;  
+    font-size: 14px;
+    
+}
+
+.github{
+    width: 380px;
+    height: 100px;
+    position: relative;
+    margin: 6% auto;
+    padding: 5px;
+    overflow: hidden;
+    left:150px;
+}
+
+.button-box {
+    width: 220px;
+    margin: 35px auto;
+    position: relative;
+    box-shadow: 0 0 20px 9px #0051ff2f;
+    border-radius: 30px;
+}
+
+.toggle-b {
+    padding: 10px 30px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+}
+
+#btn {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 110px;
+    height: 100%;
+    background: linear-gradient(to right, #1070ff, #ff0f93);
+    border-radius: 30px;
+    transition: .5s;
+}
+
+.input-group {
+    top: 120px;
+    position: absolute;
+    width: 280px;
+    transition: .5s;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px 0;
+    margin: 5px 0;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+}
+
+.submit-b {
+    width: 85%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    background: linear-gradient(to right, #1070ff, #ff0f93);
+    outline: none;
+    border-radius: 30px;
+    border: 0;
+}
+.info-com-btn{
+    top: 70px;
+    left: 5px;
+    position: relative;
+    width: 45%;
+    height: 25px;
+    background: linear-gradient(to right, #1070ff, #ff0f93);
+    border-radius: 30px;
+    transition: .5s;
+}
+.flat-btn{
+    top: 5px;
+    left: 175px;
+    position: relative;
+    width: 20%;
+    height: 25px;
+    padding: 5px;
+    background: linear-gradient(to right, #1070ff, #ff0f93);
+    border-radius: 30px;
+    transition: .5s;
+}
+
+.chechk-box {
+    margin: 30px 10px 30px 0;
+}
+
+table,
+    #tablo1 td,
+    #tablo1 th {
+
+        border: 5px solid black;
+        text-align: center;
+        border-collapse: collapse;
+    }
+
+    th {
+        padding: 5px;
+    }
+
+    td {
+        padding: 32px;
+    }
+
+    caption {
+        font-size: 32px;
+        border: 5px solid black;
+        color: rgb(90, 0, 50);
+    }
+
+span {
+    color: #777;
+    font-size: 12px;
+    bottom: 68px;
+    position: absolute;
+}
+#log-in{
+    left: 50px;
+}
+#register{
+    left: 450px;
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log-In</title>
+    <link rel="stylesheet" href="cssForProject01.css">
+</head>
+
+<body>
+    <div class="hero">
+        <div class="form-box">
+            <div class="button-box">
+                <div id="btn"></div>
+                <button type="button" class="toggle-b" onclick="login()">Log-in</button>
+                <button type="button" class="toggle-b" onclick="register()">Register</button>
+            </div>
+
+            <form id="log-in" class="input-group">
+
+                <input type="number" class="input-field" placeholder="Flat No" required>
+                <input type="password" class="input-field" placeholder="Password" required>
+                <input type="checkbox" class="chechk-box"><span>Remember Me</span>
+                <button type="submit" class="submit-b">Log-in</button>
+            </form>
+
+            <form id="register" class="input-group">
+
+                <input type="text" class="input-field" placeholder="Name" required>
+                <input type="text" class="input-field" placeholder="Surname" required>
+                <input type="number" class="input-field" placeholder="Flat No (1-8)" pattern="[0-8]{1}" required>
+                <input type="text" class="input-field" placeholder="P.Number (555-555-55-55)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}" required>
+                <input type="password" class="input-field" placeholder="Password" required>
+                <input type="checkbox" class="chechk-box"><span>I agree to the terms</span>
+                <button type="button" class="submit-b" onclick="window.location.href = 'general_info.html'">Register</button>
+            </form>
+        </div>
+        <div class="infoApt">
+            <br><legend style="text-align: center;">
+                <h2>Apartment Information</h2>
+            </legend><br>
+            <h3>Adress</h3>
+            <p> Atalar Mah. 952.Sok No: /6 Babalar APT. <br>Pamukkale/Denizli</p><br>
+            <h3>Infrastructure</h3>
+            <p>50 mb fiber cable TURKSAT
+                <a href="https://www.kolayinternet.com/" target="_blanced"><i>KabloNet</i></a></p><br>
+            <h3>Earthquake Resistance</h3>
+            <p>www.DONTKNOW.com</p><br>
+            <h3>When was it built</h3>
+            <p>01/01/2005</p>
+        </div>
+        <div class="github">
+        <a  href="https://github.com/MrKacmaz/HTML" title="GitHub" target="_blanced"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSUP7RN0hZaqZpljtz9c0nz5eSc2DFY-XSRQA&usqp=CAU" width="50px" height="50px" alt="GitHub"> </a>
+        </div> 
+    </div>
+
+    <script>
+        var x = document.getElementById("log-in");
+        var y = document.getElementById("register");
+        var z = document.getElementById("btn");
+        function login() {
+            x.style.left = "50px";
+            y.style.left = "450px";
+            z.style.left = "0px";
+        }
+        function register() {
+            x.style.left = "-480px";
+            y.style.left = "50px";
+            z.style.left = "110px";
+        }
+    </script>
+
+</body>
+
+</html>
