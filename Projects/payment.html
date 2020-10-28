@@ -11,7 +11,7 @@
 <body>
     <div class="pay-hero">
         <legend>
-            <h2>Bill / Rent Payment</h2>
+            <br><br><h2>Bill / Rent Payment</h2>
         </legend>
         <div class="bill-rent-table">
             <br><br><p><b>LAST PAYMENT DATE : Wed Oct 28 2020 23:59:59 GMT+0300 (GMT+03:00)</b></p>
@@ -19,7 +19,7 @@
             <button type="button" id="datebtn" onclick="document.getElementById('demo').innerHTML = Date()">Display Date and
                 Time</button>
 
-            <br><br>
+            <br><br><br>
             <table id="tablo1">
                 <caption>Bill / Rent Payment</caption>
                 <tr>
@@ -45,7 +45,6 @@
                         <p>Pay</p>
                     </th>
                 </tr>
-
                 <tr>
                     <td>650 * 8 TL</td>
                     <td>50 TL</td>
@@ -57,13 +56,11 @@
                 </tr>
             </table>
         </div>
-
-        <legend>
-            <br><br><br><h2>Complaint</h2>
+        <legend><h2>Complaint</h2>
         </legend>
 
         <div class="comp-pay"><br>
-            <textarea name="şikayetVar" id="şikayetVar" cols="30" rows="8"></textarea><br>
+            <textarea name="şikayetVar" id="şikayetVar" placeholder="Your Complaint..." cols="30" rows="8"></textarea><br>
             <button type="button" class="cop-pay-but">Sent</button>
             <button type="button" class="cop-pay-but">Reset</button><br><br>
             <button type="button" class="cop-pay-but" onclick="window.location.href = 'general_info.html'">Back</button>

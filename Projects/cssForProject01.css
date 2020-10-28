@@ -40,7 +40,7 @@
     padding: 5px;
     border-radius: 30px;
     top: -475px;
-    left: 415px;
+    left: 1215px;
 }
 .userId{
     width: 480px;
@@ -50,17 +50,18 @@
     padding: 5px;
     border-radius: 30px;
     top: -400px;
-    left: 120px ;
+    left: 720px ;
 }
 .bill-rent-table{
     width: 700px;
-    height: 450px;
+    height: 400px;
     position: relative;
     margin: 6% auto;
     background-color: #fff;
     padding: 5px;
     overflow: hidden;
     border-radius: 30px;
+    top: -65px;
 }
 .to-do{
     width: 320px;
@@ -70,7 +71,7 @@
     padding: 5px;
     border-radius: 30px;
     top: 15px;
-    left: 15px;
+    left: 415px;
     
 }
 .comp-pay{
@@ -82,6 +83,7 @@
     padding: 5px;
     overflow: hidden;
     border-radius: 30px;
+    top: -120px;
 }
 .cop-pay-but{
     top: 0;
