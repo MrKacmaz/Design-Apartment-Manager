@@ -10,7 +10,7 @@ body{
 }
 
 .welcome{
-    background-image: linear-gradient(to left,#ed4264,#ffedbc);
+    background-image: linear-gradient(to left,rgb(237, 66, 100),rgb(255, 237, 189));
     padding: 3.5%;
     text-align: center;
     font-size: 2rem;
@@ -57,8 +57,8 @@ body{
     flex-direction: row;
 }
 .main-item{
-    padding:2%;
-    line-height: 1.5;
+    padding:0.25em;
+    line-height: 1em;
     text-align: center;
     flex:1;
     flex-grow: 1;
@@ -70,9 +70,43 @@ body{
 .main-item p{
     margin-top:0.5rem;
 }
+.main-item-2{
+    margin:-12em 70% 0 70%;
+    line-height:1.5em;
+
+    text-align: left;
+}
+
+.main-item-3 h2{
+    color: #da4167;
+}
+
+.input{
+    align-items:flex-end;
+    justify-content:end;
+    padding: 0.5em 1.5em;
+}
+.input-3{
+    line-height: 2em;
+    border: #999 solid;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    margin: 0 10em 0 0;
+}
+.btn{
+    padding: 0.5em;
+    cursor: pointer;
+    font-size: 0.9em;
+    border-radius: 0.75em;
+}
+.btn:hover{
+    background-color: #999;
+}
+
 
 .links{
-    position: fixed;
+    position: static;
     width: 100%;
     height: 10%;
     bottom: 0;

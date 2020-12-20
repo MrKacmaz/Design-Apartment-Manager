@@ -41,7 +41,7 @@
 
             <form id="admin" class="input-group">
 
-                <input type="text" class="input-field" placeholder="Admin Name" required>
+                <input type="text" class="input-field" placeholder="Admin ID" required>
                 <input type="password" class="input-field" placeholder="Password" required>
                 <br><br><button type="submit" class="submit-b">Log-in</button><br><br>
             </form>
