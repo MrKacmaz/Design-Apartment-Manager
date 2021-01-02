@@ -1,5 +1,5 @@
 <?php
-include 'database/logDB.php';
+include '../database/adminDB.php';
 session_start();
 ?>
 <!DOCTYPE html>
@@ -9,7 +9,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Information</title>
-    <link rel="stylesheet" href="css/information.css">
+    <link rel="stylesheet" href="../css/admin/adminInfo.css">
 </head>
 
 <body>
@@ -24,12 +24,12 @@ session_start();
     <nav class="nav">
         <span>MANAGEMENT SYSTEM</span>
         <ul class="nav-ul">
-            <li class="nav-ul-li"><a href="main.php">MAIN</a></li>
-            <li class="nav-ul-li"><a href="information.php">INFORMATION</a></li>
-            <li class="nav-ul-li"><a href="to-do.php">TO/DO</a></li>
-            <li class="nav-ul-li"><a href="complaint.php">COMPLAINT</a></li>
-            <li class="nav-ul-li"><a href="account.php">ACCOUNT</a></li>
-            <li class="nav-ul-li"><a href="logout.php">LOG-OUT</a></li>
+            <li class="nav-ul-li"><a href="adminPanel.php">MAIN</a></li>
+            <li class="nav-ul-li"><a href="adminInfo.php">USERS</a></li>
+            <li class="nav-ul-li"><a href="adminTODO.php">TO/DO</a></li>
+            <li class="nav-ul-li"><a href="adminComplaint.php">COMPLAINTS</a></li>
+            <li class="nav-ul-li"><a href="adminAccount.php">USER ADD</a></li>
+            <li class="nav-ul-li"><a href="adminLogOut.php">LOG-OUT</a></li>
         </ul>
     </nav>
 
@@ -39,7 +39,6 @@ session_start();
             <h2>List of All Tenant </h2>
             <div>
                 <table style="width: 60%" border="1">
-
                     <tr>
                         <th>S.NO</th>
                         <th>ID</th>
@@ -49,6 +48,9 @@ session_start();
                         <th>Flat No</th>
                         <th>E-Mail</th>
                         <th>GSM</th>
+                        <th>Register Time</th>
+                        <th>Update</th>
+                        <th>Delete</th>
                     </tr>
                     <?php
                     $checkUserInDB = $db->prepare("SELECT * FROM usersinfo");
@@ -66,18 +68,32 @@ session_start();
                             <td><?php echo $pullinfo['userFlatno']; ?></td>
                             <td><?php echo $pullinfo['userEmail']; ?></td>
                             <td><?php echo $pullinfo['userGSM']; ?></td>
+                            <td><?php echo $pullinfo['registerTime']; ?></td>
+                            <td align="center"><a href="../index/update.php?userID=<?php echo $pullinfo['userID'] ?>&userIDupdate=ok"><button>Update</button></td></a>
+                            <td align="center"><a href="../index/delete.php?userID=<?php echo $pullinfo['userID'] ?>&userIDdelete=delete"><button>Delete</button></td></a>
                         </tr>
                     <?php } ?>
                 </table>
+                <?php
+                if (isset($_GET['durum']))
+                    if ($_GET['durum'] == "ok") {
+                        echo "Update Successful";
+                    } elseif ($_GET['durum'] == "no") {
+                        echo "Update Failed";
+                    }
+                if (isset($_GET['delete'])) {
+                    if ($_GET['delete'] == "ok") {
+                        echo "Deleted Successful";
+                    } else {
+                        echo "Deleted Failed";
+                    }
+                }
+
+                ?>
+                <p><B>ALERT EKLE DELETE YAPARKEN</B></p>
             </div>
 
     </main>
-
-
-
-
-
-
 
 
 

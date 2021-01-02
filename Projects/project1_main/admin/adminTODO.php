@@ -1,5 +1,5 @@
 <?php
-include 'database/logDB.php';
+include '../database/adminDB.php';
 session_start();
 ?>
 <!DOCTYPE html>
@@ -9,7 +9,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To/Do</title>
-    <link rel="stylesheet" href="css/to-do.css">
+    <link rel="stylesheet" href="../css/admin/adminTODO.css">
 </head>
 
 <body>
@@ -25,17 +25,14 @@ session_start();
     <nav class="nav">
         <span>MANAGEMENT SYSTEM</span>
         <ul class="nav-ul">
-            <li class="nav-ul-li"><a href="main.php">MAIN</a></li>
-            <li class="nav-ul-li"><a href="information.php">INFORMATION</a></li>
-            <li class="nav-ul-li"><a href="to-do.php">TO/DO</a></li>
-            <li class="nav-ul-li"><a href="complaint.php">COMPLAINT</a></li>
-            <li class="nav-ul-li"><a href="account.php">ACCOUNT</a></li>
-            <li class="nav-ul-li"><a href="logout.php">LOG-OUT</a></li>
+            <li class="nav-ul-li"><a href="adminPanel.php">MAIN</a></li>
+            <li class="nav-ul-li"><a href="adminInfo.php">USERS</a></li>
+            <li class="nav-ul-li"><a href="adminTODO.php">TO/DO</a></li>
+            <li class="nav-ul-li"><a href="adminComplaint.php">COMPLAINTS</a></li>
+            <li class="nav-ul-li"><a href="adminAccount.php">USER ADD</a></li>
+            <li class="nav-ul-li"><a href="adminLogOut.php">LOG-OUT</a></li>
         </ul>
     </nav>
-
-
-
 
 
     <main class="main-content">
@@ -47,11 +44,22 @@ session_start();
                 $checkUserInDB->execute();
                 while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
                 ?>
-                    <li class="mainl-list"> <?php echo $pullinfo['toDo'] ?></li>
+                    <br><li class="mainl-list">ID: <?php echo $pullinfo['toDoID']?></li>
+                    <li class="mainl-list"> <?php echo $pullinfo['toDo']?></li>
+                    <a href="../index/updateArrangements.php?arrangement=0&toDoID=<?php echo $pullinfo['toDoID']?>"><button>Update</button></a><br>
                 <?php
                 }
                 ?>
-            </ul>
+            </ul><br>
+            <?php
+                if(isset($_GET['UPDATE'])){
+                    if($_GET['UPDATE'] == "ok"){
+                        echo "The arrangement with id number ". $_GET['toDoID'] ." has been updated";
+                    }elseif ($_GET['UPDATE'] == "no") {
+                        echo "An error occurred with the problem with id number ". $_GET['toDoID'];
+                    }
+                }
+            ?>
         </div>
 
         <div class="main-content-2">
@@ -59,49 +67,33 @@ session_start();
 
             <ul>
                 <?php
-                $checkUserInDB = $db->prepare("SELECT * FROM apartmentexpenses WHERE isOK = 0");
+                $checkUserInDB = $db->prepare("SELECT * FROM apartmentexpenses");
                 $checkUserInDB->execute();
                 while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
                 ?>
+                    <br><li class="mainl-list">ID:<?php echo $pullinfo['expensesID'] ?></li>
+                    <li class="mainl-list">Date:<?php echo $pullinfo['expensesTime'] ?></li>
                     <li class="mainl-list">Light: ₺<?php echo $pullinfo['corridorLight'] ?></li>
                     <li class="mainl-list">Water: ₺<?php echo $pullinfo['corridorWater'] ?></li>
                     <li class="mainl-list">Extra: ₺<?php echo $pullinfo['corridorExtra'] ?></li>
+                    <a href="../index/updateExpenses.php?expensesID=<?php echo$pullinfo['expensesID']?>"><button>Update</button></a><br>
                 <?php
                 }
                 ?>
-            </ul>
-
+            </ul><br>
+            <?php
+                if(isset($_GET['expensesUpdated'])){
+                    if($_GET['expensesUpdated'] == "ok"){
+                        echo "The expenses with id number ". $_GET['expensesID'] ." has been updated";
+                    }elseif ($_GET['expensesUpdated'] == "no") {
+                        echo "An error occurred with the problem with id number ". $_GET['expensesID'];
+                    }
+                }
+            ?>
         </div>
     </main>
 
 
-
-
-
-    <main class="section">
-        <table id="payment">
-            <tr>
-                <th class="text-table">RENT</th>
-                <th class="text-table">CORRIDOR ELECTRIC BILL</th>
-                <th class="text-table">CORRIDOR WATER BILL</th>
-                <th class="text-table">CORRIDOR CLEANING BILL</th>
-                <th class="text-table">FUEL BILL</th>
-                <th class="text-table">SUM</th>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>20</td>
-                <td>100</td>
-                <td>50</td>
-                <td>50</td>
-                <td>230</td>
-            </tr>
-        </table>
-        <div class="btn-class">
-            <button type="button" class="btn" id="btn-todo">PAY THE RECENT BILL</button>
-        </div>
-
-    </main>
 
 
 

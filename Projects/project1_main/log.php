@@ -1,3 +1,8 @@
+<?php
+include 'database/logDB.php';
+include 'database/adminDB.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,34 +23,69 @@
                 <button type="button" class="toggle-b" onclick="admin()">Admin</button>
             </div>
 
-            <form id="log-in" class="input-group">
+            <form id="log-in" action="index/new_user_sign.php" method="POST" class="input-group">
 
-                <input type="text" class="input-field" placeholder="User Name" required>
-                <input type="password" class="input-field" placeholder="Password" required>
+                <input type="text" class="input-field" name="userUsername" placeholder="User Name" required>
+                <input type="password" class="input-field" name="userPassword" placeholder="Password" required>
                 <input type="checkbox" class="chechk-box"><span>Remember Me</span>
-                <button type="submit" class="submit-b">Log-in</button><br><br>
+                <button type="submit" class="submit-b" name="login-btn">Log-in</button><br><br>
+                giriş durumu:
+                <?php
+                if (isset($_GET['fail'])) {
+                    if ($_GET['fail'] == "username") {
+                        echo "<b>user name yanlış Başarısız Giriş</b>";
+                    } elseif ($_GET['fail'] == "password") {
+                        echo "<b>user password yanlış Başarısız Giriş</b>";
+                    } elseif ($_GET['fail'] == "fail") {
+                        echo "<b>DİREK yanlış Başarısız Giriş</b>";
+                    }
+                }
+                ?>
+                <?php
+                if (isset($_GET['sign'])) {
+                    if ($_GET['sign'] == "success") {
+                        echo "<b style='color: green;'>your account created Seccessfull</b>";
+                    } elseif ($_GET['sign'] == "failed") {
+                        echo "<b style='color: red;'>your account created Failed</b>";
+                    }
+                }
+                ?>
+
             </form>
 
-            <form id="register" class="input-group">
-
-                <input type="text" class="input-field" placeholder="Name" required>
-                <input type="text" class="input-field" placeholder="Surname" required>
-                <input type="text" class="input-field" placeholder="Username" required>
-                <input type="number" class="input-field" placeholder="Flat No (1-8)" pattern="[0-8]{1}" required>
-                <input type="text" class="input-field" placeholder="P.Number (555-555-55-55)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}" required>
-                <input type="text" class="input-field" placeholder="Email (asd@asd.com)" required>
-                <input type="password" class="input-field" placeholder="Password" required>
-                <input type="checkbox" class="chechk-box"><p id="terms">I agree to the terms</p>
-                <button type="button" class="submit-b" onclick="window.location.href = 'main.html'">Register</button>
+            <form id="register" action="index/new_user_sign.php" method="POST" class="input-group">
+                <input type="text" class="input-field" name="userName" placeholder="Name" required>
+                <input type="text" class="input-field" name="userSurname" placeholder="Surname" required>
+                <input type="text" class="input-field" name="userUsername" placeholder="Username" required>
+                <input type="number" class="input-field" name="userFlatno" placeholder="Flat No (1-8)" max=12 min=1 required>
+                <input type="text" class="input-field" name="userGSM" placeholder="P.Number (5555555555)">
+                <input type="email" class="input-field" name="userEmail" placeholder="Email (asd@asd.com)" required>
+                <input type="password" class="input-field" name="userPassword" placeholder="Password" required>
+                <input type="checkbox" class="chechk-box">
+                <p id="terms">I agree to the terms</p>
+                <button type="submit" class="submit-b" name="register-btn">Register</button>                
             </form>
 
-            <form id="admin" class="input-group">
+            <form id="admin" method="POST" action="index/new_user_sign.php" class="input-group">
 
-                <input type="text" class="input-field" placeholder="Admin ID" required>
-                <input type="password" class="input-field" placeholder="Password" required>
-                <br><br><button type="submit" class="submit-b">Log-in</button><br><br>
-            </form>
+                <input name="adminUSERNAME" type="text" class="input-field" placeholder="Admin ID" required>
+                <input name="adminPASSWORD" type="password" class="input-field" placeholder="Password" required>
+                <br><br><button type="submit" class="submit-b" name="admin-btn">Log-in</button><br><br>
+                <?php
+                if(isset($_GET['fail'])){
+                    if($_GET['fail'] == "ADMINpassword"){
+                        echo "<b style='color: red;'>your sign Failed(password)</b>";
+                    }elseif($_GET['fail'] == "ADMINusername"){
+                        echo "<b style='color: red;'>your sign Failed(user name)</b>";
+                    }elseif($_GET['fail'] == "ADMINfail" ){
+                        echo "<b style='color: red;'>your sign Failed(DATABASE ERROR !!)</b>";
+                    }
+                }
+                ?>
+             </form>
         </div>
+
+
     </div>
 
     <script>
@@ -53,19 +93,22 @@
         var y = document.getElementById("register");
         var a = document.getElementById("admin");
         var z = document.getElementById("btn");
+
         function login() {
             x.style.left = "50px";
             y.style.left = "450px";
             a.style.left = "850px";
             z.style.left = "0px";
         }
+
         function register() {
             x.style.left = "-480px";
             y.style.left = "50px";
             a.style.left = "450px"
             z.style.left = "110px";
         }
-        function admin(){
+
+        function admin() {
             x.style.left = "-1210px";
             y.style.left = "-350px";
             a.style.left = "50px";

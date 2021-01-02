@@ -10,11 +10,11 @@ body{
 }
 
 .welcome{
-    background-image: linear-gradient(to left,rgb(237, 66, 100),rgb(255, 237, 189));
+    background-image: linear-gradient(to left,#ed4264,#ffedbc);
     padding: 3.5%;
     text-align: center;
     font-size: 2rem;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #333;
 }
 #welcome{
@@ -45,6 +45,9 @@ body{
     text-decoration:none;
     color:inherit;
 }
+
+
+
 
 .main-content {
    
@@ -78,6 +81,7 @@ body{
     display:flex;
     align-items:center;
     justify-content:center;
+    
 }
 .links ul{
     margin:0;
@@ -85,6 +89,7 @@ body{
     display:flex;
  
 }
+
 .links ul li{
     padding:.5rem;
 }

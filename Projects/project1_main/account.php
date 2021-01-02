@@ -1,3 +1,7 @@
+<?php
+include 'database/logDB.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,12 +24,12 @@
     <nav class="nav">
         <span>MANAGEMENT SYSTEM</span>
         <ul class="nav-ul">
-            <li class="nav-ul-li"><a href="main.html">MAIN</a></li>
-            <li class="nav-ul-li"><a href="information.html">INFORMATION</a></li>
-            <li class="nav-ul-li"><a href="to-do.html">TO/DO</a></li>
-            <li class="nav-ul-li"><a href="complaint.html">COMPLAINT</a></li>
-            <li class="nav-ul-li"><a href="account.html">ACCOUNT</a></li>
-            <li class="nav-ul-li"><a href="log.html">LOG-OUT</a></li>
+        <li class="nav-ul-li"><a href="main.php">MAIN</a></li>
+            <li class="nav-ul-li"><a href="information.php">INFORMATION</a></li>
+            <li class="nav-ul-li"><a href="to-do.php">TO/DO</a></li>
+            <li class="nav-ul-li"><a href="complaint.php">COMPLAINT</a></li>
+            <li class="nav-ul-li"><a href="account.php">ACCOUNT</a></li>
+            <li class="nav-ul-li"><a href="logout.php">LOG-OUT</a></li>
         </ul>
     </nav>
 

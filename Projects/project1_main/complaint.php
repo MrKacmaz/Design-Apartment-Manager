@@ -1,3 +1,7 @@
+<?php
+include 'database/logDB.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,43 +25,49 @@
     <nav class="nav">
         <span>MANAGEMENT SYSTEM</span>
         <ul class="nav-ul">
-            <li class="nav-ul-li"><a href="main.html">MAIN</a></li>
-            <li class="nav-ul-li"><a href="information.html">INFORMATION</a></li>
-            <li class="nav-ul-li"><a href="to-do.html">TO/DO</a></li>
-            <li class="nav-ul-li"><a href="complaint.html">COMPLAINT</a></li>
-            <li class="nav-ul-li"><a href="account.html">ACCOUNT</a></li>
-            <li class="nav-ul-li"><a href="log.html">LOG-OUT</a></li>
+        <li class="nav-ul-li"><a href="main.php">MAIN</a></li>
+            <li class="nav-ul-li"><a href="information.php">INFORMATION</a></li>
+            <li class="nav-ul-li"><a href="to-do.php">TO/DO</a></li>
+            <li class="nav-ul-li"><a href="complaint.php">COMPLAINT</a></li>
+            <li class="nav-ul-li"><a href="account.php">ACCOUNT</a></li>
+            <li class="nav-ul-li"><a href="logout.php">LOG-OUT</a></li>
         </ul>
     </nav>
 
 
     <main class="main">
-        <form action="#">
+        <form action="index/complains.php" method="POST">
             <div class="cmp">
                 <b>What is the subject of your complaint?</b>
-                <select id="select" required>
-                    <option value="TENANT">TENANT</option>
-                    <option value="FLAT">FLAT</option>
-                    <option value="CORRIDOR">CORRIDOR</option>
-                    <option value="GARDEN">GARDEN</option>
-                    <option value="BILLS">BILLS</option>
-                    <option value="OTHER">OTHER</option>
+                
+                <select id="select" name="about" required>
+                    <option  value="TENANT">TENANT</option>
+                    <option  value="FLAT">FLAT</option>
+                    <option  value="CORRIDOR">CORRIDOR</option>
+                    <option  value="GARDEN">GARDEN</option>
+                    <option  value="BILLS">BILLS</option>
+                    <option  value="OTHER">OTHER</option>
                 </select>
 
                 <p id="p-2"><b>Please describe your complaint in 250 words</b></p>
-                <textarea id="textarea" cols="50" rows="10" required></textarea><br><br>
-
-
-                <p><b>Upload photo(s)</b></p>
-                <label for="sendPic"></label>
-                <input type="file" name="sendPic" id="sendPic"><br><br>
-
-                <label for="sub"></label>
-                <input type="submit" name="sub" id="sub" class="btn">
+                <textarea name="userComplain" id="textarea" cols="50" rows="10" required></textarea><br><br>
+                
+                <label for="userComplain-btn"></label>
+                <input type="submit" name="userComplain-btn" id="sub" class="btn">
+              
                 <label for="reset"></label>
                 <input type="reset" name="reset" id="reset" class="btn">
             </div>
         </form>
+        <?php
+        if(isset($_GET['complaint'])){
+            if ($_GET['complaint'] == "success") {
+                echo "şikayetiniz gönderildi";
+            }elseif ($_GET['complaint'] == 'failed') {
+                echo "şikayetiniz gönderilemedi";
+            }
+        }
+        ?>
     </main>
 
 
