@@ -28,6 +28,7 @@ session_start();
             <li class="nav-ul-li"><a href="adminPanel.php">MAIN</a></li>
             <li class="nav-ul-li"><a href="adminInfo.php">USERS</a></li>
             <li class="nav-ul-li"><a href="adminTODO.php">TO/DO</a></li>
+            <li class="nav-ul-li"><a href="adminBills.php">BILLS</a></li>
             <li class="nav-ul-li"><a href="adminComplaint.php">COMPLAINTS</a></li>
             <li class="nav-ul-li"><a href="adminAccount.php">USER ADD</a></li>
             <li class="nav-ul-li"><a href="adminLogOut.php">LOG-OUT</a></li>
@@ -44,21 +45,22 @@ session_start();
                 $checkUserInDB->execute();
                 while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
                 ?>
-                    <br><li class="mainl-list">ID: <?php echo $pullinfo['toDoID']?></li>
-                    <li class="mainl-list"> <?php echo $pullinfo['toDo']?></li>
-                    <a href="../index/updateArrangements.php?arrangement=0&toDoID=<?php echo $pullinfo['toDoID']?>"><button>Update</button></a><br>
+                    <br>
+                    <li class="mainl-list">ID: <?php echo $pullinfo['toDoID'] ?></li>
+                    <li class="mainl-list"> <?php echo $pullinfo['toDo'] ?></li>
+                    <a href="../index/updateArrangements.php?arrangement=0&toDoID=<?php echo $pullinfo['toDoID'] ?>"><button>Update</button></a><br>
                 <?php
                 }
                 ?>
             </ul><br>
             <?php
-                if(isset($_GET['UPDATE'])){
-                    if($_GET['UPDATE'] == "ok"){
-                        echo "The arrangement with id number ". $_GET['toDoID'] ." has been updated";
-                    }elseif ($_GET['UPDATE'] == "no") {
-                        echo "An error occurred with the problem with id number ". $_GET['toDoID'];
-                    }
+            if (isset($_GET['UPDATE'])) {
+                if ($_GET['UPDATE'] == "ok") {
+                    echo "The arrangement with id number " . $_GET['toDoID'] . " has been updated";
+                } elseif ($_GET['UPDATE'] == "no") {
+                    echo "An error occurred with the problem with id number " . $_GET['toDoID'];
                 }
+            }
             ?>
         </div>
 
@@ -71,27 +73,31 @@ session_start();
                 $checkUserInDB->execute();
                 while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
                 ?>
-                    <br><li class="mainl-list">ID:<?php echo $pullinfo['expensesID'] ?></li>
+                    <br>
+                    <li class="mainl-list">ID:<?php echo $pullinfo['expensesID'] ?></li>
                     <li class="mainl-list">Date:<?php echo $pullinfo['expensesTime'] ?></li>
-                    <li class="mainl-list">Light: ₺<?php echo $pullinfo['corridorLight'] ?></li>
-                    <li class="mainl-list">Water: ₺<?php echo $pullinfo['corridorWater'] ?></li>
+                    <li class="mainl-list">Lights: ₺<?php echo $pullinfo['corridorLight'] ?></li>
+                    <li class="mainl-list">Pool Maintenance: ₺<?php echo $pullinfo['corridorWater'] ?></li>
                     <li class="mainl-list">Extra: ₺<?php echo $pullinfo['corridorExtra'] ?></li>
-                    <a href="../index/updateExpenses.php?expensesID=<?php echo$pullinfo['expensesID']?>"><button>Update</button></a><br>
+                    <li class="mainl-list">IS OK:<?php echo $pullinfo['isOK'] ?></li>
+                    <a href="../index/updateExpenses.php?expensesID=<?php echo $pullinfo['expensesID'] ?>"><button>Update</button></a><br>
                 <?php
                 }
                 ?>
             </ul><br>
             <?php
-                if(isset($_GET['expensesUpdated'])){
-                    if($_GET['expensesUpdated'] == "ok"){
-                        echo "The expenses with id number ". $_GET['expensesID'] ." has been updated";
-                    }elseif ($_GET['expensesUpdated'] == "no") {
-                        echo "An error occurred with the problem with id number ". $_GET['expensesID'];
-                    }
+            if (isset($_GET['expensesUpdated'])) {
+                if ($_GET['expensesUpdated'] == "ok") {
+                    echo "The expenses with id number " . $_GET['expensesID'] . " has been updated";
+                } elseif ($_GET['expensesUpdated'] == "no") {
+                    echo "An error occurred with the problem with id number " . $_GET['expensesID'];
                 }
+            }
             ?>
         </div>
     </main>
+
+
 
 
 

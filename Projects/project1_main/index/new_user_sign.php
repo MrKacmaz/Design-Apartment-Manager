@@ -19,6 +19,7 @@ if (isset($_POST['login-btn'])) {
 
     if ($int == 1) {
         $pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC);
+        $_SESSION['userID'] = $pullinfo['userID'];
         $_SESSION['userUsername'] = $userUsername;
         $_SESSION['userName'] = $pullinfo['userName'];
         $_SESSION['userSurname'] = $pullinfo['userSurname'];

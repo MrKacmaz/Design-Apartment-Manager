@@ -27,6 +27,7 @@ session_start();
             <li class="nav-ul-li"><a href="adminPanel.php">MAIN</a></li>
             <li class="nav-ul-li"><a href="adminInfo.php">USERS</a></li>
             <li class="nav-ul-li"><a href="adminTODO.php">TO/DO</a></li>
+            <li class="nav-ul-li"><a href="adminBills.php">BILLS</a></li>
             <li class="nav-ul-li"><a href="adminComplaint.php">COMPLAINTS</a></li>
             <li class="nav-ul-li"><a href="adminAccount.php">USER ADD</a></li>
             <li class="nav-ul-li"><a href="adminLogOut.php">LOG-OUT</a></li>
