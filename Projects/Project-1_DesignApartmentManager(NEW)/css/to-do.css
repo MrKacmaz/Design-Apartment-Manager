@@ -46,17 +46,14 @@ body{
     color:inherit;
 }
 
-
-
-
-.main-content {
-    background-color: red;
+.mainclass{
+    background-color: rgba(240, 240, 240,.45);
     display: flex;
     padding:2%;
     flex-wrap: wrap;
     flex-direction: row;
 }
-.main-content-1{
+.contents{
     background-color: #fff;
     padding: 4%;
     margin: auto;
@@ -64,22 +61,10 @@ body{
     color: #333;
 
 }
-.main-content-1 span{
+.contents span{
     font-size: 2rem;
 
 }
-.main-content-2{
-    background-color: #fff;
-    padding: 4%;
-    margin: auto;
-    text-transform: capitalize;
-    color: #333;
-}
-.main-content-2 span{
-    font-size: 2rem;
-}
-
-
 
 
 .section{

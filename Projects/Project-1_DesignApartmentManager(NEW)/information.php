@@ -10,6 +10,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Information</title>
     <link rel="stylesheet" href="css/information.css">
+ 
 </head>
 
 <body>
@@ -31,12 +32,12 @@ session_start();
             <li class="nav-ul-li"><a href="account.php">ACCOUNT</a></li>
             <li class="nav-ul-li"><a onclick="logoutFun()">LOG-OUT</a></li>
             <script>
-            function logoutFun(){
-                var bol = confirm("ARE YOU SURE TO LOG-OUT?");
-                if(bol){
-                    location = "logout.php";
+                function logoutFun() {
+                    var bol = confirm("ARE YOU SURE TO LOG-OUT?");
+                    if (bol) {
+                        location = "logout.php";
+                    }
                 }
-            }
             </script>
         </ul>
     </nav>
@@ -66,19 +67,35 @@ session_start();
                         $say++
                     ?>
                         <tr>
-                            <td><?php echo $say; ?></td>
-                            <td><?php echo $pullinfo['userID']; ?></td>
-                            <td><?php echo $pullinfo['userName']; ?></td>
-                            <td><?php echo $pullinfo['userSurname']; ?></td>
-                            <td><?php echo $pullinfo['userUsername']; ?></td>
-                            <td><?php echo $pullinfo['userFlatno']; ?></td>
-                            <td><?php echo $pullinfo['userEmail']; ?></td>
-                            <td><?php echo $pullinfo['userGSM']; ?></td>
+                            <td>
+                                <?php echo $say; ?>
+                            </td>
+                            <td>
+                                <?php echo $pullinfo['userID']; ?>
+                            </td>
+                            <td>
+                                <?php echo $pullinfo['userName']; ?>
+                            </td>
+                            <td>
+                                <?php echo $pullinfo['userSurname']; ?>
+                            </td>
+                            <td>
+                                <?php echo $pullinfo['userUsername']; ?>
+                            </td>
+                            <td>
+                                <?php echo $pullinfo['userFlatno']; ?>
+                            </td>
+                            <td>
+                                <?php echo $pullinfo['userEmail']; ?>
+                            </td>
+                            <td>
+                                <?php echo $pullinfo['userGSM']; ?>
+                            </td>
                         </tr>
                     <?php } ?>
                 </table>
             </div>
-
+        </div>
     </main>
 
 

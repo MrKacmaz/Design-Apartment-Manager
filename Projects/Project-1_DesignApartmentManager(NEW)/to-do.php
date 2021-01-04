@@ -9,7 +9,8 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To/Do</title>
-    <link rel="stylesheet" href="css/to-do.css">
+    <link rel="stylesheet" href="css\to-do.css">
+
 </head>
 
 <body>
@@ -46,8 +47,8 @@ session_start();
 
 
 
-    <main class="main-content">
-        <div class="main-content-1">
+    <main class="mainclass">
+        <div class="contents">
             <span>garden arrangements</span>
             <ul>
                 <?php
@@ -62,7 +63,7 @@ session_start();
             </ul>
         </div>
 
-        <div class="main-content-2">
+        <div class="contents">
             <span>apartment expenses</span><br>
 
             <ul>

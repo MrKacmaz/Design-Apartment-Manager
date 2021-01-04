@@ -45,7 +45,25 @@ body{
     text-decoration:none;
     color:inherit;
 }
+.btn-class {
+    margin-left: 65%;
+    cursor: pointer;
+}
 
+.btn {
+    padding: .5em;
+    margin: 0.5em 1em;
+    outline: none;
+    font-size: 1em;
+    border-radius: 0.6em;
+    cursor: pointer;
+
+}
+
+.btn :hover {
+    background-color: #ddd;
+    box-shadow: 0 0 5px #ccc;
+}
 
 
 

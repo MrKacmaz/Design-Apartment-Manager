@@ -1,136 +1,153 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-}
-body{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.welcome{
-    background-image: linear-gradient(to left,rgb(237, 66, 100),rgb(255, 237, 189));
-    padding: 3.5%;
-    text-align: center;
-    font-size: 2rem;
-    text-transform: capitalize;
-    color: #333;
-}
-#welcome{
-    text-shadow: 2px 1.5px #ffedbc;  
+body {
+  margin: 0;
+  padding: 0;
 }
 
-.nav{
-    background-color: #333;
-    color:white;
-    padding:1rem;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-}
-.nav-ul{
-    margin:0;
-    list-style:none;
-    display:flex;
-}
-.nav-ul-li{
-    padding:.75rem;
-}
-.nav-ul-li:hover{
-    background-color: #777;
-}
-.nav-ul-li a{
-    text-decoration:none;
-    color:inherit;
+.welcome {
+  background-image: linear-gradient(
+    to left,
+    rgb(237, 66, 100),
+    rgb(255, 237, 189)
+  );
+  padding: 3.5%;
+  text-align: center;
+  font-size: 2rem;
+  text-transform: capitalize;
+  color: #333;
 }
 
+#welcome {
+  text-shadow: 2px 1.5px #ffedbc;
+}
 
+.nav {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
+.nav-ul {
+  margin: 0;
+  list-style: none;
+  display: flex;
+}
+
+.nav-ul-li {
+  padding: 0.75rem;
+}
+
+.nav-ul-li:hover {
+  background-color: #777;
+}
+
+.nav-ul-li a {
+  text-decoration: none;
+  color: inherit;
+}
 
 .main-content {
-   
-    display: flex;
-    padding:2%;
-    flex-wrap: wrap;
-    flex-direction: row;
-}
-.main-item{
-    padding:0.25em;
-    line-height: 1em;
-    text-align: center;
-    flex:1;
-    flex-grow: 1;
-    flex-basis: 0;
-}
-.main-item h2{
-    color: #da4167;
-}
-.main-item p{
-    margin-top:0.5rem;
-}
-.main-item-2{
-    margin:-12em 70% 0 70%;
-    line-height:1.5em;
-
-    text-align: left;
+  display: flex;
+  padding: 2%;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
-.main-item-3 h2{
-    color: #da4167;
+.main-item {
+  margin: 5rem 20rem;
+  padding: 0.25em;
+  line-height: 1em;
+  text-align: center;
+  flex: 1;
+  flex-grow: 1;
+  flex-basis: 0;
+  text-align: left;
+}
+.label {
+  text-align: right;
 }
 
-.input{
-    align-items:flex-end;
-    justify-content:end;
-    padding: 0.5em 1.5em;
-}
-.input-3{
-    line-height: 2em;
-    border: #999 solid;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    margin: 0 10em 0 0;
-}
-.btn{
-    padding: 0.5em;
-    cursor: pointer;
-    font-size: 0.9em;
-    border-radius: 0.75em;
-}
-.btn:hover{
-    background-color: #999;
+.main-item-2 {
+  text-align: right;
 }
 
-
-.links{
-    position: static;
-    width: 100%;
-    height: 10%;
-    bottom: 0;
-    background-color: #333;
-    padding:1rem;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    
-}
-.links ul{
-    margin:0;
-    list-style:none;
-    display:flex;
- 
+.main-item h2 {
+  color: #da4167;
 }
 
-.links ul li{
-    padding:.5rem;
+.main-item p {
+  margin-top: 0.5rem;
 }
-.links ul li:hover{
-    background-color: #777;
+
+.main-item-2 {
+  margin: -12em 70% 0 70%;
+  line-height: 1.5em;
 }
-.links ul li a{
-    text-decoration:none;
-    color:inherit;
+
+.input {
+  align-items: flex-end;
+  justify-content: end;
+  padding: 0.5em 1.5em;
+}
+
+.input-3 {
+  line-height: 2em;
+  border: #999 solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  margin: 0 10em 0 0;
+}
+
+.btn {
+  padding: 0.5em;
+  cursor: pointer;
+  font-size: 0.9em;
+  border-radius: 0.75em;
+}
+
+.btn:hover {
+  background-color: #999;
+}
+
+.links {
+  position: fixed;
+  width: 100%;
+  height: 10%;
+  bottom: 0;
+  background-color: #333;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.links ul {
+  margin: 0;
+  list-style: none;
+  display: flex;
+}
+
+.links ul li {
+  padding: 0.5rem;
+}
+
+.links ul li:hover {
+  background-color: #777;
+}
+
+.links ul li a {
+  text-decoration: none;
+  color: inherit;
 }

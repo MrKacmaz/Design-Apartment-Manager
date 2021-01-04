@@ -9,7 +9,146 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Complaint</title>
-    <link rel="stylesheet" href="../css/admin/adminComplain.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .welcome {
+            background-image: linear-gradient(to left, #ed4264, #ffedbc);
+            padding: 3.5%;
+            text-align: center;
+            font-size: 2rem;
+            text-transform: capitalize;
+            color: #333;
+        }
+
+        #welcome {
+            text-shadow: 2px 1.5px #ffedbc;
+        }
+
+        .nav {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-ul {
+            margin: 0;
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-ul-li {
+            padding: 0.75rem;
+        }
+
+        .nav-ul-li:hover {
+            background-color: #777;
+        }
+
+        .nav-ul-li a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .cmp {
+            margin: 2rem;
+        }
+
+        #select {
+            margin: 1em 2em;
+        }
+
+        #p-2 {
+            margin: 2em 0;
+        }
+
+        #sub,
+        #reset {
+            margin: 1em 2em;
+        }
+
+        #textarea {
+            margin: 1em 0;
+            resize: none;
+            font-size: 20px;
+            border-radius: 0.5em;
+        }
+
+        table,
+        th,
+        td {
+            border: 3px solid black;
+            border-collapse: collapse;
+            padding: 1rem;
+            margin: 5rem auto;
+            text-align: center;
+            align-content: center;
+        }
+
+        .btn-class {
+            margin-left: 65%;
+            cursor: pointer;
+        }
+
+        .btn {
+            padding: .5em;
+            margin: 0.5em 1em;
+            outline: none;
+            font-size: 1em;
+            border-radius: 0.6em;
+            cursor: pointer;
+
+        }
+
+        .btn :hover {
+            background-color: #ddd;
+            box-shadow: 0 0 5px #ccc;
+        }
+
+        .links {
+            position: fixed;
+            width: 100%;
+            height: 10%;
+            bottom: 0;
+            background-color: #333;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .links ul {
+            margin: 0;
+            list-style: none;
+            display: flex;
+        }
+
+        .links ul li {
+            padding: 0.5rem;
+        }
+
+        .links ul li:hover {
+            background-color: #777;
+        }
+
+        .links ul li a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
 </head>
 
 <body>
@@ -34,12 +173,12 @@ session_start();
             <li class="nav-ul-li"><a onclick="logoutFun()">LOG-OUT</a></li>
         </ul>
         <script>
-        function logoutFun(){
-            var bol = confirm("ARE YOU SURE TO LOG-OUT ?");
-            if(bol){
-                location = "adminLogOut.php";
+            function logoutFun() {
+                var bol = confirm("ARE YOU SURE TO LOG-OUT ?");
+                if (bol) {
+                    location = "adminLogOut.php";
+                }
             }
-        }
         </script>
     </nav>
 
@@ -73,15 +212,15 @@ session_start();
                     <td><?php echo $pullinfo['userFlatno']; ?></td>
                     <td><?php echo $pullinfo['about']; ?></td>
                     <td><?php echo $pullinfo['userComplain']; ?></td>
-                    <td align="center"><button onclick="deleteFun()">Delete</button></td>
+                    <td align="center"><button class="btn" onclick="deleteFun()">Delete</button></td>
                 </tr>
                 <script>
-                function deleteFun(){
-                    var bol = confirm("ARE YOU SURE TO DELETE ?");
-                    if(bol){
-                        location = "../index/delete.php?complainID=<?php echo $pullinfo['complainID'] ?>&userComplaintdelete=delete";
+                    function deleteFun() {
+                        var bol = confirm("ARE YOU SURE TO DELETE ?");
+                        if (bol) {
+                            location = "../index/delete.php?complainID=<?php echo $pullinfo['complainID'] ?>&userComplaintdelete=delete";
+                        }
                     }
-                }
                 </script>
             <?php } ?>
         </table>

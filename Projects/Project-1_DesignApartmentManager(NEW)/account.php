@@ -31,26 +31,20 @@ session_start();
             <li class="nav-ul-li"><a href="account.php">ACCOUNT</a></li>
             <li class="nav-ul-li"><a onclick="logoutFun()">LOG-OUT</a></li>
             <script>
-            function logoutFun(){
-                var bol = confirm("ARE YOU SURE TO LOG-OUT?");
-                if(bol){
-                    location = "logout.php";
+                function logoutFun() {
+                    var bol = confirm("ARE YOU SURE TO LOG-OUT?");
+                    if (bol) {
+                        location = "logout.php";
+                    }
                 }
-            }
             </script>
         </ul>
     </nav>
 
 
     <main class="main-content">
-        <div class="main-item">
-            <h2>Account Transactions</h2>
-            <p>You can change or update your account information.</p>
-        </div>
-    </main>
 
-    <main class="main-content">
-        <div class="main-item-3">
+        <div class="main-item">
             <h2>Your Information is ;</h2><br>
             <p class="input-3">User name: <?php echo $_SESSION['userUsername'] ?></p><br>
             <p class="input-3">Name: <?php echo $_SESSION['userName'] ?></p><br>
@@ -59,46 +53,46 @@ session_start();
             <p class="input-3">Email: <?php echo $_SESSION['userEmail'] ?></p><br>
             <p class="input-3">Flat: <?php echo $_SESSION['userFlatno'] ?></p><br>
         </div>
-    </main>
 
+        <div class="main-item">
+            <div class="label">
+                <form action="account.php" method="POST">
+                    <label for="username">User name</label>
+                    <input type="text" name="userUsername" id="username" class="input" placeholder="<?php echo $_SESSION['userUsername'] ?>" required><br><br>
+                    <label for="name">Name</label>
+                    <input type="text" name="userName" id="name" class="input" required placeholder="<?php echo $_SESSION['userName'] ?>"><br><br>
+                    <label for="surname">Surname</label>
+                    <input type="text" name="userSurname" id="surname" class="input" required placeholder="<?php echo $_SESSION['userSurname'] ?>"><br><br>
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" name="userGSM" id="phone" class="input" placeholder="<?php echo $_SESSION['userGSM'] ?>" required><br><br>
+                    <label for="mail">E-mail</label>
+                    <input type="email" name="userEmail" id="mail" class="input" placeholder="<?php echo $_SESSION['userEmail'] ?>" required><br><br>
+                    <label for="password">Old Password</label>
+                    <input type="password" name="userPassword" id="passwordOld" class="input" required><br><br>
+                    <label for="password">New Password</label>
+                    <input type="password" name="userPasswordNEW" id="passwordNew" class="input" required><br><br>
+                    <label for="userFlatno">Flat</label>
+                    <input type="int" name="userFlatno" id="userFlatno" class="input" placeholder="<?php echo $_SESSION['userFlatno'] ?>" required><br><br>
 
-    <main class="main-content">
-        <div class="main-item-2">
-            <form action="account.php" method="POST">
-                <label for="username">User name</label>
-                <input type="text" name="userUsername" id="username" class="input" placeholder="<?php echo $_SESSION['userUsername']?>" required><br><br>
-                <label for="name">Name</label>
-                <input type="text" name="userName" id="name" class="input" required placeholder="<?php echo $_SESSION['userName']?>"><br><br>
-                <label for="surname">Surname</label>
-                <input type="text" name="userSurname" id="surname" class="input" required placeholder="<?php echo $_SESSION['userSurname']?>"><br><br>
-                <label for="phone">Phone Number</label>
-                <input type="tel" name="userGSM" id="phone" class="input" placeholder="<?php echo $_SESSION['userGSM']?>" required><br><br>
-                <label for="mail">E-mail</label>
-                <input type="email" name="userEmail" id="mail" class="input" placeholder="<?php echo $_SESSION['userEmail']?>" required><br><br>
-                <label for="password">Old Password</label>
-                <input type="password" name="userPassword" id="passwordOld" class="input" required><br><br>
-                <label for="password">New Password</label>
-                <input type="password" name="userPasswordNEW" id="passwordNew" class="input" required><br><br>
-                <label for="userFlatno">Flat</label>
-                <input type="int" name="userFlatno" id="userFlatno" class="input"  placeholder="<?php echo $_SESSION['userFlatno']?>" required><br><br>
-
-                <label for="submit"></label>
-                <input type="submit" name="submit" id="submit" class="btn" required>
-                <label for="reset"></label>
-                <input type="reset" name="reset" id="reset" class="btn" required>
-            </form>
+                    <label for="submit"></label>
+                    <input type="submit" name="submit" id="submit" class="btn" required>
+                    <label for="reset"></label>
+                    <input type="reset" name="reset" id="reset" class="btn" required>
+                </form>
+            </div>
             <?php
-            
-            if(isset($_GET['update'])){
-                if($_GET['update'] == "ok"){
+
+            if (isset($_GET['update'])) {
+                if ($_GET['update'] == "ok") {
                     echo "güncelleme başırılı";
-                }
-                elseif($_GET['update'] == "no"){
-                    echo"güncelleme başarısız";
+                } elseif ($_GET['update'] == "no") {
+                    echo "güncelleme başarısız";
                 }
             }
             ?>
         </div>
+
+
         <?php
         if (isset($_POST['submit'])) {
 
@@ -140,11 +134,13 @@ session_start();
                 exit;
             }
         }
-
-
-
         ?>
+
+
     </main>
+
+
+
 
     <footer class="footer">
         <div class="links">

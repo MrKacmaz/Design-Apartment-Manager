@@ -9,7 +9,181 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To/Do</title>
-    <link rel="stylesheet" href="../css/admin/adminTODO.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .welcome {
+            background-image: linear-gradient(to left, #ed4264, #ffedbc);
+            padding: 3.5%;
+            text-align: center;
+            font-size: 2rem;
+            text-transform: capitalize;
+            color: #333;
+        }
+
+        #welcome {
+            text-shadow: 2px 1.5px #ffedbc;
+        }
+
+        .nav {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+
+        .nav-ul {
+            margin: 0;
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-ul-li {
+            padding: .75rem;
+        }
+
+        .nav-ul-li:hover {
+            background-color: #777;
+        }
+
+        .nav-ul-li a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+
+
+        .main-content {
+            display: flex;
+            padding: 2%;
+            flex-wrap: wrap;
+            flex-direction: row;
+        }
+
+        .main-content-1 {
+            background-color: rgb(237, 66, 100,0.5);
+            padding: 4%;
+            margin: auto;
+            text-transform: capitalize;
+            color: #333;
+        }
+        .main-content-1 li{
+            font-size: 1.5rem;
+        }
+
+        .main-content-1 span {
+            font-size: 2rem;
+
+        }
+
+        .main-content-2 {
+            background-color: rgb(237, 66, 100,0.5);
+            padding: 4%;
+            margin: auto;
+            text-transform: capitalize;
+            color: #333;
+        }
+
+        .main-content-2 li{
+            font-size: 1.5rem;
+        }
+
+        .main-content-2 span {
+            font-size: 2rem;
+        }
+
+
+
+
+        .section {
+            background-image: linear-gradient(to right, rgb(237, 66, 100, 0.5), rgb(255, 237, 189, 0.5));
+            padding: 1rem;
+            margin: 1em 15%;
+
+        }
+
+        .text-table {
+            color: white;
+            text-shadow: 2px 1.5px blue;
+            ;
+            font-size: 1em;
+        }
+
+        table,
+        th,
+        td {
+            border: 3px solid black;
+            border-collapse: collapse;
+            padding: 1rem;
+            margin: auto;
+        }
+
+        .btn-class {
+            margin-left: 65%;
+        }
+
+        .btn {
+            padding: 1em;
+            margin: 0.5em 1em;
+            outline: none;
+            font-size: 1em;
+            border-radius: 0.6em;
+
+        }
+
+        .btn :hover {
+            background-color: #ddd;
+            box-shadow: 0 0 5px #ccc;
+        }
+
+
+        .links {
+            position: fixed;
+            width: 100%;
+            height: 10%;
+            bottom: 0;
+            background-color: #333;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .links ul {
+            margin: 0;
+            list-style: none;
+            display: flex;
+
+        }
+
+        .links ul li {
+            padding: .5rem;
+        }
+
+        .links ul li:hover {
+            background-color: #777;
+        }
+
+        .links ul li a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
 </head>
 
 <body>
@@ -34,12 +208,12 @@ session_start();
             <li class="nav-ul-li"><a onclick="logoutFun()">LOG-OUT</a></li>
         </ul>
         <script>
-        function logoutFun(){
-            var bol = confirm("ARE YOU SURE TO LOG-OUT ?");
-            if(bol){
-                location = "adminLogOut.php";
+            function logoutFun() {
+                var bol = confirm("ARE YOU SURE TO LOG-OUT ?");
+                if (bol) {
+                    location = "adminLogOut.php";
+                }
             }
-        }
         </script>
     </nav>
 
@@ -122,10 +296,6 @@ session_start();
         </div>
 
     </main>
-
-
-
-
 
 
 
