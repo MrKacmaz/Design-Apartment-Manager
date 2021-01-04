@@ -23,13 +23,22 @@ session_start();
                 <button type="button" class="toggle-b" onclick="admin()">Admin</button>
             </div>
 
+
+            <!--USER LOG-IN-->
             <form id="log-in" action="index/new_user_sign.php" method="POST" class="input-group">
 
-                <input type="text" class="input-field" name="userUsername" placeholder="User Name" required>
+                <input type="text" class="input-field" name="userUsername"
+                <?php if(isset($_COOKIE['userUsername'])){?>
+                    value="<?php echo $_COOKIE['userUsername']?>"
+                <?php } else{?>
+                    placeholder="User Name"
+                <?php }
+                ?> required>
+                
                 <input type="password" class="input-field" name="userPassword" placeholder="Password" required>
-                <input type="checkbox" class="chechk-box"><span>Remember Me</span>
+                <input type="checkbox" name="rememberMe" class="chechk-box"><span>Remember Me</span>
                 <button type="submit" class="submit-b" name="login-btn">Log-in</button><br><br>
-                giriş durumu:
+
                 <?php
                 if (isset($_GET['fail'])) {
                     if ($_GET['fail'] == "username") {
@@ -40,8 +49,6 @@ session_start();
                         echo "<b>DİREK yanlış Başarısız Giriş</b>";
                     }
                 }
-                ?>
-                <?php
                 if (isset($_GET['sign'])) {
                     if ($_GET['sign'] == "success") {
                         echo "<b style='color: green;'>your account created Seccessfull</b>";
@@ -50,9 +57,9 @@ session_start();
                     }
                 }
                 ?>
-
             </form>
 
+            <!--NEW USER SIGN-IN-->
             <form id="register" action="index/new_user_sign.php" method="POST" class="input-group">
                 <input type="text" class="input-field" name="userName" placeholder="Name" required>
                 <input type="text" class="input-field" name="userSurname" placeholder="Surname" required>
@@ -63,26 +70,29 @@ session_start();
                 <input type="password" class="input-field" name="userPassword" placeholder="Password" required>
                 <input type="checkbox" class="chechk-box">
                 <p id="terms">I agree to the terms</p>
-                <button type="submit" class="submit-b" name="register-btn">Register</button>                
+                <button type="submit" class="submit-b" name="register-btn">Register</button>
             </form>
 
+
+
+            <!--ADMIN LOG-IN-->
             <form id="admin" method="POST" action="index/new_user_sign.php" class="input-group">
 
                 <input name="adminUSERNAME" type="text" class="input-field" placeholder="Admin ID" required>
                 <input name="adminPASSWORD" type="password" class="input-field" placeholder="Password" required>
                 <br><br><button type="submit" class="submit-b" name="admin-btn">Log-in</button><br><br>
                 <?php
-                if(isset($_GET['fail'])){
-                    if($_GET['fail'] == "ADMINpassword"){
+                if (isset($_GET['fail'])) {
+                    if ($_GET['fail'] == "ADMINpassword") {
                         echo "<b style='color: red;'>your sign Failed(password)</b>";
-                    }elseif($_GET['fail'] == "ADMINusername"){
+                    } elseif ($_GET['fail'] == "ADMINusername") {
                         echo "<b style='color: red;'>your sign Failed(user name)</b>";
-                    }elseif($_GET['fail'] == "ADMINfail" ){
+                    } elseif ($_GET['fail'] == "ADMINfail") {
                         echo "<b style='color: red;'>your sign Failed(DATABASE ERROR !!)</b>";
                     }
                 }
                 ?>
-             </form>
+            </form>
         </div>
 
 

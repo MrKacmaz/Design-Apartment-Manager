@@ -21,6 +21,7 @@ session_start();
     </header>
 
 
+    <!--NAV BAR-->
     <nav class="nav">
         <span>MANAGEMENT SYSTEM</span>
         <ul class="nav-ul">
@@ -30,8 +31,16 @@ session_start();
             <li class="nav-ul-li"><a href="adminBills.php">BILLS</a></li>
             <li class="nav-ul-li"><a href="adminComplaint.php">COMPLAINTS</a></li>
             <li class="nav-ul-li"><a href="adminAccount.php">USER ADD</a></li>
-            <li class="nav-ul-li"><a href="adminLogOut.php">LOG-OUT</a></li>
+            <li class="nav-ul-li"><a onclick="logoutFun()">LOG-OUT</a></li>
         </ul>
+        <script>
+        function logoutFun(){
+            var bol = confirm("ARE YOU SURE TO LOG-OUT ?");
+            if(bol){
+                location = "adminLogOut.php";
+            }
+        }
+        </script>
     </nav>
 
 

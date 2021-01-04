@@ -13,7 +13,7 @@ session_start();
 </head>
 
 <body>
-    <!--welcome header bar-->
+    <!--HEADER BAR-->
     <header class="header">
         <div class="welcome">
             <p id="welcome">to-do page</p>
@@ -21,7 +21,7 @@ session_start();
     </header>
 
 
-    <!--MENU BAR-->
+    <!--NAV BAR-->
     <nav class="nav">
         <span>MANAGEMENT SYSTEM</span>
         <ul class="nav-ul">
@@ -30,7 +30,15 @@ session_start();
             <li class="nav-ul-li"><a href="to-do.php">TO/DO</a></li>
             <li class="nav-ul-li"><a href="complaint.php">COMPLAINT</a></li>
             <li class="nav-ul-li"><a href="account.php">ACCOUNT</a></li>
-            <li class="nav-ul-li"><a href="logout.php">LOG-OUT</a></li>
+            <li class="nav-ul-li"><a onclick="logoutFun()">LOG-OUT</a></li>
+            <script>
+                function logoutFun() {
+                    var bol = confirm("ARE YOU SURE TO LOG-OUT?");
+                    if (bol) {
+                        location = "logout.php";
+                    }
+                }
+            </script>
         </ul>
     </nav>
 
@@ -114,12 +122,22 @@ session_start();
         <div class="btn-class">
             <?php
             if (isset($sum)) {
-                echo "<button type='button' class='btn' id='btn-todo'>PAY THE RECENT BILL</button>";
+                $userID = $_SESSION['userID'];
+                echo "<button type='button' class='btn' id='btn-todo' onclick='alertFun()'>PAY THE RECENT BILL</button>";
             } else {
                 echo "<p><b>no invoices to be paid</b></p>";
             }
             ?>
-
+            <script>
+                function alertFun() {
+                    var bol = confirm("YOU WILL BE DIRECTED TO THE PAYMENT PAGE");
+                    if (bol) {
+                        location = "index/payBill.php?userPayBill&userID=$userID&sumOfBill=<?php echo $sum ?>";
+                    }
+                }
+            </script>
+            <br>
+            <a href="index/showBills.php?payerID=<?php echo $_SESSION['userID'] ?>"><button type='button' class='btn' id='btn-todo'>SHOW ALL BILLS</button></a>
         </div>
 
     </main>

@@ -8,7 +8,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bills</title>
     <link rel="stylesheet" href="../css/admin/adminTODO.css">
 
 </head>
@@ -23,7 +23,7 @@ session_start();
     </header>
 
 
-    <!--MENU BAR-->
+    <!--NAV BAR-->
     <nav class="nav">
         <span>MANAGEMENT SYSTEM</span>
         <ul class="nav-ul">
@@ -33,8 +33,16 @@ session_start();
             <li class="nav-ul-li"><a href="adminBills.php">BILLS</a></li>
             <li class="nav-ul-li"><a href="adminComplaint.php">COMPLAINTS</a></li>
             <li class="nav-ul-li"><a href="adminAccount.php">USER ADD</a></li>
-            <li class="nav-ul-li"><a href="adminLogOut.php">LOG-OUT</a></li>
+            <li class="nav-ul-li"><a onclick="logoutFun()">LOG-OUT</a></li>
         </ul>
+        <script>
+        function logoutFun(){
+            var bol = confirm("ARE YOU SURE TO LOG-OUT ?");
+            if(bol){
+                location = "adminLogOut.php";
+            }
+        }
+        </script>
     </nav>
 
     <main class="section">
@@ -97,7 +105,16 @@ session_start();
             }
         }
         ?>
-        <br><br><a href="../index/payBill.php?addNewBill=1"><button>ADD NEW BILL</button></a>
+        <br><br><button onclick="addNewBillAlert()">ADD NEW BILL</button>
+        <br><br><a href="../index/showBills.php?admin"><button>SHOW PAYING EVERYBODY</button></a>
+        <script>
+        function addNewBillAlert(){
+            var bol = confirm("DO YOU WANT TO ADD NEW BILL ?");
+            if(bol){
+                location = "../index/payBill.php?addNewBill=1";
+            }
+        }
+        </script>
     </main>
 
     <footer class="footer">

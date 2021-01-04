@@ -29,7 +29,15 @@ session_start();
             <li class="nav-ul-li"><a href="to-do.php">TO/DO</a></li>
             <li class="nav-ul-li"><a href="complaint.php">COMPLAINT</a></li>
             <li class="nav-ul-li"><a href="account.php">ACCOUNT</a></li>
-            <li class="nav-ul-li"><a href="logout.php">LOG-OUT</a></li>
+            <li class="nav-ul-li"><a onclick="logoutFun()">LOG-OUT</a></li>
+            <script>
+            function logoutFun(){
+                var bol = confirm("ARE YOU SURE TO LOG-OUT?");
+                if(bol){
+                    location = "logout.php";
+                }
+            }
+            </script>
         </ul>
     </nav>
 

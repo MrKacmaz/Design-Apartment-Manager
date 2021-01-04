@@ -10,11 +10,13 @@ session_start(); ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/to-do.css">
+
 </head>
 
 <body>
 
-    <!-- START ADD NEW BILL IN DATABASE-->
+    <!-- START ADMIN ADD NEW BILL IN DATABASE-->
     <?php
     //NEW FORM
     if (isset($_GET['addNewBill'])) {
@@ -59,14 +61,14 @@ session_start(); ?>
         }
     }
     ?>
-    <!-- END ADD NEW BILL IN DATABASE-->
+    <!-- END ADMIN ADD NEW BILL IN DATABASE-->
 
 
 
 
 
 
-    <!-- START UPDATE BILL-->
+    <!-- START ADMIN UPDATE BILL-->
     <?php
     if (isset($_GET['billID'])) {
         $bilgilerimsor = $db->prepare("SELECT * from bills where billID=:billID");
@@ -99,7 +101,7 @@ session_start(); ?>
     }
 
     if (isset($_POST['updateBill'])) {
-		$kaydet = $db->prepare("UPDATE bills set
+        $kaydet = $db->prepare("UPDATE bills set
 		    rent=:rent,
 		    corridorLight=:corridorLight,
 		    corridorWater=:corridorWater,
@@ -110,7 +112,7 @@ session_start(); ?>
 		where billID={$billID}
 		");
 
-		$insert = $kaydet->execute(array(
+        $insert = $kaydet->execute(array(
             'rent' => $_POST['rent'],
             'corridorLight' => $_POST['corridorLight'],
             'corridorWater' => $_POST['corridorWater'],
@@ -118,19 +120,55 @@ session_start(); ?>
             'fuel' => $_POST['fuel'],
             'isOK' => $_POST['isOK']
         ));
-        
+
         if ($insert) {
-			//echo "kayıt başarılı";
-			Header("Location:../admin/adminBills.php?update=ok&billID=$billID");
-			exit;
-		} else {
-			//echo "kayıt başarısız";
-			Header("Location:../admin/adminBills.php?update=no&billID=$billID");
-			exit;
-		}
+            //echo "kayıt başarılı";
+            Header("Location:../admin/adminBills.php?update=ok&billID=$billID");
+            exit;
+        } else {
+            //echo "kayıt başarısız";
+            Header("Location:../admin/adminBills.php?update=no&billID=$billID");
+            exit;
+        }
     }
     ?>
-    <!-- END UPDATE BILL-->
+    <!-- END ADMIN UPDATE BILL-->
+
+
+
+
+    <!-- START USER PAYS BILL-->
+    <?php
+    if (isset($_GET['userPayBill'])) {
+    
+        $kaydet = $db->prepare("INSERT into billpayers set
+		payerID=:payerID,
+		payerName=:payerName,
+		payerFlat=:payerFlat,
+		payerMuch=:payerMuch
+
+        ");
+        
+        $insert = $kaydet->execute(array(
+            'payerID' => $_SESSION['userID'],
+            'payerName' => $_SESSION['userName'],
+            'payerFlat' => $_SESSION['userFlatno'],
+            'payerMuch' => $_GET['sumOfBill']
+
+        ));
+        if ($insert) {
+            //echo "kayıt başarılı";
+            Header("Location:../to-do.php?payment=success");
+            exit;
+        } else {
+            //echo "kayıt başarısız";
+            Header("Location:../to-do.php?payment=failed");
+            exit;
+        }
+    }
+
+    ?>
+    <!-- END USER PAYS BILL-->
 
 </body>
 

@@ -37,13 +37,13 @@ session_start();
     ?>
     <form action="mainTopics.php" method="POST">
         mainTopicsID:<input type="int" value="<?php echo $bilgilerimcek['mainTopicsID'] ?>" name="mainTopicsID"><br><br>
-        mainTopics Time:<input type="text" required="" name="mainTopicsTime" id="mainTopicsTime" value="<?php echo $bilgilerimcek['mainTopicsTime'] ?>"><br><br>
-        Old mainTopicsTitle: <input type="text" required="" name="mainTopicsTitle" id="mainTopicsTitle" value="<?php echo $bilgilerimcek['mainTopicsTitle'] ?>"><br><br>
-        Old mainTopicsContent: <input type="text" required="" name="mainTopicsContent" id="mainTopicsContent" value="<?php echo $bilgilerimcek['mainTopicsContent'] ?>"><br><br>
-        New mainTopicsTitle: <textarea name="NewMainTopicsTitle" id="NewMainTopicsTitle" cols="60" rows="7"><?php echo $bilgilerimcek['mainTopicsTitle']?></textarea><br><br>
-        New mainTopicsContent: <textarea name="NewMainTopicsContent" id="NewMainTopicsContent" cols="60" rows="7"><?php echo $bilgilerimcek['mainTopicsContent']?></textarea><br><br>
+        mainTopics Time:<input disabled type="text" required="" name="mainTopicsTime" id="mainTopicsTime" value="<?php echo $bilgilerimcek['mainTopicsTime'] ?>"><br><br>
+        Old mainTopicsTitle: <input disabled type="text" required="" name="mainTopicsTitle" id="mainTopicsTitle" value="<?php echo $bilgilerimcek['mainTopicsTitle'] ?>"><br><br>
+        Old mainTopicsContent: <input disabled type="text" required="" name="mainTopicsContent" id="mainTopicsContent" value="<?php echo $bilgilerimcek['mainTopicsContent'] ?>"><br><br>
+        New mainTopicsTitle: <textarea name="NewMainTopicsTitle" id="NewMainTopicsTitle" cols="60" rows="7"><?php echo $bilgilerimcek['mainTopicsTitle'] ?></textarea><br><br>
+        New mainTopicsContent: <textarea name="NewMainTopicsContent" id="NewMainTopicsContent" cols="60" rows="7"><?php echo $bilgilerimcek['mainTopicsContent'] ?></textarea><br><br>
         isOK: <input type="int" required="" name="isOK" id="isOK" value="<?php echo $bilgilerimcek['isOK'] ?>"><br><br>
-        <button type="submit" name="updateMainTopics">Formu Düzenle</button>
+        <button type="submit" name="updateMainTopics" onclick="alertFun()">Formu Düzenle</button>
     </form>
 
     <?php
@@ -76,6 +76,11 @@ session_start();
         }
     }
     ?>
+    <script>
+        function alertFun() {
+            alert('UPDATED SUCCESSFULLY');
+        }
+    </script>
 
 
 

@@ -1,5 +1,5 @@
 <?php
-include '../database/adminDB.php';
+include 'database/logDB.php';
 session_start();
 ?>
 <!DOCTYPE html>
@@ -9,7 +9,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Complaint</title>
-    <link rel="stylesheet" href="../css/admin/adminComplain.css">
+    <link rel="stylesheet" href="css/complaint.css">
 </head>
 
 <body>
@@ -25,15 +25,58 @@ session_start();
     <nav class="nav">
         <span>MANAGEMENT SYSTEM</span>
         <ul class="nav-ul">
-            <li class="nav-ul-li"><a href="adminPanel.php">MAIN</a></li>
-            <li class="nav-ul-li"><a href="adminInfo.php">USERS</a></li>
-            <li class="nav-ul-li"><a href="adminTODO.php">TO/DO</a></li>
-            <li class="nav-ul-li"><a href="adminBills.php">BILLS</a></li>
-            <li class="nav-ul-li"><a href="adminComplaint.php">COMPLAINTS</a></li>
-            <li class="nav-ul-li"><a href="adminAccount.php">USER ADD</a></li>
-            <li class="nav-ul-li"><a href="adminLogOut.php">LOG-OUT</a></li>
+            <li class="nav-ul-li"><a href="main.php">MAIN</a></li>
+            <li class="nav-ul-li"><a href="information.php">INFORMATION</a></li>
+            <li class="nav-ul-li"><a href="to-do.php">TO/DO</a></li>
+            <li class="nav-ul-li"><a href="complaint.php">COMPLAINT</a></li>
+            <li class="nav-ul-li"><a href="account.php">ACCOUNT</a></li>
+            <li class="nav-ul-li"><a onclick="logoutFun()">LOG-OUT</a></li>
+            <script>
+                function logoutFun() {
+                    var bol = confirm("ARE YOU SURE TO LOG-OUT?");
+                    if (bol) {
+                        location = "logout.php";
+                    }
+                }
+            </script>
         </ul>
     </nav>
+
+
+    <main class="main">
+        <form action="index/complains.php" method="POST">
+            <div class="cmp">
+                <b>What is the subject of your complaint?</b>
+
+                <select id="select" name="about" required>
+                    <option value="TENANT">TENANT</option>
+                    <option value="FLAT">FLAT</option>
+                    <option value="CORRIDOR">CORRIDOR</option>
+                    <option value="GARDEN">GARDEN</option>
+                    <option value="BILLS">BILLS</option>
+                    <option value="OTHER">OTHER</option>
+                </select>
+
+                <p id="p-2"><b>Please describe your complaint in 250 words</b></p>
+                <textarea name="userComplain" id="textarea" cols="50" rows="10" required></textarea><br><br>
+
+                <label for="userComplain-btn"></label>
+                <input type="submit" name="userComplain-btn" id="sub" class="btn">
+
+                <label for="reset"></label>
+                <input type="reset" name="reset" id="reset" class="btn">
+            </div>
+        </form>
+        <?php
+        if (isset($_GET['complaint'])) {
+            if ($_GET['complaint'] == "success") {
+                echo "şikayetiniz gönderildi";
+            } elseif ($_GET['complaint'] == 'failed') {
+                echo "şikayetiniz gönderilemedi";
+            }
+        }
+        ?>
+    </main>
 
 
     <main class="main">
@@ -47,7 +90,6 @@ session_start();
                 <th>Flat No</th>
                 <th>About</th>
                 <th>Complain</th>
-                <th>Delete</th>
             </tr>
             <?php
             $checkUserInDB = $db->prepare("SELECT * FROM complains");
@@ -65,21 +107,13 @@ session_start();
                     <td><?php echo $pullinfo['userFlatno']; ?></td>
                     <td><?php echo $pullinfo['about']; ?></td>
                     <td><?php echo $pullinfo['userComplain']; ?></td>
-                    <td align="center"><a href="../index/delete.php?complainID=<?php echo $pullinfo['complainID'] ?>&userComplaintdelete=delete"><button>Delete</button></td></a>
                 </tr>
+   
             <?php } ?>
         </table>
-        <?php
-        if (isset($_GET['delete'])) {
-            if ($_GET['delete'] == "ok") {
-                echo "Successfully deleted";
-            } elseif ($_GET['delete'] == "no") {
-                echo "Failed deleted";
-            }
-        }
-
-        ?>
     </main>
+
+
 
 
     <footer class="footer">
@@ -90,7 +124,6 @@ session_start();
                 <li class="link"><a href="https://github.com/MrKacmaz" title="GitHub" target="_blanced"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSUP7RN0hZaqZpljtz9c0nz5eSc2DFY-XSRQA&usqp=CAU" width="50" height="50" alt="GitHub"> </a></li>
             </ul>
         </div>
-
     </footer>
 </body>
 

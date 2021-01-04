@@ -19,6 +19,7 @@ if (isset($_POST['login-btn'])) {
 
     if ($int == 1) {
         $pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC);
+        //CREATE SESSIONS
         $_SESSION['userID'] = $pullinfo['userID'];
         $_SESSION['userUsername'] = $userUsername;
         $_SESSION['userName'] = $pullinfo['userName'];
@@ -26,6 +27,19 @@ if (isset($_POST['login-btn'])) {
         $_SESSION['userFlatno'] = $pullinfo['userFlatno'];
         $_SESSION['userGSM'] = $pullinfo['userGSM'];
         $_SESSION['userEmail'] = $pullinfo['userEmail'];
+
+        //REMEMBER ME CHECKBOX
+        if (isset($_POST['rememberMe'])) {
+            if ($_POST['rememberMe'] == "on") {
+                // if checkboxed selected
+                setcookie("userUsername", $userUsername, strtotime("+1 day"));
+                setcookie("userPassword", $userPassword, strtotime("+1 day"));
+            }
+        } else {
+            //checkboxed not selected
+            setcookie("userUsername", $userUsername, strtotime("-1 day"));
+            setcookie("userPassword", $userPassword, strtotime("-1 day"));
+        }
         header("Location:../main.php");
         exit;
     } elseif ($int == 0) {
@@ -47,6 +61,8 @@ if (isset($_POST['login-btn'])) {
 
 
 
+
+
 // new user sign-in slide
 if (isset($_POST['register-btn'])) {
 
@@ -61,13 +77,13 @@ if (isset($_POST['register-btn'])) {
         ");
 
     $insert = $kaydet->execute(array(
-        'userName' => $_POST['userName'],
-        'userSurname' => $_POST['userSurname'],
-        'userUsername' => $_POST['userUsername'],
-        'userFlatno' => $_POST['userFlatno'],
-        'userGSM' => $_POST['userGSM'],
-        'userEmail' => $_POST['userEmail'],
-        'userPassword' => $_POST['userPassword']
+        'userName' => htmlspecialchars($_POST['userName']),
+        'userSurname' => htmlspecialchars($_POST['userSurname']),
+        'userUsername' => htmlspecialchars($_POST['userUsername']),
+        'userFlatno' => htmlspecialchars($_POST['userFlatno']),
+        'userGSM' => htmlspecialchars($_POST['userGSM']),
+        'userEmail' => htmlspecialchars($_POST['userEmail']),
+        'userPassword' => htmlspecialchars($_POST['userPassword'])
     ));
     if ($insert) {
         //echo "kayıt başarılı";
@@ -101,12 +117,11 @@ if (isset($_POST['admin-btn'])) {
         exit;
     } elseif ($int == 0) {
         $pullinfo2 = $checkUserInDB->fetch(PDO::FETCH_ASSOC);
-        $adminUSERNAME = $pullinfo2['adminUSERNAME'];
-        $adminPASSWORD = $pullinfo2['adminPASSWORD'];
-        if ($adminPASSWORD != $adminPASSWORD) {
+
+        if ($adminPASSWORD != $pullinfo2['adminPASSWORD']) {
             header("Location:../log.php?fail=ADMINpassword");
             exit;
-        } elseif ($adminUSERNAME != $adminUSERNAME) {
+        } elseif ($adminUSERNAME != $pullinfo2['adminUSERNAME']) {
             header("Location:../log.php?fail=ADMINusername");
             exit;
         } else {
@@ -115,6 +130,8 @@ if (isset($_POST['admin-btn'])) {
         }
     }
 }
+
+
 
 
 //ADMIN PAGE
@@ -132,13 +149,13 @@ if (isset($_POST['adminSignUser-btn'])) {
         ");
 
     $insert = $kaydet->execute(array(
-        'userName' => $_POST['userName'],
-        'userSurname' => $_POST['userSurname'],
-        'userUsername' => $_POST['userUsername'],
-        'userFlatno' => $_POST['userFlatno'],
-        'userGSM' => $_POST['userGSM'],
-        'userEmail' => $_POST['userEmail'],
-        'userPassword' => $_POST['userPassword']
+        'userName' => htmlspecialchars($_POST['userName']),
+        'userSurname' => htmlspecialchars($_POST['userSurname']),
+        'userUsername' => htmlspecialchars($_POST['userUsername']),
+        'userFlatno' => htmlspecialchars($_POST['userFlatno']),
+        'userGSM' => htmlspecialchars($_POST['userGSM']),
+        'userEmail' => htmlspecialchars($_POST['userEmail']),
+        'userPassword' => htmlspecialchars($_POST['userPassword'])
     ));
     if ($insert) {
         //echo "kayıt başarılı";
@@ -166,15 +183,15 @@ if (isset($_POST['adminSignAdmin-btn'])) {
     ");
 
     $insert = $kaydet->execute(array(
-        'adminUSERNAME' => $_POST['adminUSERNAME'],
-        'adminNAME' => $_POST['adminNAME'],
-        'adminSURNAME' => $_POST['adminSURNAME'],
-        'adminGSM' => $_POST['adminGSM'],
-        'adminGSM_2' => $_POST['adminGSM_2'],
-        'adminPASSWORD' => $_POST['adminPASSWORD'],
-        'adminEMAIL' => $_POST['adminEMAIL']
+        'adminUSERNAME' => htmlspecialchars($_POST['adminUSERNAME']),
+        'adminNAME' => htmlspecialchars($_POST['adminNAME']),
+        'adminSURNAME' => htmlspecialchars($_POST['adminSURNAME']),
+        'adminGSM' => htmlspecialchars($_POST['adminGSM']),
+        'adminGSM_2' => htmlspecialchars($_POST['adminGSM_2']),
+        'adminPASSWORD' => htmlspecialchars($_POST['adminPASSWORD']),
+        'adminEMAIL' => htmlspecialchars($_POST['adminEMAIL'])
     ));
-    
+
     if ($insert) {
         //echo "kayıt başarılı";
         Header("Location:../admin/adminAccount.php?adminNewAdmin=success");

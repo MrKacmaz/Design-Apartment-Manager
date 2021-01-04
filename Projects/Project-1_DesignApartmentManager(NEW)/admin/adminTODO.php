@@ -21,7 +21,7 @@ session_start();
     </header>
 
 
-    <!--MENU BAR-->
+    <!--NAV BAR-->
     <nav class="nav">
         <span>MANAGEMENT SYSTEM</span>
         <ul class="nav-ul">
@@ -31,8 +31,16 @@ session_start();
             <li class="nav-ul-li"><a href="adminBills.php">BILLS</a></li>
             <li class="nav-ul-li"><a href="adminComplaint.php">COMPLAINTS</a></li>
             <li class="nav-ul-li"><a href="adminAccount.php">USER ADD</a></li>
-            <li class="nav-ul-li"><a href="adminLogOut.php">LOG-OUT</a></li>
+            <li class="nav-ul-li"><a onclick="logoutFun()">LOG-OUT</a></li>
         </ul>
+        <script>
+        function logoutFun(){
+            var bol = confirm("ARE YOU SURE TO LOG-OUT ?");
+            if(bol){
+                location = "adminLogOut.php";
+            }
+        }
+        </script>
     </nav>
 
 
@@ -48,7 +56,16 @@ session_start();
                     <br>
                     <li class="mainl-list">ID: <?php echo $pullinfo['toDoID'] ?></li>
                     <li class="mainl-list"> <?php echo $pullinfo['toDo'] ?></li>
-                    <a href="../index/updateArrangements.php?arrangement=0&toDoID=<?php echo $pullinfo['toDoID'] ?>"><button>Update</button></a><br>
+                    <button onclick="alertFun()">Update</button><br>
+                    <script>
+                        function alertFun() {
+                            var bol = confirm("DO YOU WANT TO UPDATE ?");
+                            if (bol) {
+                                location = "../index/updateArrangements.php?arrangement=0&toDoID=<?php echo $pullinfo['toDoID'] ?>";
+                            }
+                        }
+                    </script>
+
                 <?php
                 }
                 ?>
@@ -80,7 +97,15 @@ session_start();
                     <li class="mainl-list">Pool Maintenance: ₺<?php echo $pullinfo['corridorWater'] ?></li>
                     <li class="mainl-list">Extra: ₺<?php echo $pullinfo['corridorExtra'] ?></li>
                     <li class="mainl-list">IS OK:<?php echo $pullinfo['isOK'] ?></li>
-                    <a href="../index/updateExpenses.php?expensesID=<?php echo $pullinfo['expensesID'] ?>"><button>Update</button></a><br>
+                    <button onclick="alertFun2()">Update</button><br>
+                    <script>
+                        function alertFun2() {
+                            var bol = confirm("DO YOU WANT TO UPDATE ?");
+                            if (bol) {
+                                location = "../index/updateExpenses.php?expensesID=<?php echo $pullinfo['expensesID'] ?>";
+                            }
+                        }
+                    </script>
                 <?php
                 }
                 ?>
@@ -95,6 +120,7 @@ session_start();
             }
             ?>
         </div>
+
     </main>
 
 

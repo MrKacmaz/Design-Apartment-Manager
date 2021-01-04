@@ -2,9 +2,9 @@
 include '../database/adminDB.php';
 include '../database/logDB.php';
 session_start();
-echo"doğru yer";
 
 if ($_GET['userIDdelete']=="delete") {
+
 	$sil=$db->prepare("DELETE from usersinfo where userID=:userID");
 	$kontrol=$sil->execute(array(
 		'userID' => $_GET['userID']
