@@ -8,7 +8,7 @@ session_start();
 // user log-in slider 
 if (isset($_POST['login-btn'])) {
     $userUsername = $_POST['userUsername'];
-    $userPassword = $_POST['userPassword'];
+    $userPassword = md5($_POST['userPassword']);
     $checkUserInDB = $db->prepare("SELECT * FROM usersinfo WHERE
     userUsername=:userUsername AND userPassword=:userPassword");
     $checkUserInDB->execute(array(
@@ -83,7 +83,7 @@ if (isset($_POST['register-btn'])) {
         'userFlatno' => htmlspecialchars($_POST['userFlatno']),
         'userGSM' => htmlspecialchars($_POST['userGSM']),
         'userEmail' => htmlspecialchars($_POST['userEmail']),
-        'userPassword' => htmlspecialchars($_POST['userPassword'])
+        'userPassword' =>md5(htmlspecialchars($_POST['userPassword']))
     ));
     if ($insert) {
         //echo "kayıt başarılı";
@@ -96,10 +96,12 @@ if (isset($_POST['register-btn'])) {
     }
 }
 
+
+
 // ADMIN LOG IN SLIDE
 if (isset($_POST['admin-btn'])) {
     $adminUSERNAME = $_POST['adminUSERNAME'];
-    $adminPASSWORD = $_POST['adminPASSWORD'];
+    $adminPASSWORD = md5($_POST['adminPASSWORD']);
     $checkUserInDB = $db->prepare("SELECT * FROM adminpanel WHERE
     adminUSERNAME=:adminUSERNAME AND adminPASSWORD=:adminPASSWORD");
     $checkUserInDB->execute(array(
@@ -155,7 +157,7 @@ if (isset($_POST['adminSignUser-btn'])) {
         'userFlatno' => htmlspecialchars($_POST['userFlatno']),
         'userGSM' => htmlspecialchars($_POST['userGSM']),
         'userEmail' => htmlspecialchars($_POST['userEmail']),
-        'userPassword' => htmlspecialchars($_POST['userPassword'])
+        'userPassword' => md5(htmlspecialchars($_POST['userPassword']))
     ));
     if ($insert) {
         //echo "kayıt başarılı";
@@ -188,7 +190,7 @@ if (isset($_POST['adminSignAdmin-btn'])) {
         'adminSURNAME' => htmlspecialchars($_POST['adminSURNAME']),
         'adminGSM' => htmlspecialchars($_POST['adminGSM']),
         'adminGSM_2' => htmlspecialchars($_POST['adminGSM_2']),
-        'adminPASSWORD' => htmlspecialchars($_POST['adminPASSWORD']),
+        'adminPASSWORD' => md5(htmlspecialchars($_POST['adminPASSWORD'])),
         'adminEMAIL' => htmlspecialchars($_POST['adminEMAIL'])
     ));
 
