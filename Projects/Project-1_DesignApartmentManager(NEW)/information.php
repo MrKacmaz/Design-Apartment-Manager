@@ -50,7 +50,7 @@ session_start();
                 <table style="width: 60%" border="1">
 
                     <tr>
-                        <th>S.NO</th>
+                        <th>ROW NO</th>
                         <th>ID</th>
                         <th>Name</th>
                         <th>Surname</th>

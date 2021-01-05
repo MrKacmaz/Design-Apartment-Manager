@@ -9,8 +9,195 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bills</title>
-    <link rel="stylesheet" href="../css/admin/adminTODO.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .welcome {
+            background-image: linear-gradient(to left, #ed4264, #ffedbc);
+            padding: 3.5%;
+            text-align: center;
+            font-size: 2rem;
+            text-transform: capitalize;
+            color: #333;
+        }
+
+        #welcome {
+            text-shadow: 2px 1.5px #ffedbc;
+        }
+
+        .nav {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+
+        .nav-ul {
+            margin: 0;
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-ul-li {
+            padding: .75rem;
+        }
+
+        .nav-ul-li:hover {
+            background-color: #777;
+        }
+
+        .nav-ul-li a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .main-content {
+            display: flex;
+            padding: 2%;
+            flex-wrap: wrap;
+            flex-direction: row;
+        }
+
+        .main-content-1 {
+            background-color: rgb(237, 66, 100, 0.5);
+            padding: 4%;
+            margin: auto;
+            text-transform: capitalize;
+            color: #333;
+        }
+
+        .main-content-1 li {
+            font-size: 1.5rem;
+        }
+
+        .main-content-1 span {
+            font-size: 2rem;
+
+        }
+
+        .main-content-2 {
+            background-color: rgb(237, 66, 100, 0.5);
+            padding: 4%;
+            margin: auto;
+            text-transform: capitalize;
+            color: #333;
+        }
+
+        .main-content-2 li {
+            font-size: 1.5rem;
+        }
+
+        .main-content-2 span {
+            font-size: 2rem;
+        }
+
+        .section {
+            background-image: linear-gradient(to right, rgb(237, 66, 100, 0.5), rgb(255, 237, 189, 0.5));
+            padding: 1rem;
+            margin: 1em 15%;
+
+        }
+
+        .text-table {
+            color: white;
+            text-shadow: 2px 1.5px blue;
+            ;
+            font-size: 1em;
+        }
+
+        table,
+        th,
+        td {
+            border: 3px solid black;
+            border-collapse: collapse;
+            padding: 1rem;
+            margin: auto;
+        }
+
+        .btn-class {
+            margin-left: 65%;
+        }
+
+        .btn {
+            padding: 1em;
+            margin: 0.5em 1em;
+            outline: none;
+            font-size: 1em;
+            border-radius: 0.6em;
+
+        }
+
+        .btn :hover {
+            background-color: #ddd;
+            box-shadow: 0 0 5px #ccc;
+        }
+
+        .links {
+            position: fixed;
+            width: 100%;
+            height: 10%;
+            bottom: 0;
+            background-color: #333;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .links ul {
+            margin: 0;
+            list-style: none;
+            display: flex;
+
+        }
+
+        .links ul li {
+            padding: .5rem;
+        }
+
+        .links ul li:hover {
+            background-color: #777;
+        }
+
+        .links ul li a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .btn-class {
+            margin-left: 65%;
+            cursor: pointer;
+        }
+
+        .btn {
+            padding: .15em;
+            margin: 0.05em .05em;
+            outline: none;
+            font-size: 1em;
+            border-radius: 0.6em;
+            cursor: pointer;
+
+        }
+
+        .btn :hover {
+            background-color: #ddd;
+            box-shadow: 0 0 5px #ccc;
+        }
+    </style>
 </head>
 
 <body>
@@ -36,12 +223,12 @@ session_start();
             <li class="nav-ul-li"><a onclick="logoutFun()">LOG-OUT</a></li>
         </ul>
         <script>
-        function logoutFun(){
-            var bol = confirm("ARE YOU SURE TO LOG-OUT ?");
-            if(bol){
-                location = "adminLogOut.php";
+            function logoutFun() {
+                var bol = confirm("ARE YOU SURE TO LOG-OUT ?");
+                if (bol) {
+                    location = "adminLogOut.php";
+                }
             }
-        }
         </script>
     </nav>
 
@@ -80,40 +267,42 @@ session_start();
                     <td><?php echo $pullinfo['corridorCleaning'] ?></td>
                     <td><?php echo $pullinfo['fuel'] ?></td>
                     <td><?php echo $sum ?></td>
-                    <td><a href="../index/payBill.php?billID=<?php echo $pullinfo['billID'] ?>"><button>UPDATE</button></a></td>
+                    <td><a href="../index/payBill.php?billID=<?php echo $pullinfo['billID'] ?>"><button class="btn">UPDATE</button></a></td>
                 </tr>
             <?php
             }
             ?>
         </table><br><br>
 
+
         <!--UPDATE VEYA ADD İŞLEMİNİN SONUCUNU YAZDIRIR-->
         <?php
         if (isset($_GET['addNewBill'])) {
             if ($_GET['addNewBill'] == "ok") {
-                echo "kayıt başarılı";
+                echo "<p style='color: green; font-size: larger;'><b>Bill Registration Successful</b></p>";
             } elseif ($_GET['addNewBill'] == "no") {
-                echo "kayıt başarısız";
+                echo "<p style='color: red; font-size: larger;'><b>Bill Registration Failed</b></p>";
             }
         }
 
         if (isset($_GET['update'])) {
             if ($_GET['update'] == "ok") {
-                echo  $_GET['billID'] . " nolu güncelleme başarılı";
+                echo "<p style='color: green; font-size: larger;'><b>Update # " . $_GET['billID'] . " successful</b></p>";
             } elseif ($_GET['update'] == "no") {
-                echo $_GET['billID'] . " nolu güncelleme başarısız";
+                echo "<p style='color: red; font-size: larger;'><b>Update # " . $_GET['billID'] . " failed</b></p>";
             }
         }
         ?>
-        <br><br><button onclick="addNewBillAlert()">ADD NEW BILL</button>
-        <br><br><a href="../index/showBills.php?admin"><button>SHOW PAYING EVERYBODY</button></a>
+
+        <br><br><button class="btn" onclick="addNewBillAlert()">ADD NEW BILL</button>
+        <br><br><a href="../index/showBills.php?admin"><button class="btn">SHOW PAYING EVERYBODY</button></a>
         <script>
-        function addNewBillAlert(){
-            var bol = confirm("DO YOU WANT TO ADD NEW BILL ?");
-            if(bol){
-                location = "../index/payBill.php?addNewBill=1";
+            function addNewBillAlert() {
+                var bol = confirm("DO YOU WANT TO ADD NEW BILL ?");
+                if (bol) {
+                    location = "../index/payBill.php?addNewBill=1";
+                }
             }
-        }
         </script>
     </main>
 
@@ -128,5 +317,4 @@ session_start();
 
     </footer>
 </body>
-
 </html>

@@ -237,21 +237,22 @@ session_start();
                 <?php
                 if (isset($_GET['durum']))
                     if ($_GET['durum'] == "ok") {
-                        echo "Update Successful";
+                        echo "<p style='color: green; font-size: larger;'><b>Update Successful</b></p>";
                     } elseif ($_GET['durum'] == "no") {
-                        echo "Update Failed";
+                        echo "<p style='color: red; font-size: larger;'><b>Update Failed</b></p>";
                     }
                 if (isset($_GET['delete'])) {
                     if ($_GET['delete'] == "ok") {
-                        echo "Deleted Successful";
+                        echo "<p style='color: green; font-size: larger;'><b>Deleted Successful</b></p>";
                     } else {
-                        echo "Deleted Failed";
+                        echo "<p style='color: red; font-size: larger;'><b>Deleted Failed</b></p>";
                     }
                 }
 
                 ?>
-                <p><B>ALERT EKLE DELETE YAPARKEN</B></p>
             </div>
+
+
 
     </main>
 

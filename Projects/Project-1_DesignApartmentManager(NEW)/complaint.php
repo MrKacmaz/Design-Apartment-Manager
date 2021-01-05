@@ -113,8 +113,20 @@ session_start();
             margin: 0%;
         }
 
+        table,
+        th,
+        tr,
+        td {
+            margin: auto 0em auto 10em;
+            border: .25em solid #333;
+            border-collapse: collapse;
+            justify-content: center;
+            align-items: center;
+        }
+
+
         .links {
-            position: fixed;
+            position: static;
             margin-top: 73px;
             width: 100%;
             height: 10%;
@@ -190,7 +202,7 @@ session_start();
                     <option value="CORRIDOR">CORRIDOR</option>
                     <option value="GARDEN">GARDEN</option>
                     <option value="BILLS">BILLS</option>
-                    <option value="OTHER">OTHER</option>
+                    <option selected value="OTHER">OTHER</option>
                 </select>
 
                 <p id="p-2"><b>Please describe your complaint in 250 words</b></p>
@@ -203,22 +215,22 @@ session_start();
                 <input type="reset" name="reset" id="reset" class="btn">
 
             </form>
+            <?php
+            if (isset($_GET['complaint'])) {
+                if ($_GET['complaint'] == "success") {
+                    echo "<p style='color: green; font-size: larger;'><b>Your complaint has been sent</b></p>";
+                } elseif ($_GET['complaint'] == 'failed') {
+                    echo "<p style='color: red; font-size: larger;'><b>Your complaint could not be sent</b></p>";
+                }
+            }
+            ?>
         </div>
 
-        <?php
-        if (isset($_GET['complaint'])) {
-            if ($_GET['complaint'] == "success") {
-                echo "şikayetiniz gönderildi";
-            } elseif ($_GET['complaint'] == 'failed') {
-                echo "şikayetiniz gönderilemedi";
-            }
-        }
-        ?>
 
         <div class="cmp">
             <table style="width: 60%" border="1">
                 <tr>
-                    <th>S.NO</th>
+                    <th>Row NO</th>
                     <th>Complain ID</th>
                     <th>Name</th>
                     <th>Surname</th>
@@ -227,6 +239,7 @@ session_start();
                     <th>About</th>
                     <th>Complain</th>
                 </tr>
+
                 <?php
                 $checkUserInDB = $db->prepare("SELECT * FROM complains");
                 $checkUserInDB->execute();

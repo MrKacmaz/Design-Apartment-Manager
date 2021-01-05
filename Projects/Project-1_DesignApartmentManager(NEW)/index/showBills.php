@@ -113,15 +113,17 @@ session_start();
 
         table,
         th,
-        td {
-            align-items: center;
-            padding: 0.75%;
+        tr,
+        td{
             margin: auto;
             border: .25em solid #333;
             border-collapse: collapse;
             justify-content: center;
-
+            align-items: center;
+            padding: 1rem 1rem;
+            
         }
+   
 
         .links {
             position: fixed;
@@ -168,20 +170,20 @@ session_start();
     </nav>
 
 
-
     <div class="main-content">
+        <!--USER PAYERS SEE THEIR OWN PAYMENTS-->
         <?php
         if (isset($_GET['payerID'])) {
             echo "
         <main id='section'>
         <table id='payment'>
             <tr>
-                <th class='text-table'>uniquePayerID</th>
-                <th class='text-table'>payerDate</th>
-                <th class='text-table'>payerID</th>
-                <th class='text-table'>payerName</th>
-                <th class='text-table'>payerFlat</th>
-                <th class='text-table'>payerMuch</th>
+                <th class='text-table'>Invoice Number</th>
+                <th class='text-table'>Payer Date</th>
+                <th class='text-table'>Payer ID</th>
+                <th class='text-table'>Payer Name</th>
+                <th class='text-table'>Payer Flat No</th>
+                <th class='text-table'>Amount Paid</th>
             </tr>";
 
             $payerID = $_GET['payerID'];
@@ -204,18 +206,19 @@ session_start();
         </table>
 
 
+        <!--ADMIN SEES THE ALL PAYERS-->
         <?php
         if (isset($_GET['admin'])) {
             echo "
         <main id='section'>
         <table id='payment'>
             <tr>
-                <th class='text-table'>uniquePayerID</th>
-                <th class='text-table'>payerDate</th>
-                <th class='text-table'>payerID</th>
-                <th class='text-table'>payerName</th>
-                <th class='text-table'>payerFlat</th>
-                <th class='text-table'>payerMuch</th>
+            <th class='text-table'>Invoice Number</th>
+            <th class='text-table'>Payer Date</th>
+            <th class='text-table'>Payer ID</th>
+            <th class='text-table'>Payer Name</th>
+            <th class='text-table'>Payer Flat No</th>
+            <th class='text-table'>Amount Paid</th>
             </tr>";
             $checkUserInDB = $db->prepare('SELECT * FROM billpayers');
             $checkUserInDB->execute();
@@ -235,8 +238,6 @@ session_start();
         ?>
         </table>
     </div>
-
-
 
     <footer class="footer">
         <div class="links">

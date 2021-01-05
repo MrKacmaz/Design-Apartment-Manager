@@ -126,7 +126,7 @@ session_start();
                 $userID = $_SESSION['userID'];
                 echo "<button type='button' class='btn' id='btn-todo' onclick='alertFun()'>PAY THE RECENT BILL</button>";
             } else {
-                echo "<p><b>no invoices to be paid</b></p>";
+                echo "<p style='color: green; margin: .75rem; font-size:larger;'><b>No invoices to be paid</b></p>";
             }
             ?>
             <script>

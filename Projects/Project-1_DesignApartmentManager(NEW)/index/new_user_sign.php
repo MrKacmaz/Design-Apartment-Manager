@@ -23,6 +23,7 @@ if (isset($_POST['login-btn'])) {
         $_SESSION['userID'] = $pullinfo['userID'];
         $_SESSION['userUsername'] = $userUsername;
         $_SESSION['userName'] = $pullinfo['userName'];
+        $_SESSION['userPassword'] = $_POST['userPassword'];
         $_SESSION['userSurname'] = $pullinfo['userSurname'];
         $_SESSION['userFlatno'] = $pullinfo['userFlatno'];
         $_SESSION['userGSM'] = $pullinfo['userGSM'];
@@ -77,13 +78,13 @@ if (isset($_POST['register-btn'])) {
         ");
 
     $insert = $kaydet->execute(array(
-        'userName' => htmlspecialchars($_POST['userName']),
-        'userSurname' => htmlspecialchars($_POST['userSurname']),
+        'userName' => htmlspecialchars(strtolower($_POST['userName'])),
+        'userSurname' => htmlspecialchars(strtoupper($_POST['userSurname'])),
         'userUsername' => htmlspecialchars($_POST['userUsername']),
         'userFlatno' => htmlspecialchars($_POST['userFlatno']),
         'userGSM' => htmlspecialchars($_POST['userGSM']),
         'userEmail' => htmlspecialchars($_POST['userEmail']),
-        'userPassword' =>md5(htmlspecialchars($_POST['userPassword']))
+        'userPassword' => md5(htmlspecialchars($_POST['userPassword']))
     ));
     if ($insert) {
         //echo "kayıt başarılı";
@@ -91,8 +92,22 @@ if (isset($_POST['register-btn'])) {
         exit;
     } else {
         //echo "kayıt başarısız";
-        Header("Location:../log.php?sign=failed");
-        exit;
+        $userUsername = $_POST['userUsername'];
+        $userFlatno = $_POST['userFlatno'];
+        $checkUserInDB = $db->prepare("SELECT * FROM usersinfo WHERE
+        userUsername=:userUsername AND userFlatno=:userFlatno");
+        $checkUserInDB->execute(array(
+            'userUsername' => $userUsername,
+            'userFlatno' => $userFlatno
+        ));
+        $int = $checkUserInDB->rowCount();
+        if ($int == 0) {
+            Header("Location:../log.php?sign=failedDBsame");
+            exit;
+        } else {
+            Header("Location:../log.php?sign=failed");
+            exit;
+        }
     }
 }
 
@@ -151,8 +166,8 @@ if (isset($_POST['adminSignUser-btn'])) {
         ");
 
     $insert = $kaydet->execute(array(
-        'userName' => htmlspecialchars($_POST['userName']),
-        'userSurname' => htmlspecialchars($_POST['userSurname']),
+        'userName' => htmlspecialchars(strtolower($_POST['userName'])),
+        'userSurname' => htmlspecialchars(strtoupper($_POST['userSurname'])),
         'userUsername' => htmlspecialchars($_POST['userUsername']),
         'userFlatno' => htmlspecialchars($_POST['userFlatno']),
         'userGSM' => htmlspecialchars($_POST['userGSM']),
@@ -186,8 +201,8 @@ if (isset($_POST['adminSignAdmin-btn'])) {
 
     $insert = $kaydet->execute(array(
         'adminUSERNAME' => htmlspecialchars($_POST['adminUSERNAME']),
-        'adminNAME' => htmlspecialchars($_POST['adminNAME']),
-        'adminSURNAME' => htmlspecialchars($_POST['adminSURNAME']),
+        'adminNAME' => htmlspecialchars(strtolower($_POST['adminNAME'])),
+        'adminSURNAME' => htmlspecialchars(strtoupper($_POST['adminSURNAME'])),
         'adminGSM' => htmlspecialchars($_POST['adminGSM']),
         'adminGSM_2' => htmlspecialchars($_POST['adminGSM_2']),
         'adminPASSWORD' => md5(htmlspecialchars($_POST['adminPASSWORD'])),

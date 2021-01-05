@@ -42,29 +42,32 @@ session_start();
                 <?php
                 if (isset($_GET['fail'])) {
                     if ($_GET['fail'] == "username") {
-                        echo "<b>user name yanlış Başarısız Giriş</b>";
+                        echo "<b style='color: red;'>username WRONG Login Failed</b>";
                     } elseif ($_GET['fail'] == "password") {
-                        echo "<b>user password yanlış Başarısız Giriş</b>";
+                        echo "<b style='color: red;'>userpassword WRONG Login Failed</b>";
                     } elseif ($_GET['fail'] == "fail") {
-                        echo "<b>DİREK yanlış Başarısız Giriş</b>";
+                        echo "<b style='color: red;'>WRONG ENTRY</b>";
                     }
                 }
                 if (isset($_GET['sign'])) {
                     if ($_GET['sign'] == "success") {
-                        echo "<b style='color: green;'>your account created Seccessfull</b>";
-                    } elseif ($_GET['sign'] == "failed") {
-                        echo "<b style='color: red;'>your account created Failed</b>";
+                        echo "<b style='color: green;'>your account created SUCCESSFUL</b>";
+                    } elseif ($_GET['sign'] == "failedDBsame") {
+                        echo "<b style='color: red;'>Your account USERNAME or FLAT NUMBER has been used</b>";
+                    } elseif($_GET['sign'] == "failed"){
+                        echo "<b style='color: red;'>Your account created FAILED</b>";
                     }
                 }
                 ?>
             </form>
+
 
             <!--NEW USER SIGN-IN-->
             <form id="register" action="index/new_user_sign.php" method="POST" class="input-group">
                 <input type="text" class="input-field" name="userName" placeholder="Name" required>
                 <input type="text" class="input-field" name="userSurname" placeholder="Surname" required>
                 <input type="text" class="input-field" name="userUsername" placeholder="Username" required>
-                <input type="number" class="input-field" name="userFlatno" placeholder="Flat No (1-8)" max=12 min=1 required>
+                <input type="number" class="input-field" name="userFlatno" placeholder="Flat No (1-8)" max=10 min=1 required>
                 <input type="text" class="input-field" name="userGSM" placeholder="P.Number (5555555555)">
                 <input type="email" class="input-field" name="userEmail" placeholder="Email (asd@asd.com)" required>
                 <input type="password" class="input-field" name="userPassword" placeholder="Password" required>

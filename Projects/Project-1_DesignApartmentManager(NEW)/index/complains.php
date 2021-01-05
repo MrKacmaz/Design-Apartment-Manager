@@ -157,9 +157,9 @@ session_start(); ?>
     </nav>
 
 
-    <?
-if (isset($_POST['userComplain-btn'])) {
-    $kaydet = $db->prepare("INSERT INTO complains set
+    <?php
+    if (isset($_POST['userComplain-btn'])) {
+        $kaydet = $db->prepare("INSERT INTO complains set
             userName=:userName,
             userSurname=:userSurname,
             userUsername=:userUsername,
@@ -168,33 +168,32 @@ if (isset($_POST['userComplain-btn'])) {
             userComplain=:userComplain
             ");
 
-    $insert = $kaydet->execute(array(
-        'userName' => $_SESSION['userName'],
-        'userSurname' => $_SESSION['userSurname'],
-        'userUsername' => $_SESSION['userUsername'],
-        'userFlatno' => $_SESSION['userFlatno'],
-        'about' => $_POST['about'],
-        'userComplain' => $_POST['userComplain']
-    ));
+        $insert = $kaydet->execute(array(
+            'userName' => $_SESSION['userName'],
+            'userSurname' => $_SESSION['userSurname'],
+            'userUsername' => $_SESSION['userUsername'],
+            'userFlatno' => $_SESSION['userFlatno'],
+            'about' => $_POST['about'],
+            'userComplain' => $_POST['userComplain']
+        ));
 
-    if ($insert) {
-        //echo "kayıt başarılı";
-        Header("Location:../complaint.php?complaint=success");
-        exit;
-    } else {
-        //echo "kayıt başarısız";
-        Header("Location:../complaint.php?complaint=failed");
-        exit;
+        if ($insert) {
+            //echo "kayıt başarılı";
+            Header("Location:../complaint.php?complaint=success");
+            exit;
+        } else {
+            //echo "kayıt başarısız";
+            Header("Location:../complaint.php?complaint=failed");
+            exit;
+        }
+
+        if (isset($_GET['userOKupdate'])) {
+            if ($_GET['userOKupdate'] = "ok") {
+                echo "asdadsa";
+            }
+        }
     }
-
-
-if (isset($_GET['userOKupdate'])) {
-    if ($_GET['userOKupdate'] = "ok") {
-        echo"asdadsa";
-    }
-}
-}
-?>
+    ?>
 
 
 
