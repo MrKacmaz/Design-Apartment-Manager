@@ -1,7 +1,9 @@
 <?php
 require_once '../database/logDB.php';
 require_once '../database/adminDB.php';
-session_start(); ?>
+session_start(); 
+ob_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">

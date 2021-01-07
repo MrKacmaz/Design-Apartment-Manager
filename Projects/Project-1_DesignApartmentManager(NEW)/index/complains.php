@@ -1,7 +1,9 @@
 <?php
 include '../database/adminDB.php';
 include '../database/logDB.php';
-session_start(); ?>
+session_start();
+ob_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">

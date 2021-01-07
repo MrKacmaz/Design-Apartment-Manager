@@ -2,6 +2,8 @@
 include '../database/adminDB.php';
 include '../database/logDB.php';
 session_start();
+ob_start();
+
 
 if ($_GET['userIDdelete']=="delete") {
 

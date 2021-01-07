@@ -1,6 +1,8 @@
 <?php
 include '../database/adminDB.php';
 session_start();
+ob_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
