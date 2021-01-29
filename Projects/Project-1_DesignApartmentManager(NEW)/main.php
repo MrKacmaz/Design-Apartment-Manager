@@ -41,7 +41,7 @@ ob_start();
                         <a class="nav-link" href="information.php">INFORMATION</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="to-do.php">TO/DO</a>
+                        <a class="nav-link" href="to-do.php">PAYMENT</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="complaint.php">COMPLAINT</a>
@@ -63,7 +63,7 @@ ob_start();
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav>>
 
 
     <main class="main-content">

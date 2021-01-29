@@ -41,7 +41,7 @@ ob_start();
                         <a class="nav-link active" href="information.php">INFORMATION</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="to-do.php">TO/DO</a>
+                        <a class="nav-link" href="to-do.php">PAYMENT</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="complaint.php">COMPLAINT</a>
@@ -84,7 +84,7 @@ ob_start();
                 <th scope="col">E-mail</th>
                 <th scope="col">GSM</th>
             </tr>
-        </thead>
+            <thead>
         <?php
         $checkUserInDB = $db->prepare("SELECT * FROM usersinfo");
         $checkUserInDB->execute();
@@ -92,34 +92,18 @@ ob_start();
         while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
             $say++
         ?>
-            <tbody class="">
+            <tbody>
                 <tr>
-                    <td>
-                        <?php echo $say; ?>
-                    </td>
-                    <td>
-                        <?php echo $pullinfo['userUsername']; ?>
-                    </td>
-                    <td>
-                        <?php echo $pullinfo['userName']; ?>
-                    </td>
-                    <td>
-                        <?php echo $pullinfo['userSurname']; ?>
-                    </td>
-
-                    <td>
-                        <?php echo $pullinfo['userFlatno']; ?>
-                    </td>
-                    <td>
-                        <?php echo $pullinfo['userEmail']; ?>
-                    </td>
-                    <td>
-                        <?php echo $pullinfo['userGSM']; ?>
-                    </td>
+                    <td><?php echo $say; ?></td>
+                    <td><?php echo $pullinfo['userUsername']; ?></td>
+                    <td><?php echo $pullinfo['userName']; ?></td>
+                    <td><?php echo $pullinfo['userSurname']; ?></td>
+                    <td><?php echo $pullinfo['userFlatno']; ?></td>
+                    <td><?php echo $pullinfo['userEmail']; ?></td>
+                    <td><?php echo $pullinfo['userGSM']; ?></td>
                 </tr>
-            <?php } ?>
-            </tr>
             </tbody>
+            <?php } ?>
     </table>
 
     <footer class="mt-auto text-white-50">
