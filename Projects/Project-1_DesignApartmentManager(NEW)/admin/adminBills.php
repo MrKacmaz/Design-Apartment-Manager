@@ -10,10 +10,19 @@ ob_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bills</title>
+    <title>Payment</title>
     <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="../bootstrap/js/bootstrap.js" rel="stylesheet">
     <link href="../css/admin/adminPayment.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
 
 </head>
 
@@ -29,116 +38,246 @@ ob_start();
 
     <!--NAV BAR-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">MANAGEMENT SYSTEM</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="adminPanel.php">MAIN</a></li>
-                    <li class="nav-item"><a class="nav-link" href="adminInfo.php">USERS</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="adminBills.php">PAYMENT</a></li>
-                    <li class="nav-item"><a class="nav-link" href="adminComplaint.php">COMPLAINTS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="adminAccount.php">ACCOUNT</a></li>
-                    <li class="nav-item"><a class="nav-link" onclick="logoutFun()">LOG-OUT</a></li>
-                    <script>
-                        function logoutFun() {
-                            var bol = confirm("ARE YOU SURE TO LOG-OUT ?");
-                            if (bol) {
-                                location = "adminLogOut.php";
-                            }
-                        }
-                    </script>
-                </ul>
-            </div>
-        </div>
-    </nav>
+        <a class="navbar-brand" href="#">MANAGEMENT SYSTEM</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
 
-
-    <main>
-        <div class="section">
-            <table class="table">
-                <thead>
-
-                    <tr>
-                        <th scope="col">Bill ID</th>
-                        <th scope="col">Bill Date</th>
-                        <th scope="col">is ok</th>
-                        <th scope="col">Rent</th>
-                        <th scope="col">Corridor Electric Bill</th>
-                        <th scope="col">Maintenance Bill</th>
-                        <th scope="col">Corridor Cleaning Bill</th>
-                        <th scope="col">Fuel Bill</th>
-                        <th scope="col">SUM</th>
-                        <th scope="col">UPDATE</th>
-                        <th scope="col">DELETE</th>
-
-                    </tr>
-                </thead>
-
-                <?php
-                $checkUserInDB = $db->prepare("SELECT * FROM bills");
-                $checkUserInDB->execute();
-                while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
-                ?>
-
-                    <?php
-                    $sum = $pullinfo['rent'] + ($pullinfo['corridorLight'] / 10) + ($pullinfo['corridorWater'] / 10) + ($pullinfo['corridorCleaning'] / 10) + ($pullinfo['fuel'] / 10);
-                    ?>
-                        <tr>
-                            <td><?php echo $pullinfo['billID'] ?></td>
-                            <td><?php echo $pullinfo['billDate'] ?></td>
-                            <td><?php echo $pullinfo['isOK'] ?></td>
-                            <td><?php echo $pullinfo['rent'] ?></td>
-                            <td><?php echo $pullinfo['corridorLight'] ?></td>
-                            <td><?php echo $pullinfo['corridorWater'] ?></td>
-                            <td><?php echo $pullinfo['corridorCleaning'] ?></td>
-                            <td><?php echo $pullinfo['fuel'] ?></td>
-                            <td><?php echo $sum ?></td>
-                            <td><a href="../index/payBill.php?billID=<?php echo $pullinfo['billID'] ?>"><button class="btn btn-primary">UPDATE</button></a></td>
-                            <td><a href="../index/payBill.php?billID=<?php echo $pullinfo['billID'] ?>"><button class="btn btn-danger">DELETE</button></a></td>
-                        </tr>
-                <?php
-                }
-                ?>
-            </table>
-
-
-            <!--WRITE UPDATE OR ADD RESULTS-->
-            <?php
-            if (isset($_GET['addNewBill'])) {
-                if ($_GET['addNewBill'] == "ok") {
-                    echo "<div class='alert alert-success' role='alert'>ADDED NEW BILL</div>";
-                } elseif ($_GET['addNewBill'] == "no") {
-                    echo "<div class='alert alert-danger' role='alert'>NOT ADDED NEW BILL</div>";
-                }
-            }
-
-            if (isset($_GET['update'])) {
-                if ($_GET['update'] == "ok") {
-
-                    echo "<div class='alert alert-success' role='alert'>Update #" . $_GET['billID'] . " SUCCESSFUL</div>";
-                } elseif ($_GET['update'] == "no") {
-                    echo "<div class='alert alert-danger' role='alert'>Update #" . $_GET['billID'] . " FAILED</div>";
-                }
-            }
-            ?>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-warning btn-lg" onclick="addNewBillAlert()">ADD NEW BILL</button>
-                <a href="../index/showBills.php?admin"><button class="btn btn-info btn-lg">SHOW PAYING EVERYBODY</button></a>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="adminPanel.php">MAIN</a></li>
+                <li class="nav-item"><a class="nav-link" href="adminInfo.php">USERS</a></li>
+                <li class="nav-item"><a class="nav-link active" href="adminBills.php">PAYMENT</a></li>
+                <li class="nav-item"><a class="nav-link" href="adminComplaint.php">COMPLAINTS</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ACCOUNT
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="adminAddNewUser.php">Add NEW User</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="adminAddNewAdmin.php">Add NEW Admin</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a class="nav-link" onclick="logoutFun()">LOG-OUT</a></li>
                 <script>
-                    function addNewBillAlert() {
-                        var bol = confirm("DO YOU WANT TO ADD NEW BILL ?");
+                    function logoutFun() {
+                        var bol = confirm("ARE YOU SURE TO LOG-OUT ?");
                         if (bol) {
-                            location = "../index/payBill.php?addNewBill=1";
+                            location = "adminLogOut.php";
                         }
                     }
                 </script>
-            </div>
+            </ul>
         </div>
+    </nav>
+
+    <main>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        SHOW THE PAYMENTS
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="section">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Bill ID</th>
+                                        <th scope="col">Bill Date</th>
+                                        <th scope="col">is ok</th>
+                                        <th scope="col">Rent</th>
+                                        <th scope="col">Corridor Electric Bill</th>
+                                        <th scope="col">Maintenance Bill</th>
+                                        <th scope="col">Corridor Cleaning Bill</th>
+                                        <th scope="col">Fuel Bill</th>
+                                        <th scope="col">SUM</th>
+                                        <th scope="col">UPDATE</th>
+                                        <th scope="col">DELETE</th>
+                                    </tr>
+                                </thead>
+                                <?php
+                                $checkUserInDB = $db->prepare("SELECT * FROM bills");
+                                $checkUserInDB->execute();
+                                while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
+                                ?>
+                                    <?php
+                                    $sum = $pullinfo['rent'] + ($pullinfo['corridorLight'] / 10) + ($pullinfo['corridorWater'] / 10) + ($pullinfo['corridorCleaning'] / 10) + ($pullinfo['fuel'] / 10);
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $pullinfo['billID'] ?></td>
+                                        <td><?php echo $pullinfo['billDate'] ?></td>
+                                        <td><?php echo $pullinfo['isOK'] ?></td>
+                                        <td><?php echo $pullinfo['rent'] ?></td>
+                                        <td><?php echo $pullinfo['corridorLight'] ?></td>
+                                        <td><?php echo $pullinfo['corridorWater'] ?></td>
+                                        <td><?php echo $pullinfo['corridorCleaning'] ?></td>
+                                        <td><?php echo $pullinfo['fuel'] ?></td>
+                                        <td><?php echo $sum ?></td>
+                                        <td><a href="../index/payBill.php?billID=<?php echo $pullinfo['billID'] ?>"><button class="btn btn-primary">UPDATE</button></a></td>
+                                        <td><a href="../index/payBill.php?billID=<?php echo $pullinfo['billID'] ?>"><button class="btn btn-danger">DELETE</button></a></td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
+                            </table>
+                            <!--WRITE UPDATE OR ADD RESULTS-->
+                            <?php
+                            if (isset($_GET['addNewBill'])) {
+                                if ($_GET['addNewBill'] == "ok") {
+                                    echo "<div class='alert alert-success' role='alert'>ADDED NEW BILL</div>";
+                                } elseif ($_GET['addNewBill'] == "no") {
+                                    echo "<div class='alert alert-danger' role='alert'>NOT ADDED NEW BILL</div>";
+                                }
+                            }
+                            if (isset($_GET['update'])) {
+                                if ($_GET['update'] == "ok") {
+
+                                    echo "<div class='alert alert-success' role='alert'>Update #" . $_GET['billID'] . " SUCCESSFUL</div>";
+                                } elseif ($_GET['update'] == "no") {
+                                    echo "<div class='alert alert-danger' role='alert'>Update #" . $_GET['billID'] . " FAILED</div>";
+                                }
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        ADD NEW BILL
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class='main-update'>
+                            <form action='' method='POST'>
+                                <div class='input-group mb-3'>
+                                    <span class='input-group-text' id='basic-addon1'>RENT</span>
+                                    <input type='text' class='form-control' name='rent' id='rent'>
+                                </div>
+                                <div class='input-group mb-3'>
+                                    <span class='input-group-text' id='basic-addon1'>LIGHT</span>
+                                    <input type='int' class='form-control' name='corridorLight' id='corridorLight'>
+                                </div>
+                                <div class='input-group mb-3'>
+                                    <span class='input-group-text' id='basic-addon1'>WATER</span>
+                                    <input type='int' class='form-control' name='corridorWater' id='corridorWater'>
+                                </div>
+                                <div class='input-group mb-3'>
+                                    <span class='input-group-text' id='basic-addon1'>CLEANING</span>
+                                    <input type='int' class='form-control' name='corridorCleaning' id='corridorCleaning'>
+                                </div>
+                                <div class='input-group mb-3'>
+                                    <span class='input-group-text' id='basic-addon1'>FUEL</span>
+                                    <input type='int' class='form-control' name='fuel' id='fuel'>
+                                </div>
+                                <div class='input-group mb-3'>
+                                    <span class='input-group-text' id='basic-addon1'>SHOW THE BILL</span>
+                                    <input type='int' class='form-control' name='isOK' id='isOK'>
+                                </div>
+                                <button type='submit' name='submitBill' id='submitBill' class='btn btn-primary btn-lg'>Submit</button>
+                                <button type='reset' name='reset' id='reset' class='btn btn-danger btn-lg'>Reset</button><br><br>
+                                <?php
+                                if (isset($_GET['addNewBill'])) {
+                                    if ($_GET['addNewBill'] == "ok") {
+                                        echo "<div class='alert alert-success' role='alert'>ADDED NEW BILL</div>";
+                                    } elseif ($_GET['addNewBill'] == "no") {
+                                        echo "<div class='alert alert-danger' role='alert'>NOT ADDED NEW BILL</div>";
+                                    }
+                                }
+                                ?>
+                            </form>
+
+                            <?php
+                            //INSERTION
+                            if (isset($_POST['submitBill'])) {
+                                $kaydet = $db->prepare("INSERT into bills set
+                            rent=:rent,
+                            corridorLight=:corridorLight,
+                            corridorWater=:corridorWater,
+                            corridorCleaning=:corridorCleaning,
+                            fuel =:fuel,
+                            isOK =:isOK
+                            ");
+
+                                $insert = $kaydet->execute(array(
+                                    'rent' => $_POST['rent'],
+                                    'corridorLight' => $_POST['corridorLight'],
+                                    'corridorWater' => $_POST['corridorWater'],
+                                    'corridorCleaning' => $_POST['corridorCleaning'],
+                                    'fuel' => $_POST['fuel'],
+                                    'isOK' => $_POST['isOK']
+                                ));
+                                if ($insert) {
+                                    header("Location:../admin/adminBills.php?addNewBill=ok");
+                                    exit;
+                                } else {
+                                    header("Location:../admin/adminBills.php?addNewBill=no");
+                                    exit;
+                                }
+                            }
+                            ?>
+                            <!-- END ADMIN ADD NEW BILL IN DATABASE-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingThree">
+                    <button class="accordion-button collapsed btn-info btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        SHOW PAYERS
+                    </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="section">
+                            <!--ADMIN SEES THE ALL PAYERS-->
+                            <?phP
+                            echo "
+                                <table class='table'>
+                                    <thead>
+                                    <tr>
+                                    <th scope='col'>Invoice Number</th>
+                                    <th scope='col'>Payer Date</th>
+                                    <th scope='col'>Payer ID</th>
+                                    <th scope='col'>Payer Name</th>
+                                    <th scope='col'>Payer Flat No</th>
+                                    <th scope='col'>Amount Paid</th>
+                                    </tr>
+                                    </thead>";
+                            $checkUserInDB = $db->prepare('SELECT * FROM billpayers');
+                            $checkUserInDB->execute();
+                            while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
+                            ?>
+                                <tr>
+                                    <td><?php echo $pullinfo['uniquePayerID'] ?></td>
+                                    <td><?php echo $pullinfo['payerDate'] ?></td>
+                                    <td><?php echo $pullinfo['payerID'] ?></td>
+                                    <td><?php echo $pullinfo['payerName'] ?></td>
+                                    <td><?php echo $pullinfo['payerFlat'] ?></td>
+                                    <td><?php echo $pullinfo['payerMuch'] ?></td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
     </main>
+
 
 
 
@@ -159,7 +298,7 @@ ob_start();
         </div>
     </footer>
 
-    
+
 </body>
 
 </html>

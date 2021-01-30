@@ -13,6 +13,16 @@ ob_start();
   <link rel="stylesheet" href="css/account.css">
   <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
   <link href="bootstrap/js/bootstrap.js" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+
+
 
 </head>
 
@@ -69,21 +79,21 @@ ob_start();
 
     <div class="card main-item" style="width: 20rem;">
       <div class="card-header">
-        Your Information is ;
+        <b><i>PERSONAL INFORMATION</i></b>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">User name: <?php echo $_SESSION['userUsername'] ?></li>
-        <li class="list-group-item">Name: <?php echo $_SESSION['userName'] ?></li>
-        <li class="list-group-item">Surname: <?php echo $_SESSION['userSurname'] ?></li>
-        <li class="list-group-item">Phone: <?php echo $_SESSION['userGSM'] ?></li>
-        <li class="list-group-item">Email: <?php echo $_SESSION['userEmail'] ?></li>
-        <li class="list-group-item">Flat: <?php echo $_SESSION['userFlatno'] ?></li>
+        <li class="list-group-item"><p>User name: <?php echo $_SESSION['userUsername'] ?></p></li>
+        <li class="list-group-item"><p>First: <?php echo $_SESSION['userName'] ?></p></li>
+        <li class="list-group-item"><p>Last: <?php echo $_SESSION['userSurname'] ?></p></li>
+        <li class="list-group-item"><p>GSM: <?php echo $_SESSION['userGSM'] ?></p></li>
+        <li class="list-group-item"><p>E-Mail: <?php echo $_SESSION['userEmail'] ?></p></li>
+        <li class="list-group-item"><p>#Flat: <?php echo $_SESSION['userFlatno'] ?></p></li>
       </ul>
     </div>
 
 
     <div class="main-item">
-      <form action="account.php" method="POST">
+      <form class="was-validated" action="account.php" method="POST">
         <div class="label">
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">User Name</span>

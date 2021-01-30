@@ -10,10 +10,10 @@ ob_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Information</title>
+    <title>Account</title>
     <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="../bootstrap/js/bootstrap.js" rel="stylesheet">
-    <link href="../css/admin/adminInfo.css" rel="stylesheet">
+    <link href="../css/admin/adminAccount.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -27,11 +27,13 @@ ob_start();
 
 <body>
 
+    <!--welcome header bar-->
     <header class="header">
         <div class="welcome">
-            <p id="welcome">information</p>
+            <p id="welcome">ACCOUNT</p>
         </div>
     </header>
+
 
 
     <!--NAV BAR-->
@@ -45,11 +47,11 @@ ob_start();
 
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item"><a class="nav-link" href="adminPanel.php">MAIN</a></li>
-                <li class="nav-item"><a class="nav-link active" href="adminInfo.php">USERS</a></li>
+                <li class="nav-item"><a class="nav-link" href="adminInfo.php">USERS</a></li>
                 <li class="nav-item"><a class="nav-link" href="adminBills.php">PAYMENT</a></li>
                 <li class="nav-item"><a class="nav-link" href="adminComplaint.php">COMPLAINTS</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         ACCOUNT
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -71,77 +73,135 @@ ob_start();
         </div>
     </nav>
 
+    <p style="color: red; font-size: xx-large; text-align: center;"><b>BURAYA INFORMATION ICONU VE BİLGİ EKLE</b></p>
+
+
 
     <main class="main-content">
         <div class="main-item">
-            <h2>List of All Tenant </h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">ID</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">User Name</th>
-                        <th scope="col">Flat</th>
-                        <th scope="col">E-mail</th>
-                        <th scope="col">GSM</th>
-                        <th scope="col">Register Time</th>
-                        <th scope="col">Update</th>
-                        <th scope="col">Delete</th>
-                    </tr>
-                </thead>
+            <form class="was-validated" action="../index/new_user_sign.php" method="POST">
+                <div class="label">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">ADMIN FIRST</span>
+                        <input type="text" name="adminNAME" id="adminNAME" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Please enter a Name in the textarea
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">ADMIN LAST</span>
+                        <input type="text" name="adminSURNAME" id="adminSURNAME" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Please enter a Surname in the textarea
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">ADMIN USER NAME</span>
+                        <input type="text" name="adminUSERNAME" id="adminUSERNAME" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Please enter a User name in the textarea
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">ADMIN GSM-1</span>
+                        <input type="text" name="adminGSM" id="adminGSM" class="form-control" required placeholder="5551234567">
+                        <div class="invalid-feedback">
+                            Please enter a GSM in the textarea
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">ADMIN GSM-2</span>
+                        <input type="text" name="adminGSM_2" id="adminGSM_2" class="form-control" required placeholder="5551234567">
+                        <div class="invalid-feedback">
+                            Please enter a Different GSM in the textarea
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">ADMIN E-MAIL</span>
+                        <input type="text" name="adminEMAIL" id="adminEMAIL" class="form-control" required placeholder="asd@asd.com">
+                        <div class="invalid-feedback">
+                            Please enter a E-Mail address in the textarea
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">ADMIN PASSWORD</span>
+                        <input type="text" name="adminPASSWORD" id="adminPASSWORD" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Please describe the Password in the textarea
+                        </div>
+                    </div>
+                </div>
+                <label for="submit"></label>
+                <input type="submit" name="adminSignAdmin-btn" id="submit-2" class="btn btn-primary me-md-2 btn-lg" required>
+                <label for="reset"></label>
+                <input type="reset" name="reset2" id="reset2" class="btn btn-danger me-md-2 btn-lg" required>
                 <?php
-                $checkUserInDB = $db->prepare("SELECT * FROM usersinfo");
-                $checkUserInDB->execute();
-                $say = 0;
-                while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
-                    $say++
-                ?>
-                    <tbody>
-                        <tr>
-                            <td><?php echo $say; ?></td>
-                            <td><?php echo $pullinfo['userID']; ?></td>
-                            <td><?php echo $pullinfo['userName']; ?></td>
-                            <td><?php echo $pullinfo['userSurname']; ?></td>
-                            <td><?php echo $pullinfo['userUsername']; ?></td>
-                            <td><?php echo $pullinfo['userFlatno']; ?></td>
-                            <td><?php echo $pullinfo['userEmail']; ?></td>
-                            <td><?php echo $pullinfo['userGSM']; ?></td>
-                            <td><?php echo $pullinfo['registerTime']; ?></td>
-                            <td><a href="../index/update.php?userID=<?php echo $pullinfo['userID'] ?>&userIDupdate=ok"><button type="button" class="btn btn-primary">Update</button></td></a>
-                            <td><button type="button" class="btn btn-danger" onclick="alertFun()">Delete</button></td>
-
-                            <script>
-                                function alertFun() {
-                                    var bol = confirm("ARE YOU SURE TO DELETE PERSON ?");
-                                    if (bol) {
-                                        alert("PERSON HAS BEEN DELETED");
-                                        location = "../index/delete.php?userID=<?php echo $pullinfo['userID'] ?>&userIDdelete=delete";
-                                    }
-                                }
-                            </script>
-                        </tr>
-                    <?php } ?>
-                    </tbody>
-            </table>
-            <?php
-            if (isset($_GET['durum']))
-                if ($_GET['durum'] == "ok") {
-                    echo "<div class='alert alert-primary' role='alert'>Update Successfully</div>";
-                } elseif ($_GET['durum'] == "no") {
-                    echo "<div class='alert alert-danger' role='alert'>Update Failed</div>";
+                if (isset($_GET['adminNewAdmin'])) {
+                    if ($_GET['adminNewAdmin'] == "success") {
+                        echo "<p style='color: green; font-size: larger;'><b>Registration Successful</b></p>";
+                    } elseif ($_GET['adminNewAdmin'] == "failed") {
+                        echo "<p style='color: red; font-size: larger;'><b>Registration Failed</b></p>";
+                    }
                 }
-            if (isset($_GET['delete'])) {
-                if ($_GET['delete'] == "ok") {
-                    echo "<div class='alert alert-info' role='alert'>Deleted Successfully</div>";
+                ?>
+
+            </form>
+            <?php
+            if (isset($_POST['submit'])) {
+
+                $bilgilerim_id = $_SESSION['userID'];
+                if ($_POST['userPassword'] == $_SESSION['userPassword']) {
+
+                    $kaydet = $db->prepare("UPDATE usersinfo set
+                            userUsername=:userUsername,
+                            userName=:userName,
+                            userSurname=:userSurname,
+                            userEmail=:userEmail,
+                            userUsername=:userUsername,
+                            userFlatno=:userFlatno,
+                            userPassword=:userPassword,
+                            userGSM=:userGSM
+
+                            where userID={$_SESSION['userID']}
+                            ");
+
+                    $insert = $kaydet->execute(array(
+
+                        'userName' => $_POST['userName'],
+                        'userSurname' => $_POST['userSurname'],
+                        'userEmail' => $_POST['userEmail'],
+                        'userUsername' => $_POST['userUsername'],
+                        'userFlatno' => $_POST['userFlatno'],
+                        'userPassword' => md5($_POST['userPasswordNEW']),
+                        'userGSM' => $_POST['userGSM']
+
+                    ));
+                    if ($insert) {
+                        //echo "kayıt başarılı";
+                        Header("location:account.php?update=ok&bilgilerim_id=$bilgilerim_id");
+                        exit;
+                    } else {
+                        //echo "kayıt başarısız";
+                        Header("Location:account.php?update=no&bilgilerim_id=$bilgilerim_id");
+                        exit;
+                    }
                 } else {
-                    echo "<div class='alert alert-danger' role='alert'>Deleted Failed</div>";
+                    echo "<br><div class='alert alert-warning' role='alert'>Old Password is WRONG</div>";
+                }
+            }
+            ?>
+            <?php
+            if (isset($_GET['update'])) {
+                if ($_GET['update'] == "ok") {
+                    echo "<br><div class='alert alert-success' role='alert'>Update is Successful</div>";
+                } elseif ($_GET['update'] == "no") {
+                    echo "<br><div class='alert alert-warning' role='alert'>Update is Failed</div>";
                 }
             }
             ?>
         </div>
     </main>
+
 
     <footer class="mt-auto text-white-50">
         <div class="links">
@@ -152,7 +212,7 @@ ob_start();
                 <li><a href="https://github.com/MrKacmaz" title="GitHub" target="_blanced" class="link-info"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
                             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
                         </svg></a></li>
-                <li><a href="https://www.instagram.com/mr.kacmaz/" title="LinkedIn" target="_blanced" class="link-info"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                <li><a href="https://www.instagram.com/mr.kacmaz/" title="Instagram" target="_blanced" class="link-info"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
                             <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
                         </svg>
                 </li>

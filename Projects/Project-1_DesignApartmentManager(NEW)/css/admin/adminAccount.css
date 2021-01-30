@@ -30,18 +30,13 @@ body {
   flex-direction: row;
 }
 .main-item {
+  margin: -2% 10%;
   padding: 2%;
   line-height: 1.5;
   text-align: center;
   flex: 1;
   flex-grow: 1;
   flex-basis: 0;
-}
-.main-item h2 {
-  color: #da4167;
-}
-.main-item p {
-  margin-top: 0.5rem;
 }
 
 

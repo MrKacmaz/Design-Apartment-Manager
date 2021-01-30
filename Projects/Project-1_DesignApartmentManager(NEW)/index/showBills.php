@@ -22,7 +22,7 @@ ob_start();
         <div class="container-fluid">
             <a class="navbar-brand" href="#">MANAGEMENT SYSTEM</a>
         </div>
-    </nav>>
+    </nav>
 
 
     <div class="main-update">

@@ -14,6 +14,15 @@ ob_start();
     <link rel="stylesheet" href="css\to-do.css">
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="bootstrap/js/bootstrap.js" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+
 
 </head>
 
@@ -70,66 +79,125 @@ ob_start();
 
 
 
+    <main>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        SHOW BILLS
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Bill ID</th>
+                                <th scope="col">Bill Date</th>
+                                <th scope="col">Rent</th>
+                                <th scope="col">Corridor Electric Bill</th>
+                                <th scope="col">Maintenance Bill</th>
+                                <th scope="col">Corridor Cleaning Bill</th>
+                                <th scope="col">Fuel Bill</th>
+                                <th scope="col">SUM</th>
+                                <th scope="col">PAY</th>
+                            </tr>
+                        </thead>
+
+                        <?php
+                        $checkUserInDB = $db->prepare("SELECT * FROM bills WHERE isOK = 0");
+                        $checkUserInDB->execute();
+                        while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
+                            $sum = $pullinfo['rent'] + ($pullinfo['corridorLight'] / 10) + ($pullinfo['corridorWater'] / 10) + ($pullinfo['corridorCleaning'] / 10) + ($pullinfo['fuel'] / 10);
+                        ?>
+                                <tr>
+                                    <td><?php echo $pullinfo['billID'] ?></td>
+                                    <td><?php echo $pullinfo['billDate'] ?></td>
+                                    <td><?php echo $pullinfo['rent'] ?></td>
+                                    <td><?php echo $pullinfo['corridorLight'] ?></td>
+                                    <td><?php echo $pullinfo['corridorWater'] ?></td>
+                                    <td><?php echo $pullinfo['corridorCleaning'] ?></td>
+                                    <td><?php echo $pullinfo['fuel'] ?></td>
+                                    <td><?php echo $sum ?></td>
+                                    <td>
+                                        <div class="d-grid gap-2 d-md-flex">
+                                            <?php
+                                            if (isset($sum)) {
+                                                $userID = $_SESSION['userID'];
+                                                echo "<button type='button' class='btn btn-success btn-lg' id='btn-todo' onclick='alertFun()'>PAY</button>";
+                                            }
+                                            ?>
+                                            <script>
+                                                function alertFun() {
+                                                    var bol = confirm("YOU WILL BE DIRECTED TO THE PAYMENT PAGE");
+                                                    if (bol) {
+                                                        location = "index/payBill.php?userPayBill&userID=$userID&sumOfBill=<?php echo $sum ?>";
+                                                    }
+                                                }
+                                            </script>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                    </table>
+                </div>
+            </div>
 
 
-
-    <main class="section">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Bill ID</th>
-                    <th scope="col">Bill Date</th>
-                    <th scope="col">Rent</th>
-                    <th scope="col">Corridor Electric Bill</th>
-                    <th scope="col">Maintenance Bill</th>
-                    <th scope="col">Corridor Cleaning Bill</th>
-                    <th scope="col">Fuel Bill</th>
-                    <th scope="col">SUM</th>
-                </tr>
-            </thead>
-
-            <?php
-            $checkUserInDB = $db->prepare("SELECT * FROM bills WHERE isOK = 0");
-            $checkUserInDB->execute();
-            while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
-                $sum = $pullinfo['rent'] + ($pullinfo['corridorLight'] / 10) + ($pullinfo['corridorWater'] / 10) + ($pullinfo['corridorCleaning'] / 10) + ($pullinfo['fuel'] / 10);
-            ?>
-                <tbody>
-                    <tr>
-                        <td><?php echo $pullinfo['billID'] ?></td>
-                        <td><?php echo $pullinfo['billDate'] ?></td>
-                        <td><?php echo $pullinfo['rent'] ?></td>
-                        <td><?php echo $pullinfo['corridorLight'] ?></td>
-                        <td><?php echo $pullinfo['corridorWater'] ?></td>
-                        <td><?php echo $pullinfo['corridorCleaning'] ?></td>
-                        <td><?php echo $pullinfo['fuel'] ?></td>
-                        <td><?php echo $sum ?></td>
-                    </tr>
-                <tbody>
-                <?php } ?>
-        </table>
-
-
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <?php
-            if (isset($sum)) {
-                $userID = $_SESSION['userID'];
-                echo "<button type='button' class='btn btn-success btn-lg' id='btn-todo' onclick='alertFun()'>PAY THE RECENT BILL</button>";
-            } else {
-                echo "<p style='color: green; margin: .75rem; font-size:larger;'><b>No invoices to be paid</b></p>";
-            }
-            ?>
-            <script>
-                function alertFun() {
-                    var bol = confirm("YOU WILL BE DIRECTED TO THE PAYMENT PAGE");
-                    if (bol) {
-                        location = "index/payBill.php?userPayBill&userID=$userID&sumOfBill=<?php echo $sum ?>";
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        HISTORY
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                    <!--USER PAYERS SEE THEIR OWN PAYMENTS-->
+                    <?php
+                    if (isset($_SESSION['userID'])) {
+                        echo "
+                            <table class = 'table table-light'>
+                                <thead>
+                                <tr>
+                                    <th scope='col'>Invoice Number</th>
+                                    <th scope='col'>Payer Date</th>
+                                    <th scope='col'>Payer ID</th>
+                                    <th scope='col'>Payer Name</th>
+                                    <th scope='col'>Payer Flat No</th>
+                                    <th scope='col'>Amount Paid</th>
+                                </tr>
+                                </thead>
+                                ";
+                        $payerID = $_SESSION['userID'];
+                        $checkUserInDB = $db->prepare("SELECT * FROM billpayers WHERE payerID = $payerID");
+                        $checkUserInDB->execute();
+                        while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
+                    ?>
+                            <tr>
+                                <td><?php echo $pullinfo['uniquePayerID'] ?></td>
+                                <td><?php echo $pullinfo['payerDate'] ?></td>
+                                <td><?php echo $pullinfo['payerID'] ?></td>
+                                <td><?php echo $pullinfo['payerName'] ?></td>
+                                <td><?php echo $pullinfo['payerFlat'] ?></td>
+                                <td><?php echo $pullinfo['payerMuch'] ?></td>
+                            </tr>
+                    <?php
+                        }
                     }
-                }
-            </script>
-            <a href="index/showBills.php?payerID=<?php echo $_SESSION['userID']?>"><button class="btn btn-secondary me-md-2 btn-lg" type="button" id='btn-todo'>SHOW ALL BILLS</button></a>
-        </div>
+                    ?>
+                    </table>
+                </div>
+            </div>
 
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingThree">
+                    <button class="accordion-button collapsed btn-danger btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        EMPTY
+                    </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                </div>
+            </div>
+        </div>
     </main>
 
 
