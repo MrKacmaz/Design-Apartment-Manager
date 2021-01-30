@@ -66,12 +66,15 @@ ob_start();
 				</div>
 				<input type="hidden" value="<?php echo $bilgilerimcek['userID'] ?>" name="userID"><br>
 				<button type="submit" class="btn btn-success" id="btn" name="updateislemi">UPDATE</button>
+				<button type="submit" class="btn btn-danger" id="back" name="back">BACK</button>
 			</form>
 		</div>
 
 
 		<?php
-
+		if(isset($_POST['back'])){
+			header("Location:../admin/adminInfo.php");
+		}
 		if (isset($_POST['updateislemi'])) {
 
 			$bilgilerim_id = $_POST['userID'];

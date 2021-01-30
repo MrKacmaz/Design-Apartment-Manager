@@ -31,7 +31,7 @@ ob_start();
     <!--HEADER BAR-->
     <header class="header">
         <div class="welcome">
-            <p id="welcome">Payment</p>
+            <img src="Management System.png" style="width: 15%;">
         </div>
     </header>
 
@@ -39,39 +39,59 @@ ob_start();
     <!--NAV BAR-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">MANAGEMENT SYSTEM</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse " id="navbarSupportedContent">
+
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="main.php">MAIN</a>
+                        <a class="nav-link " aria-current="page" href="main.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+                                <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
+                            </svg></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="information.php">INFORMATION</a>
+                        <a class="nav-link" href="information.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-info-square" viewBox="0 0 16 16">
+                                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                            </svg></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="to-do.php">PAYMENT</a>
+                        <a class="nav-link active" href="to-do.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cash-stack" viewBox="0 0 16 16">
+                                <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                                <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z" />
+                            </svg></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="complaint.php">COMPLAINT</a>
+                        <a class="nav-link" href="complaint.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-megaphone" viewBox="0 0 16 16">
+                                <path d="M13 2.5a1.5 1.5 0 0 1 3 0v11a1.5 1.5 0 0 1-3 0v-.214c-2.162-1.241-4.49-1.843-6.912-2.083l.405 2.712A1 1 0 0 1 5.51 15.1h-.548a1 1 0 0 1-.916-.599l-1.85-3.49a68.14 68.14 0 0 0-.202-.003A2.014 2.014 0 0 1 0 9V7a2.02 2.02 0 0 1 1.992-2.013 74.663 74.663 0 0 0 2.483-.075c3.043-.154 6.148-.849 8.525-2.199V2.5zm1 0v11a.5.5 0 0 0 1 0v-11a.5.5 0 0 0-1 0zm-1 1.35c-2.344 1.205-5.209 1.842-8 2.033v4.233c.18.01.359.022.537.036 2.568.189 5.093.744 7.463 1.993V3.85zm-9 6.215v-4.13a95.09 95.09 0 0 1-1.992.052A1.02 1.02 0 0 0 1 7v2c0 .55.448 1.002 1.006 1.009A60.49 60.49 0 0 1 4 10.065zm-.657.975l1.609 3.037.01.024h.548l-.002-.014-.443-2.966a68.019 68.019 0 0 0-1.722-.082z" />
+                            </svg></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="account.php">ACCOUNT</a>
+                        <a class="nav-link" href="account.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-file-person" viewBox="0 0 16 16">
+                                <path d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z" />
+                                <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                            </svg></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="logoutFun()">LOG-OUT</a>
-                    </li>
-                    <script>
-                        function logoutFun() {
-                            var bol = confirm("ARE YOU SURE TO LOG-OUT?");
-                            if (bol) {
-                                location = "logout.php";
-                            }
-                        }
-                    </script>
                 </ul>
+                <a class="navbar-brand" href="#"><b id="upper"><?php echo  $_SESSION['userName'] . " " . $_SESSION['userSurname'] ?></b></a>
+
+                <ul class="navbar-nav mb-2 mb-lg-0 justify-content-right">
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="logoutFun()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-door-open-fill" viewBox="0 0 16 16">
+                                <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z" />
+                            </svg></a>
+                    </li>
+                </ul>
+                <script>
+                    function logoutFun() {
+                        var bol = confirm("ARE YOU SURE TO LOG-OUT?");
+                        if (bol) {
+                            location = "logout.php";
+                        }
+                    }
+                </script>
             </div>
         </div>
     </nav>
@@ -104,40 +124,44 @@ ob_start();
                         </thead>
 
                         <?php
-                        $checkUserInDB = $db->prepare("SELECT * FROM bills WHERE isOK = 0");
+                        $checkUserInDB = $db->prepare("SELECT * FROM bills WHERE isOK = 1");
                         $checkUserInDB->execute();
                         while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
                             $sum = $pullinfo['rent'] + ($pullinfo['corridorLight'] / 10) + ($pullinfo['corridorWater'] / 10) + ($pullinfo['corridorCleaning'] / 10) + ($pullinfo['fuel'] / 10);
                         ?>
-                                <tr>
-                                    <td><?php echo $pullinfo['billID'] ?></td>
-                                    <td><?php echo $pullinfo['billDate'] ?></td>
-                                    <td><?php echo $pullinfo['rent'] ?></td>
-                                    <td><?php echo $pullinfo['corridorLight'] ?></td>
-                                    <td><?php echo $pullinfo['corridorWater'] ?></td>
-                                    <td><?php echo $pullinfo['corridorCleaning'] ?></td>
-                                    <td><?php echo $pullinfo['fuel'] ?></td>
-                                    <td><?php echo $sum ?></td>
-                                    <td>
-                                        <div class="d-grid gap-2 d-md-flex">
-                                            <?php
-                                            if (isset($sum)) {
-                                                $userID = $_SESSION['userID'];
-                                                echo "<button type='button' class='btn btn-success btn-lg' id='btn-todo' onclick='alertFun()'>PAY</button>";
-                                            }
-                                            ?>
-                                            <script>
-                                                function alertFun() {
-                                                    var bol = confirm("YOU WILL BE DIRECTED TO THE PAYMENT PAGE");
-                                                    if (bol) {
-                                                        location = "index/payBill.php?userPayBill&userID=$userID&sumOfBill=<?php echo $sum ?>";
-                                                    }
+                            <tr>
+                                <td><?php echo $pullinfo['billID'] ?></td>
+                                <td><?php echo $pullinfo['billDate'] ?></td>
+                                <td><?php echo $pullinfo['rent'] ?></td>
+                                <td><?php echo $pullinfo['corridorLight'] ?></td>
+                                <td><?php echo $pullinfo['corridorWater'] ?></td>
+                                <td><?php echo $pullinfo['corridorCleaning'] ?></td>
+                                <td><?php echo $pullinfo['fuel'] ?></td>
+                                <td><?php echo $sum ?></td>
+                                <td>
+                                    <div class="d-grid gap-2 d-md-flex">
+                                        <?php
+                                        if (isset($sum)) {
+                                            $userID = $_SESSION['userID'];
+                                            echo "<button type='button' class='btn btn-success' id='btn-todo' onclick='alertFun()'>
+                                            <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='currentColor' class='bi bi-credit-card' viewBox='0 0 16 16'>
+                                                <path d='M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z' />
+                                                <path d='M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z' />
+                                            </svg></button>";
+                                        }
+                                        ?>
+                                        <script>
+                                            function alertFun() {
+                                                var bol = confirm("YOU WILL BE DIRECTED TO THE PAYMENT PAGE");
+                                                if (bol) {
+                                                    location = "index/payBill.php?userPayBill&userID=$userID&sumOfBill=<?php echo $sum ?>";
                                                 }
-                                            </script>
-                                        </div>
-                                    </td>
-                                </tr>
-                            <?php } ?>
+                                            }
+                                        </script>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
                     </table>
                 </div>
             </div>

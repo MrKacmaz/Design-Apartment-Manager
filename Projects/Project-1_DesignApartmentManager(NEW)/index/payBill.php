@@ -59,16 +59,26 @@ ob_start();
                                 <input type='int' class='form-control' name='fuel' id='fuel'>
                             </div>
                             <div class='input-group mb-3'>
-                                <span class='input-group-text' id='basic-addon1'>SHOW THE BILL</span>
-                                <input type='int' class='form-control' name='isOK' id='isOK'>
+                            <span class='input-group-text' id='basic-addon1'>Show the Content</span>
+                            <div class='btn-group' role='group' aria-label='Basic radio toggle button group'>
+                                <input type='radio' class='btn-check' name='isOK' id='show' autocomplete='off' value='1'>
+                                <label class='btn btn-outline-info' for='show'>SHOW</label>
+        
+                                <input type='radio' class='btn-check' name='isOK' id='hide' autocomplete='off' value='0'>
+                                <label class='btn btn-outline-warning' for='hide'>HIDE</label>
                             </div>
+                        </div><br><br>
                         <button type='submit' name='submitBill' id='submitBill' class='btn btn-primary btn-lg'>Submit</button>
+                        <button type='submit' name='back' id='back' class='btn btn-danger btn-lg'>Back</button>
                         </form>
                     </div>
                     ";
                 }
             }
             //INSERTION
+            if (isset($_POST['back'])) {
+                header("Location:../admin/adminBills.php");
+            }
             if (isset($_POST['submitBill'])) {
                 $kaydet = $db->prepare("INSERT into bills set
 		    rent=:rent,
@@ -153,16 +163,27 @@ ob_start();
                                 <input type='int' class='form-control' name='fuel' id='fuel' value='$fuel'>
                             </div>
                             <div class='input-group mb-3'>
-                                <span class='input-group-text' id='basic-addon1'>SHOW THE BILL</span>
-                                <input type='int' class='form-control' name='isOK' id='isOK' value='$isOK'>
+                            <span class='input-group-text' id='basic-addon1'>Show the Content</span>
+                            <div class='btn-group' role='group' aria-label='Basic radio toggle button group'>
+                                <input type='radio' class='btn-check' name='isOK' id='show' autocomplete='off' value='1'>
+                                <label class='btn btn-outline-info' for='show'>SHOW</label>
+        
+                                <input type='radio' class='btn-check' name='isOK' id='hide' autocomplete='off' value='0'>
+                                <label class='btn btn-outline-warning' for='hide'>HIDE</label>
                             </div>
+                        </div><br><br>
                             <button type='submit' name='updateBill' id='updateBill' class='btn btn-primary btn-lg'>Submit</button>
+                            <button type='submit' name='back' id='back' class='btn btn-danger btn-lg'>Back</button>
                         </form>
                     </div>
                     ";
             }
+            if (isset($_POST['back'])) {
+                header("Location:../admin/adminBills.php");
+            }
 
             if (isset($_POST['updateBill'])) {
+
                 $kaydet = $db->prepare("UPDATE bills set
 		    rent=:rent,
 		    corridorLight=:corridorLight,

@@ -66,12 +66,23 @@ ob_start();
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Show the Content</span>
-                    <input type="int" class="form-control" required value="<?php echo $bilgilerimcek['isOK'] ?>" name="isOK" id="isOK">
-                </div>
-                <button type="submit" name="updateMainTopics" class="btn btn-success" onclick="alertFun()">Formu Düzenle</button>
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="isOK" id="show" autocomplete="off" value="1">
+                        <label class="btn btn-outline-info" for="show">SHOW</label>
+
+                        <input type="radio" class="btn-check" name="isOK" id="hide" autocomplete="off" value="0">
+                        <label class="btn btn-outline-warning" for="hide">HIDE</label>
+                    </div>
+                </div><br><br>
+
+                <button type="submit" name="updateMainTopics" class="btn btn-success">Formu Düzenle</button>
+                <button type="submit" name="back" class="btn btn-danger">Back</button>
             </form>
 
             <?php
+            if (isset($_POST['back'])) {
+                header("Location:../admin/adminPanel.php");
+            }
             if (isset($_POST['updateMainTopics'])) {
                 $mainTopicsID = $_POST['mainTopicsID'];
                 $mainTopicsTitle = $_POST['NewMainTopicsTitle'];
@@ -101,11 +112,6 @@ ob_start();
                 }
             }
             ?>
-            <script>
-                function alertFun() {
-                    alert('UPDATED SUCCESSFULLY');
-                }
-            </script>
         </div>
     </main>
 

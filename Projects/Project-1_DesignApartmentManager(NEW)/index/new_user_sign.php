@@ -178,11 +178,11 @@ if (isset($_POST['adminSignUser-btn'])) {
     ));
     if ($insert) {
         //echo "kayıt başarılı";
-        Header("Location:../admin/adminAccount.php?adminUserSign=success");
+        Header("Location:../admin/adminAddNewUser.php?adminUserSign=success");
         exit;
     } else {
         //echo "kayıt başarısız";
-        Header("Location:../admin/adminAccount.php?adminUserSign=failed");
+        Header("Location:../admin/adminAddNewUser.php?adminUserSign=failed");
         exit;
     }
 }
@@ -213,11 +213,11 @@ if (isset($_POST['adminSignAdmin-btn'])) {
 
     if ($insert) {
         //echo "kayıt başarılı";
-        Header("Location:../admin/adminAccount.php?adminNewAdmin=success");
+        Header("Location:../admin/adminAddNewAdmin.php?adminNewAdmin=success");
         exit;
     } else {
         //echo "kayıt başarısız";
-        Header("Location:../admin/adminAccount.php?adminNewAdmin=failed");
+        Header("Location:../admin/adminAddNewAdmin.php?adminNewAdmin=failed");
         exit;
     }
 }

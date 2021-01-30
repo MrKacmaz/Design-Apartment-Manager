@@ -9,17 +9,21 @@ body{
     padding: 0;
 }
 
-.welcome{
-    background-image: linear-gradient(to left,rgba(237, 66, 100,0.65),rgba(255, 237, 189,0.65));
-    padding: 2%;
+.welcome {
+    background-image: linear-gradient(
+      to left,
+      rgba(237, 66, 100, 0.25),
+      rgba(255, 237, 189, 0.25)
+    );
     text-align: center;
-    font-size: 2rem;
-    text-transform: uppercase;
     color: #333;
-}
-#welcome{
-    text-shadow: 2px 1.5px #ffedbc;  
-}
+  }
+  #welcome {
+    text-shadow: 2px 1.5px #ffedbc;
+  }
+  #upper{
+      text-transform: uppercase;
+  }
 
 
 .main-content {
