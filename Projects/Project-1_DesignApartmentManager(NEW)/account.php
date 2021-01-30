@@ -20,49 +20,49 @@ ob_start();
 
   <header class="header">
     <div class="welcome">
-      <p id="welcome"> Account Page</p>
+      <p id="welcome"> Account</p>
     </div>
   </header>
 
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">MANAGEMENT SYSTEM</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="main.php">MAIN</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="information.php">INFORMATION</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="to-do.php">PAYMENT</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="complaint.php">COMPLAINT</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="account.php">ACCOUNT</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="logoutFun()">LOG-OUT</a>
-                    </li>
-                    <script>
-                        function logoutFun() {
-                            var bol = confirm("ARE YOU SURE TO LOG-OUT?");
-                            if (bol) {
-                                location = "logout.php";
-                            }
-                        }
-                    </script>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">MANAGEMENT SYSTEM</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="main.php">MAIN</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="information.php">INFORMATION</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="to-do.php">PAYMENT</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="complaint.php">COMPLAINT</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="account.php">ACCOUNT</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="logoutFun()">LOG-OUT</a>
+          </li>
+          <script>
+            function logoutFun() {
+              var bol = confirm("ARE YOU SURE TO LOG-OUT?");
+              if (bol) {
+                location = "logout.php";
+              }
+            }
+          </script>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
 
   <main class="main-content">
@@ -126,12 +126,12 @@ ob_start();
         <input type="reset" name="reset" id="reset" class="btn btn btn-danger me-md-2 btn-lg" required>
       </form>
       <?php
-    if (isset($_POST['submit'])) {
+      if (isset($_POST['submit'])) {
 
-      $bilgilerim_id = $_SESSION['userID'];
-      if ($_POST['userPassword'] == $_SESSION['userPassword']) {
+        $bilgilerim_id = $_SESSION['userID'];
+        if ($_POST['userPassword'] == $_SESSION['userPassword']) {
 
-        $kaydet = $db->prepare("UPDATE usersinfo set
+          $kaydet = $db->prepare("UPDATE usersinfo set
     userUsername=:userUsername,
     userName=:userName,
     userSurname=:userSurname,
@@ -144,57 +144,41 @@ ob_start();
     where userID={$_SESSION['userID']}
     ");
 
-        $insert = $kaydet->execute(array(
+          $insert = $kaydet->execute(array(
 
-          'userName' => $_POST['userName'],
-          'userSurname' => $_POST['userSurname'],
-          'userEmail' => $_POST['userEmail'],
-          'userUsername' => $_POST['userUsername'],
-          'userFlatno' => $_POST['userFlatno'],
-          'userPassword' => md5($_POST['userPasswordNEW']),
-          'userGSM' => $_POST['userGSM']
+            'userName' => $_POST['userName'],
+            'userSurname' => $_POST['userSurname'],
+            'userEmail' => $_POST['userEmail'],
+            'userUsername' => $_POST['userUsername'],
+            'userFlatno' => $_POST['userFlatno'],
+            'userPassword' => md5($_POST['userPasswordNEW']),
+            'userGSM' => $_POST['userGSM']
 
-        ));
-        if ($insert) {
-          //echo "kayıt başarılı";
-          Header("location:account.php?update=ok&bilgilerim_id=$bilgilerim_id");
-          exit;
+          ));
+          if ($insert) {
+            //echo "kayıt başarılı";
+            Header("location:account.php?update=ok&bilgilerim_id=$bilgilerim_id");
+            exit;
+          } else {
+            //echo "kayıt başarısız";
+            Header("Location:account.php?update=no&bilgilerim_id=$bilgilerim_id");
+            exit;
+          }
         } else {
-          //echo "kayıt başarısız";
-          Header("Location:account.php?update=no&bilgilerim_id=$bilgilerim_id");
-          exit;
+          echo "<br><div class='alert alert-warning' role='alert'>Old Password is WRONG</div>";
         }
-      } else {
-        echo "<br><div class='alert alert-warning' role='alert'>Old Password is WRONG</div>";
       }
-    }
-    ?>
-    <?php
-    if (isset($_GET['update'])) {
-      if ($_GET['update'] == "ok") {
-        echo "<br><div class='alert alert-success' role='alert'>Update is Successful</div>";
-      } elseif ($_GET['update'] == "no") {
-        echo "<br><div class='alert alert-warning' role='alert'>Update is Failed</div>";
+      ?>
+      <?php
+      if (isset($_GET['update'])) {
+        if ($_GET['update'] == "ok") {
+          echo "<br><div class='alert alert-success' role='alert'>Update is Successful</div>";
+        } elseif ($_GET['update'] == "no") {
+          echo "<br><div class='alert alert-warning' role='alert'>Update is Failed</div>";
+        }
       }
-    }
-    ?>
+      ?>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   </main>
 
 

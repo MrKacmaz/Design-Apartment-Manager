@@ -10,68 +10,19 @@ body {
     padding: 0;
 }
 
-.welcome {
-    background-image: linear-gradient(to left,
-            rgb(237, 66, 100),
-            rgb(255, 237, 189));
-    padding: 3.5%;
+.welcome{
+    background-image: linear-gradient(to left,rgba(237, 66, 100,0.65),rgba(255, 237, 189,0.65));
+    padding: 2%;
     text-align: center;
     font-size: 2rem;
     text-transform: uppercase;
     color: #333;
 }
-
-#welcome {
-    text-shadow: 2px 1.5px #ffedbc;
+#welcome{
+    text-shadow: 2px 1.5px #ffedbc;  
 }
 
-.nav {
-    background-color: #333;
-    color: white;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
 
-.nav-ul {
-    margin: 0;
-    list-style: none;
-    display: flex;
-}
-
-.nav-ul-li {
-    padding: 0.75rem;
-}
-
-.nav-ul-li:hover {
-    background-color: #777;
-}
-
-.nav-ul-li a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.btn-class {
-    margin-left: 65%;
-    cursor: pointer;
-}
-
-.btn {
-    padding: .25em;
-    margin: 0.15em .5em;
-    outline: none;
-    font-size: 1em;
-    border-radius: 0.6em;
-    cursor: pointer;
-
-}
-
-.btn :hover {
-    background-color: #ddd;
-    box-shadow: 0 0 5px #ccc;
-}
 
 .main-content {
     display: flex;
@@ -97,43 +48,30 @@ body {
     margin-top: 0.5rem;
 }
 
-table,
-th,
-td {
-    align-items: center;
-    padding: 0.5%;
-    margin: auto;
-    border: 0.25em solid #333;
-    border-collapse: collapse;
-}
 
-.links {
+
+
+.links{
     position: fixed;
     width: 100%;
-    height: 10%;
+    height: 7.5%;
     bottom: 0;
-    background-color: #333;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color:#212529;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.links ul{
+    margin:0;
+    list-style:none;
+    display:flex;
+ 
+}
+.links ul li{
+    padding:.5rem;
 }
 
-.links ul {
-    margin: 0;
-    list-style: none;
-    display: flex;
-}
-
-.links ul li {
-    padding: 0.5rem;
-}
-
-.links ul li:hover {
-    background-color: #777;
-}
-
-.links ul li a {
-    text-decoration: none;
-    color: inherit;
+.links ul li a{
+    text-decoration:none;
+    color:inherit;
 }

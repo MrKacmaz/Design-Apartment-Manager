@@ -21,7 +21,7 @@ ob_start();
 
     <header class="header">
         <div class="welcome">
-            <p id="welcome">information page</p>
+            <p id="welcome">information</p>
         </div>
     </header>
 

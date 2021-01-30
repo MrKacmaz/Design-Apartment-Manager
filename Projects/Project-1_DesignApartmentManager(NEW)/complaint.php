@@ -21,7 +21,7 @@ ob_start();
     <!--WELCOME HEADER BAR-->
     <header class="header">
         <div class="welcome">
-            <p id="welcome">complaint page</p>
+            <p id="welcome">complaint</p>
         </div>
     </header>
 

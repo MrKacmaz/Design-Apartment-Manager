@@ -11,124 +11,42 @@ body {
 }
 
 .welcome {
-  background-image: linear-gradient(to left, #ed4264, #ffedbc);
-  padding: 3.5%;
+  background-image: linear-gradient(
+    to left,
+    rgba(237, 66, 100, 0.65),
+    rgba(255, 237, 189, 0.65)
+  );
+  padding: 2%;
   text-align: center;
   font-size: 2rem;
-  text-transform: capitalize;
+  text-transform: uppercase;
   color: #333;
 }
-
 #welcome {
   text-shadow: 2px 1.5px #ffedbc;
 }
 
-.nav {
-  background-color: #333;
-  color: white;
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nav-ul {
-  margin: 0;
-  list-style: none;
-  display: flex;
-}
-
-.nav-ul-li {
-  padding: 0.75rem;
-}
-
-.nav-ul-li:hover {
-  background-color: #777;
-}
-
-.nav-ul-li a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.cmp {
-  margin: 2rem;
-}
-
-#select {
-  margin: 1em 2em;
-}
-
-#p-2 {
-  margin: 2em 0;
-}
-
-#sub,
-#reset {
-  margin: 1em 2em;
-}
-
-#textarea {
-  margin: 1em 0;
-  resize: none;
-  font-size: 20px;
-  border-radius: 0.5em;
-}
-
-table,
-th,
-td {
-  border: 3px solid black;
-  border-collapse: collapse;
-  padding: 1rem;
-  margin: 5rem auto;
-  text-align: center;
-  align-content: center;
-}
-
-.btn-class {
-  margin-left: 65%;
-  cursor: pointer;
-}
-
-.btn {
-  padding: 0.5em;
-  margin: 0.5em 1em;
-  outline: none;
-  font-size: 1em;
-  border-radius: 0.6em;
-  cursor: pointer;
-}
-
-.btn :hover {
-  background-color: #ddd;
-  box-shadow: 0 0 5px #ccc;
+.section{
+  margin: 2% 2%;
 }
 
 .links {
   position: fixed;
   width: 100%;
-  height: 10%;
+  height: 7.5%;
   bottom: 0;
-  background-color: #333;
-  padding: 1rem;
+  background-color: #212529;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .links ul {
   margin: 0;
   list-style: none;
   display: flex;
 }
-
 .links ul li {
   padding: 0.5rem;
-}
-
-.links ul li:hover {
-  background-color: #777;
 }
 
 .links ul li a {

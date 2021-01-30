@@ -63,7 +63,7 @@ ob_start();
                 </ul>
             </div>
         </div>
-    </nav>>
+    </nav>
 
 
     <main class="main-content">
@@ -74,7 +74,7 @@ ob_start();
         ?>
             <div class="main-item">
 
-                <h2><span class="badge bg-secondary"><?php echo $pullinfo['mainTopicsTitle'] ?></span></h2>
+                <h2><span class="badge bg-primary"><?php echo $pullinfo['mainTopicsTitle'] ?></span></h2>
                 <p> <?php echo $pullinfo['mainTopicsContent'] ?> </p>
 
             </div>
