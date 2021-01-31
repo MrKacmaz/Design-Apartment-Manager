@@ -122,36 +122,22 @@ ob_start();
                         </thead>
 
                         <?php
-                        $checkUserInDB = $db->prepare("SELECT * FROM bills WHERE isOK = 1");
+                        $userID = $_SESSION['userID'];
+
+                        $checkUserInDB = $db->prepare("SELECT * FROM billpayers bp, bills b WHERE b.billID = bp.billPayersID AND bp.payerDate IS NULL AND bp.payerID = $userID");
+
                         $checkUserInDB->execute();
                         while (($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC))) {
                         ?>
                             <tr>
-                                <td><?php echo $pullinfo['billID'] ?></td>
+                                <td><?php echo $pullinfo['billID']?></td>
                                 <td><?php echo $pullinfo['billDate'] ?></td>
                                 <td><?php echo $pullinfo['periot'] ?></td>
                                 <td><?php echo $pullinfo['billType'] ?></td>
                                 <td><?php echo $pullinfo['amount'] ?></td>
                                 <td><?php echo $pullinfo['amount'] ?></td>
                                 <td>
-                                    <div class="d-grid gap-2 d-md-flex">
-                                        <?php
-
-                                        echo "<button type='button' class='btn btn-success' id='btn-todo' onclick='alertFun()'>
-                                            <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='currentColor' class='bi bi-credit-card' viewBox='0 0 16 16'>
-                                                <path d='M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z' />
-                                                <path d='M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z' />
-                                            </svg></button>";
-                                        ?>
-                                        <script>
-                                            function alertFun() {
-                                                var bol = confirm("index/payBill.php?userPayBill&userID=<?php echo $_SESSION['userID'] ?>&billID=<?php echo $pullinfo['billID'] ?>&sumOfBill=<?php echo $pullinfo['amount'] ?>&periot=<?php echo $pullinfo['periot'] ?>&type=<?php echo $pullinfo['billType'] ?> ");
-                                                if (bol) {
-                                                    location = "index/payBill.php?userPayBill&userID=<?php echo $_SESSION['userID']?>&billID=<?php echo $pullinfo['billID'] ?>&sumOfBill=<?php echo $pullinfo['amount'] ?>&periot=<?php echo $pullinfo['periot'] ?>&type=<?php echo $pullinfo['billType'] ?>";
-                                                }
-                                            }
-                                        </script>
-                                    </div>
+                                    <button class=" btn btn-success"> <a href = "index/payBill.php?userPayBill&userID=<?php echo $_SESSION['userID'];?>&billPayersID=<?php echo $pullinfo['billID'];?>&sumOfBill=<?php echo $pullinfo['amount'];?>&periot=<?php echo $pullinfo['periot'];?>&type=<?php echo $pullinfo['billType'];?>">PAY</a></button>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -175,28 +161,32 @@ ob_start();
                                 <thead>
                                 <tr>
                                     <th scope='col'>Bill ID</th>
+                                    <th scope='col'>Bill Date</th>
                                     <th scope='col'>Payer Date</th>
-                                    <th scope='col'>Payer Name</th>
-                                    <th scope='col'>Payer Flat No</th>
                                     <th scope='col'>Periot</th>
                                     <th scope='col'>Type</th>
                                     <th scope='col'>Amount Paid</th>
+                                    <th scope='col'>Payer Name</th>
+                                    <th scope='col'>Payer Surname</th>
+                                    <th scope='col'>Payer Flat No</th>
                                 </tr>
                                 </thead>
                                 ";
                         $payerID = $_SESSION['userID'];
-                        $checkUserInDB = $db->prepare("SELECT * FROM billpayers WHERE payerID = $payerID");
+                        $checkUserInDB = $db->prepare("SELECT * FROM billpayers bp, bills b, usersinfo ui WHERE bp.payerID = 36 and ui.userID = payerID");
                         $checkUserInDB->execute();
                         while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
                     ?>
                             <tr>
                                 <td><?php echo $pullinfo['billID'] ?></td>
+                                <td><?php echo $pullinfo['billDate'] ?></td>
                                 <td><?php echo $pullinfo['payerDate'] ?></td>
-                                <td><?php echo $pullinfo['payerName'] ?></td>
-                                <td><?php echo $pullinfo['payerFlat'] ?></td>
                                 <td><?php echo $pullinfo['periot'] ?></td>
-                                <td><?php echo $pullinfo['paymentType'] ?></td>
-                                <td><?php echo $pullinfo['payerMuch'] ?></td>
+                                <td><?php echo $pullinfo['billType'] ?></td>
+                                <td><?php echo $pullinfo['amount'] ?></td>
+                                <td><?php echo $pullinfo['userName'] ?></td>
+                                <td><?php echo $pullinfo['userSurname'] ?></td>
+                                <td><?php echo $pullinfo['userFlatno'] ?></td>
                             </tr>
                     <?php
                         }

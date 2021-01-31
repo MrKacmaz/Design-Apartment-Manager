@@ -230,12 +230,12 @@ ob_start();
                             //INSERTION
                             if (isset($_POST['submitBill'])) {
                                 $kaydet = $db->prepare("INSERT into bills set
-                            billDate=:billDate,
-                            periot=:periot,
-                            billType=:billType,
-                            amount=:amount,
-                            isOK =:isOK
-                            ");
+                                    billDate=:billDate,
+                                    periot=:periot,
+                                    billType=:billType,
+                                    amount=:amount,
+                                    isOK =:isOK
+                                    ");
 
                                 $insert = $kaydet->execute(array(
                                     'billDate' => $_POST['billDate'],
@@ -244,7 +244,35 @@ ob_start();
                                     'amount' => $_POST['amount'],
                                     'isOK' => $_POST['isOK']
                                 ));
+
                                 if ($insert) {
+                                    $last_id = $db->lastInsertId();
+
+                                    $servername = "localhost";
+                                    $username = "root";
+                                    $password = "";
+                                    $dbNmae = "webdatabase";
+                                    // Create connection
+                                    $conn = mysqli_connect($servername, $username, $password, $dbNmae);
+
+                                    // Check connection
+                                    if (!$conn) {
+                                        die("Connection failed: " . mysqli_connect_error());
+                                    }
+                                    echo "Connected successfully";
+                                    $userArrays = array();
+                                    $query = "SELECT ui.userID FROM usersInfo ui";
+                                    $result = mysqli_query($conn, $query);
+                                    while ($pullinfo = mysqli_fetch_assoc($result)) {
+                                        $userID = $pullinfo["userID"];
+                                        array_push($userArrays, $userID);
+                                    }
+
+                                    for ($i = 0; $i < count($userArrays); $i++) {
+
+                                        $query = "INSERT INTO billpayers (billPayersID, payerID) VALUES ($last_id, $userArrays[$i])";
+                                        $result = mysqli_query($conn, $query);
+                                    }
                                     header("Location:../admin/adminBills.php?addNewBill=ok");
                                     exit;
                                 } else {

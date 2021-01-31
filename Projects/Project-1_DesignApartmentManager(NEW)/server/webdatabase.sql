@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 05 Oca 2021, 15:43:03
+-- Üretim Zamanı: 31 Oca 2021, 15:41:25
 -- Sunucu sürümü: 10.4.11-MariaDB
 -- PHP Sürümü: 7.4.6
 
@@ -24,72 +24,27 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `adminpanel`
---
-
-CREATE TABLE `adminpanel` (
-  `adminID` int(11) NOT NULL,
-  `adminUSERNAME` varchar(32) NOT NULL,
-  `adminNAME` varchar(32) NOT NULL,
-  `adminSURNAME` varchar(32) NOT NULL,
-  `adminGSM` varchar(10) NOT NULL,
-  `adminGSM_2` varchar(10) NOT NULL,
-  `adminPASSWORD` varchar(50) NOT NULL,
-  `adminEMAIL` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Tablo döküm verisi `adminpanel`
---
-
-INSERT INTO `adminpanel` (`adminID`, `adminUSERNAME`, `adminNAME`, `adminSURNAME`, `adminGSM`, `adminGSM_2`, `adminPASSWORD`, `adminEMAIL`) VALUES
-(4, 'mcmonkey', 'Alperen', 'kaçmaz', '5310146762', '5391235487', 'c170b38f663bb69d68490b6eb8ae4c8d', 'alperen703.akm@gmail.com');
-
--- --------------------------------------------------------
-
---
--- Tablo için tablo yapısı `apartmentexpenses`
---
-
-CREATE TABLE `apartmentexpenses` (
-  `expensesID` int(11) NOT NULL,
-  `corridorLight` int(11) NOT NULL,
-  `corridorWater` int(11) NOT NULL,
-  `corridorExtra` int(11) NOT NULL,
-  `isOK` int(11) NOT NULL,
-  `expensesTime` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Tablo döküm verisi `apartmentexpenses`
---
-
-INSERT INTO `apartmentexpenses` (`expensesID`, `corridorLight`, `corridorWater`, `corridorExtra`, `isOK`, `expensesTime`) VALUES
-(3, 55, 25, 0, 0, '2021-01-05 14:08:46');
-
--- --------------------------------------------------------
-
---
 -- Tablo için tablo yapısı `billpayers`
 --
 
 CREATE TABLE `billpayers` (
   `uniquePayerID` int(11) NOT NULL,
-  `payerDate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `billPayersID` int(11) NOT NULL,
   `payerID` int(11) NOT NULL,
-  `payerName` varchar(32) NOT NULL,
-  `payerFlat` int(11) NOT NULL,
-  `payerMuch` int(11) NOT NULL
+  `payerDate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Tablo döküm verisi `billpayers`
 --
 
-INSERT INTO `billpayers` (`uniquePayerID`, `payerDate`, `payerID`, `payerName`, `payerFlat`, `payerMuch`) VALUES
-(11, '2021-01-05 14:36:12', 36, 'alperen', 1, 662),
-(12, '2021-01-05 14:39:31', 42, 'ali', 4, 662),
-(13, '2021-01-05 14:41:42', 43, 'kuzey', 5, 662);
+INSERT INTO `billpayers` (`uniquePayerID`, `billPayersID`, `payerID`, `payerDate`) VALUES
+(78, 51, 39, NULL),
+(79, 51, 40, NULL),
+(80, 51, 42, NULL),
+(81, 51, 36, '2021-01-31'),
+(82, 51, 58, '2021-01-31'),
+(83, 51, 54, NULL);
 
 -- --------------------------------------------------------
 
@@ -99,12 +54,10 @@ INSERT INTO `billpayers` (`uniquePayerID`, `payerDate`, `payerID`, `payerName`, 
 
 CREATE TABLE `bills` (
   `billID` int(11) NOT NULL,
-  `billDate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `rent` int(11) NOT NULL,
-  `corridorLight` int(11) NOT NULL,
-  `corridorWater` int(11) NOT NULL,
-  `corridorCleaning` int(11) NOT NULL,
-  `fuel` int(11) NOT NULL,
+  `billDate` date NOT NULL DEFAULT current_timestamp(),
+  `periot` varchar(32) DEFAULT NULL,
+  `billType` varchar(32) DEFAULT NULL,
+  `amount` int(11) DEFAULT NULL,
   `isOK` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -112,8 +65,8 @@ CREATE TABLE `bills` (
 -- Tablo döküm verisi `bills`
 --
 
-INSERT INTO `bills` (`billID`, `billDate`, `rent`, `corridorLight`, `corridorWater`, `corridorCleaning`, `fuel`, `isOK`) VALUES
-(7, '2021-01-05 14:09:51', 650, 55, 25, 40, 0, 0);
+INSERT INTO `bills` (`billID`, `billDate`, `periot`, `billType`, `amount`, `isOK`) VALUES
+(51, '2021-01-01', 'Ocak', 'rent', 850, 1);
 
 -- --------------------------------------------------------
 
@@ -136,27 +89,8 @@ CREATE TABLE `complains` (
 --
 
 INSERT INTO `complains` (`complainID`, `userName`, `userSurname`, `userUsername`, `userFlatno`, `about`, `userComplain`) VALUES
-(12, 'alperen', 'kaçmaz', 'mrkacmaz', 1, 'TENANT', 'There is a lot of noise on the upper floors at night. Please pay attention');
-
--- --------------------------------------------------------
-
---
--- Tablo için tablo yapısı `gardenarrangements`
---
-
-CREATE TABLE `gardenarrangements` (
-  `toDoID` int(11) NOT NULL,
-  `toDo` varchar(500) NOT NULL,
-  `isOK` int(11) NOT NULL,
-  `ArragmentTime` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Tablo döküm verisi `gardenarrangements`
---
-
-INSERT INTO `gardenarrangements` (`toDoID`, `toDo`, `isOK`, `ArragmentTime`) VALUES
-(3, 'The leaves in the garden will be cleaned.', 0, '2021-01-05 14:08:05');
+(12, 'alperen', 'kaçmaz', 'mrkacmaz', 1, 'TENANT', 'There is a lot of noise on the upper floors at night. Please pay attention'),
+(14, 'alperen', 'KAÇMAZ', 'mrkacmaz', 1, 'OTHER', 'asdasdasd');
 
 -- --------------------------------------------------------
 
@@ -168,7 +102,7 @@ CREATE TABLE `maintopics` (
   `mainTopicsID` int(11) NOT NULL,
   `mainTopicsTitle` varchar(250) NOT NULL,
   `mainTopicsContent` varchar(500) NOT NULL,
-  `isOK` int(11) NOT NULL,
+  `isOK` enum('1','0') NOT NULL,
   `mainTopicsTime` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -177,9 +111,9 @@ CREATE TABLE `maintopics` (
 --
 
 INSERT INTO `maintopics` (`mainTopicsID`, `mainTopicsTitle`, `mainTopicsContent`, `isOK`, `mainTopicsTime`) VALUES
-(1, 'HELLO EVERYONE', 'You are a tenant in this apartment. necessary information etc. will be told. Log in to the system at the beginning and mid-month.', 0, '2021-01-03 22:34:53'),
-(2, 'INFORMATION', 'Adress : ATALAR MAH. 952.SOK NO: DAİRE NO / 6 PAMUKKALE / DENİZLİ\r\n\r\nInfrastructure: TURKSAT 100Mbps FIBER OPTIC INTERNET CONNECTION ', 0, '2021-01-04 00:49:30'),
-(4, 'PAYMENT', 'Prices are updated month to month. New bills are issued in the first week of each month. Extra information appears under this heading on your homepage. When the winter season is entered, the pool is closed and the common natural gas is opened for use. The natural gas system is central. Therefore, everyone pays an equal amount.', 0, '2021-01-04 00:47:35');
+(1, 'HELLO EVERYONE', 'You are a tenant in this apartment. necessary information etc. will be told. Log in to the system at the beginning and mid-month.', '1', '2021-01-30 21:23:05'),
+(2, 'INFORMATION', 'Adress : ATALAR MAH. 952.SOK NO: DAİRE NO / 6 PAMUKKALE / DENİZLİ\r\n\r\nInfrastructure: TURKSAT 100Mbps FIBER OPTIC INTERNET CONNECTION ', '1', '2021-01-30 21:23:38'),
+(4, 'PAYMENT', 'Prices are updated month to month. New bills are issued in the first week of each month. Extra information appears under this heading on your homepage. When the winter season is entered, the pool is closed and the common natural gas is opened for use. The natural gas system is central. Therefore, everyone pays an equal amount.', '1', '2021-01-30 21:09:49');
 
 -- --------------------------------------------------------
 
@@ -189,6 +123,7 @@ INSERT INTO `maintopics` (`mainTopicsID`, `mainTopicsTitle`, `mainTopicsContent`
 
 CREATE TABLE `usersinfo` (
   `userID` int(11) NOT NULL,
+  `isAdmin` enum('user','admin') NOT NULL DEFAULT 'user',
   `userName` varchar(32) DEFAULT 'UNKNOWN',
   `userSurname` varchar(32) DEFAULT 'UNKNOWN',
   `userUsername` varchar(32) DEFAULT 'UNKNOWN',
@@ -203,28 +138,17 @@ CREATE TABLE `usersinfo` (
 -- Tablo döküm verisi `usersinfo`
 --
 
-INSERT INTO `usersinfo` (`userID`, `userName`, `userSurname`, `userUsername`, `userFlatno`, `userGSM`, `userEmail`, `userPassword`, `registerTime`) VALUES
-(36, 'alperen', 'KAÇMAZ', 'mrkacmaz', '1', '5310146762', 'alperen@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '2021-01-05 14:39:13'),
-(39, 'baran', 'KAÇMAZ', 'MrKCMZ', '2', '5551234567', 'baran@gmail.com', '202cb962ac59075b964b07152d234b70', '2021-01-05 13:05:08'),
-(40, 'betül', 'GÖZEN', 'mrsgozen', '3', '5551234567', 'betul@gmail.com', '202cb962ac59075b964b07152d234b70', '2021-01-05 14:39:01'),
-(42, 'ali', 'KIRGIZ', 'kerpeten', '4', '1234567890', 'kerpeten@ali.com', 'f786ab7b63b9da0bf973710489f71aee', '2021-01-05 14:39:08'),
-(43, 'kuzey', 'TEKINOGLU', 'KUZEY', '5', '5555555555', 'kuzey@ayapim.com', '934f25c1c8318b4616bff80cd76750ba', '2021-01-05 14:41:29');
+INSERT INTO `usersinfo` (`userID`, `isAdmin`, `userName`, `userSurname`, `userUsername`, `userFlatno`, `userGSM`, `userEmail`, `userPassword`, `registerTime`) VALUES
+(36, 'user', 'alperen', 'KAÇMAZ', 'mrkacmaz', '5', '5310146762', 'alperen@gmail.com', 'dd28e50635038e9cf3a648c2dd17ad0a', '2021-01-30 23:28:40'),
+(39, 'admin', 'baran', 'KAÇMAZ', 'mcmonkey', '2', '5551234567', 'baran@gmail.com', 'c170b38f663bb69d68490b6eb8ae4c8d', '2021-01-30 23:16:03'),
+(40, 'user', 'betül', 'GÖZEN', 'mrsgozen', '3', '5551234567', 'betul@gmail.com', '202cb962ac59075b964b07152d234b70', '2021-01-05 14:39:01'),
+(42, 'user', 'ali', 'KIRGIZ', 'kerpeten', '4', '5310146762', 'kerpeten@ali.com', 'f786ab7b63b9da0bf973710489f71aee', '2021-01-30 19:30:50'),
+(54, 'user', 'beytullah', 'CETIN', 'cetin', '9', '5551231231', 'asd@asd.com', 'eb62f6b9306db575c2d596b1279627a4', '2021-01-30 19:54:29'),
+(58, 'user', 'hakan', 'ALTUN', 'hAltun', '8', '5551231231', 'asd@asd.com', 'eb62f6b9306db575c2d596b1279627a4', '2021-01-30 22:45:28');
 
 --
 -- Dökümü yapılmış tablolar için indeksler
 --
-
---
--- Tablo için indeksler `adminpanel`
---
-ALTER TABLE `adminpanel`
-  ADD PRIMARY KEY (`adminID`);
-
---
--- Tablo için indeksler `apartmentexpenses`
---
-ALTER TABLE `apartmentexpenses`
-  ADD PRIMARY KEY (`expensesID`);
 
 --
 -- Tablo için indeksler `billpayers`
@@ -245,12 +169,6 @@ ALTER TABLE `complains`
   ADD PRIMARY KEY (`complainID`);
 
 --
--- Tablo için indeksler `gardenarrangements`
---
-ALTER TABLE `gardenarrangements`
-  ADD PRIMARY KEY (`toDoID`);
-
---
 -- Tablo için indeksler `maintopics`
 --
 ALTER TABLE `maintopics`
@@ -269,40 +187,22 @@ ALTER TABLE `usersinfo`
 --
 
 --
--- Tablo için AUTO_INCREMENT değeri `adminpanel`
---
-ALTER TABLE `adminpanel`
-  MODIFY `adminID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- Tablo için AUTO_INCREMENT değeri `apartmentexpenses`
---
-ALTER TABLE `apartmentexpenses`
-  MODIFY `expensesID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- Tablo için AUTO_INCREMENT değeri `billpayers`
 --
 ALTER TABLE `billpayers`
-  MODIFY `uniquePayerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `uniquePayerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `billID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `billID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `complains`
 --
 ALTER TABLE `complains`
-  MODIFY `complainID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- Tablo için AUTO_INCREMENT değeri `gardenarrangements`
---
-ALTER TABLE `gardenarrangements`
-  MODIFY `toDoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `complainID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `maintopics`
@@ -314,7 +214,7 @@ ALTER TABLE `maintopics`
 -- Tablo için AUTO_INCREMENT değeri `usersinfo`
 --
 ALTER TABLE `usersinfo`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

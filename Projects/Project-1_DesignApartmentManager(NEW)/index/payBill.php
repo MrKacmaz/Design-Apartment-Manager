@@ -168,6 +168,7 @@ ob_start();
                     </div>
                     ";
             }
+
             if (isset($_POST['back'])) {
                 header("Location:../admin/adminBills.php");
             }
@@ -212,26 +213,13 @@ ob_start();
             <?php
             if (isset($_GET['userPayBill'])) {
 
-                $kaydet = $db->prepare("INSERT into billpayers set
-		            billID=:billID,
-		            payerID=:payerID,
-		            payerName=:payerName,
-		            payerFlat=:payerFlat,
-                    periot=:periot,
-		            paymentType=:paymentType,
-		            payerMuch=:payerMuch
-
+                $kaydet = $db->prepare("UPDATE billpayers set
+		            payerDate=:payerDate
+                    WHERE payerID ={$_SESSION['userID']}
                     ");
 
                 $insert = $kaydet->execute(array(
-                    'billID' => $_GET['billID'],
-                    'payerID' => $_SESSION['userID'],
-                    'payerName' => $_SESSION['userName'],
-                    'payerFlat' => $_SESSION['userFlatno'],
-                    'periot' => $_GET['periot'],
-                    'paymentType' => $_GET['type'],
-                    'payerMuch' => $_GET['sumOfBill']
-
+                    'payerDate' => date("Y-m-d")
                 ));
                 if ($insert) {
                     //echo "kayıt başarılı";
@@ -239,7 +227,6 @@ ob_start();
                     exit;
                 } else {
                     //echo "kayıt başarısız";
-                    Header("Location:../to-do.php?payment=failed");
                     exit;
                 }
             }
