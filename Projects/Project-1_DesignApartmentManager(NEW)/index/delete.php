@@ -36,4 +36,21 @@ if ($_GET['userComplaintdelete']=="delete") {
 		exit;
 	}
 }
+if($_GET['billDelete'] == "delete"){
+
+	$sil=$db->prepare("DELETE from bills where billID=:billID");
+	$kontrol=$sil->execute(array(
+		'billID' => $_GET['billID']
+	));
+	if ($kontrol) {
+		
+		Header("Location:../admin/adminBills.php?delete=ok");
+		exit;
+
+	} else {
+		Header("Location:../admin/adminBills.php?durum=no");
+		exit;
+	}
+
+}
 

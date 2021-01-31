@@ -109,12 +109,10 @@ ob_start();
                                     <tr>
                                         <th scope="col">Bill ID</th>
                                         <th scope="col">Bill Date</th>
-                                        <th scope="col">is ok</th>
-                                        <th scope="col">Rent</th>
-                                        <th scope="col">Corridor Electric Bill</th>
-                                        <th scope="col">Maintenance Bill</th>
-                                        <th scope="col">Corridor Cleaning Bill</th>
-                                        <th scope="col">Fuel Bill</th>
+                                        <th scope="col">Periot</th>
+                                        <th scope="col">Bill Type</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Status</th>
                                         <th scope="col">SUM</th>
                                         <th scope="col">UPDATE</th>
                                         <th scope="col">DELETE</th>
@@ -125,24 +123,20 @@ ob_start();
                                 $checkUserInDB->execute();
                                 while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
                                 ?>
-                                    <?php
-                                    $sum = $pullinfo['rent'] + ($pullinfo['corridorLight'] / 10) + ($pullinfo['corridorWater'] / 10) + ($pullinfo['corridorCleaning'] / 10) + ($pullinfo['fuel'] / 10);
-                                    ?>
+
                                     <tr>
                                         <td><?php echo $pullinfo['billID'] ?></td>
                                         <td><?php echo $pullinfo['billDate'] ?></td>
+                                        <td><?php echo $pullinfo['periot'] ?></td>
+                                        <td><?php echo $pullinfo['billType'] ?></td>
+                                        <td><?php echo $pullinfo['amount'] ?></td>
                                         <td><?php echo $pullinfo['isOK'] ?></td>
-                                        <td><?php echo $pullinfo['rent'] ?></td>
-                                        <td><?php echo $pullinfo['corridorLight'] ?></td>
-                                        <td><?php echo $pullinfo['corridorWater'] ?></td>
-                                        <td><?php echo $pullinfo['corridorCleaning'] ?></td>
-                                        <td><?php echo $pullinfo['fuel'] ?></td>
-                                        <td><?php echo $sum ?></td>
+                                        <td><?php echo $pullinfo['amount'] ?></td>
                                         <td><a href="../index/payBill.php?billID=<?php echo $pullinfo['billID'] ?>"><button class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
                                                         <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
                                                         <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z" />
                                                     </svg></button></a></td>
-                                        <td><a href="../index/payBill.php?billID=<?php echo $pullinfo['billID'] ?>"><button class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">
+                                        <td><a href="../index/delete.php?billID=<?php echo $pullinfo['billID'] ?>&billDelete=delete"><button class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">
                                                         <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
                                                         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
                                                     </svg></button></a></td>
@@ -158,6 +152,13 @@ ob_start();
                                     echo "<div class='alert alert-success' role='alert'>ADDED NEW BILL</div>";
                                 } elseif ($_GET['addNewBill'] == "no") {
                                     echo "<div class='alert alert-danger' role='alert'>NOT ADDED NEW BILL</div>";
+                                }
+                            }
+                            if (isset($_GET['delete'])) {
+                                if ($_GET['delete'] == "ok") {
+                                    echo "<div class='alert alert-warning' role='alert'>DELETED SUCCESSFULLY</div>";
+                                } elseif ($_GET['delete'] == "no") {
+                                    echo "<div class='alert alert-danger' role='alert'>DELETED FAILED</div>";
                                 }
                             }
                             if (isset($_GET['update'])) {
@@ -186,29 +187,32 @@ ob_start();
                         <div class='main-update'>
                             <form action='' method='POST'>
                                 <div class='input-group mb-3'>
-                                    <span class='input-group-text' id='basic-addon1'>RENT</span>
-                                    <input type='text' class='form-control' name='rent' id='rent'>
+                                    <span class='input-group-text' id='basic-addon1'>Bill Date</span>
+                                    <input type='text' class='form-control' name='billDate' id='billDate' placeholder="2020-12-31">
                                 </div>
                                 <div class='input-group mb-3'>
-                                    <span class='input-group-text' id='basic-addon1'>LIGHT</span>
-                                    <input type='int' class='form-control' name='corridorLight' id='corridorLight'>
+                                    <span class='input-group-text' id='basic-addon1'>Periot</span>
+                                    <input type='int' class='form-control' name='periot' id='periot' placeholder="Month">
                                 </div>
                                 <div class='input-group mb-3'>
-                                    <span class='input-group-text' id='basic-addon1'>WATER</span>
-                                    <input type='int' class='form-control' name='corridorWater' id='corridorWater'>
+                                    <span class='input-group-text' id='basic-addon1'>Bill Type</span>
+                                    <input type='int' class='form-control' name='billType' id='billType' placeholder="rent,due,etc.">
                                 </div>
                                 <div class='input-group mb-3'>
-                                    <span class='input-group-text' id='basic-addon1'>CLEANING</span>
-                                    <input type='int' class='form-control' name='corridorCleaning' id='corridorCleaning'>
+                                    <span class='input-group-text' id='basic-addon1'>Amount</span>
+                                    <input type='int' class='form-control' name='amount' id='amount'>
                                 </div>
                                 <div class='input-group mb-3'>
-                                    <span class='input-group-text' id='basic-addon1'>FUEL</span>
-                                    <input type='int' class='form-control' name='fuel' id='fuel'>
+                                    <span class='input-group-text' id='basic-addon1'>Show The Bill</span>
+                                    <div class='btn-group' role='group' aria-label='Basic radio toggle button group'>
+                                        <input type='radio' class='btn-check' name='isOK' id='show' autocomplete='off' value='1'>
+                                        <label class='btn btn-outline-info' for='show'>SHOW</label>
+
+                                        <input type='radio' class='btn-check' name='isOK' id='hide' autocomplete='off' value='0'>
+                                        <label class='btn btn-outline-warning' for='hide'>HIDE</label>
+                                    </div>
                                 </div>
-                                <div class='input-group mb-3'>
-                                    <span class='input-group-text' id='basic-addon1'>SHOW THE BILL</span>
-                                    <input type='int' class='form-control' name='isOK' id='isOK'>
-                                </div>
+
                                 <button type='submit' name='submitBill' id='submitBill' class='btn btn-primary btn-lg'>Submit</button>
                                 <button type='reset' name='reset' id='reset' class='btn btn-danger btn-lg'>Reset</button><br><br>
                                 <?php
@@ -226,20 +230,18 @@ ob_start();
                             //INSERTION
                             if (isset($_POST['submitBill'])) {
                                 $kaydet = $db->prepare("INSERT into bills set
-                            rent=:rent,
-                            corridorLight=:corridorLight,
-                            corridorWater=:corridorWater,
-                            corridorCleaning=:corridorCleaning,
-                            fuel =:fuel,
+                            billDate=:billDate,
+                            periot=:periot,
+                            billType=:billType,
+                            amount=:amount,
                             isOK =:isOK
                             ");
 
                                 $insert = $kaydet->execute(array(
-                                    'rent' => $_POST['rent'],
-                                    'corridorLight' => $_POST['corridorLight'],
-                                    'corridorWater' => $_POST['corridorWater'],
-                                    'corridorCleaning' => $_POST['corridorCleaning'],
-                                    'fuel' => $_POST['fuel'],
+                                    'billDate' => $_POST['billDate'],
+                                    'periot' => $_POST['periot'],
+                                    'billType' => $_POST['billType'],
+                                    'amount' => $_POST['amount'],
                                     'isOK' => $_POST['isOK']
                                 ));
                                 if ($insert) {
@@ -275,9 +277,11 @@ ob_start();
                                     <tr>
                                     <th scope='col'>Invoice Number</th>
                                     <th scope='col'>Date</th>
+                                    <th scope='col'>Periot</th>
                                     <th scope='col'>Payer ID</th>
                                     <th scope='col'>Name</th>
                                     <th scope='col'>#Flat</th>
+                                    <th scope='col'>Type</th>
                                     <th scope='col'>Amount</th>
                                     </tr>
                                     </thead>";
@@ -288,9 +292,11 @@ ob_start();
                                 <tr>
                                     <td><?php echo $pullinfo['uniquePayerID'] ?></td>
                                     <td><?php echo $pullinfo['payerDate'] ?></td>
+                                    <td><?php echo $pullinfo['periot'] ?></td>
                                     <td><?php echo $pullinfo['payerID'] ?></td>
                                     <td><?php echo $pullinfo['payerName'] ?></td>
                                     <td><?php echo $pullinfo['payerFlat'] ?></td>
+                                    <td><?php echo $pullinfo['paymentType'] ?></td>
                                     <td><?php echo $pullinfo['payerMuch'] ?></td>
                                 </tr>
                             <?php

@@ -84,8 +84,8 @@ ob_start();
             <!--ADMIN LOG-IN-->
             <form id="admin" method="POST" action="index/new_user_sign.php" class="input-group">
 
-                <input name="adminUSERNAME" type="text" class="input-field" placeholder="Admin ID" required>
-                <input name="adminPASSWORD" type="password" class="input-field" placeholder="Password" required>
+                <input name="userUsername" type="text" class="input-field" placeholder="Admin ID" required>
+                <input name="userPassword" type="password" class="input-field" placeholder="Password" required>
                 <br><br><button type="submit" class="submit-b" name="admin-btn">Log-in</button><br><br>
                 <?php
                 if (isset($_GET['fail'])) {
@@ -133,5 +133,4 @@ ob_start();
     </script>
 
 </body>
-
 </html>

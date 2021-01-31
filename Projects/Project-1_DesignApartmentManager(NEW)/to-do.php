@@ -113,11 +113,9 @@ ob_start();
                             <tr>
                                 <th scope="col">Bill ID</th>
                                 <th scope="col">Bill Date</th>
-                                <th scope="col">Rent</th>
-                                <th scope="col">Corridor Electric Bill</th>
-                                <th scope="col">Maintenance Bill</th>
-                                <th scope="col">Corridor Cleaning Bill</th>
-                                <th scope="col">Fuel Bill</th>
+                                <th scope="col">Periot</th>
+                                <th scope="col">Bill Type</th>
+                                <th scope="col">Bill Amount</th>
                                 <th scope="col">SUM</th>
                                 <th scope="col">PAY</th>
                             </tr>
@@ -126,35 +124,30 @@ ob_start();
                         <?php
                         $checkUserInDB = $db->prepare("SELECT * FROM bills WHERE isOK = 1");
                         $checkUserInDB->execute();
-                        while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
-                            $sum = $pullinfo['rent'] + ($pullinfo['corridorLight'] / 10) + ($pullinfo['corridorWater'] / 10) + ($pullinfo['corridorCleaning'] / 10) + ($pullinfo['fuel'] / 10);
+                        while (($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC))) {
                         ?>
                             <tr>
                                 <td><?php echo $pullinfo['billID'] ?></td>
                                 <td><?php echo $pullinfo['billDate'] ?></td>
-                                <td><?php echo $pullinfo['rent'] ?></td>
-                                <td><?php echo $pullinfo['corridorLight'] ?></td>
-                                <td><?php echo $pullinfo['corridorWater'] ?></td>
-                                <td><?php echo $pullinfo['corridorCleaning'] ?></td>
-                                <td><?php echo $pullinfo['fuel'] ?></td>
-                                <td><?php echo $sum ?></td>
+                                <td><?php echo $pullinfo['periot'] ?></td>
+                                <td><?php echo $pullinfo['billType'] ?></td>
+                                <td><?php echo $pullinfo['amount'] ?></td>
+                                <td><?php echo $pullinfo['amount'] ?></td>
                                 <td>
                                     <div class="d-grid gap-2 d-md-flex">
                                         <?php
-                                        if (isset($sum)) {
-                                            $userID = $_SESSION['userID'];
-                                            echo "<button type='button' class='btn btn-success' id='btn-todo' onclick='alertFun()'>
+
+                                        echo "<button type='button' class='btn btn-success' id='btn-todo' onclick='alertFun()'>
                                             <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='currentColor' class='bi bi-credit-card' viewBox='0 0 16 16'>
                                                 <path d='M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z' />
                                                 <path d='M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z' />
                                             </svg></button>";
-                                        }
                                         ?>
                                         <script>
                                             function alertFun() {
-                                                var bol = confirm("YOU WILL BE DIRECTED TO THE PAYMENT PAGE");
+                                                var bol = confirm("index/payBill.php?userPayBill&userID=<?php echo $_SESSION['userID'] ?>&billID=<?php echo $pullinfo['billID'] ?>&sumOfBill=<?php echo $pullinfo['amount'] ?>&periot=<?php echo $pullinfo['periot'] ?>&type=<?php echo $pullinfo['billType'] ?> ");
                                                 if (bol) {
-                                                    location = "index/payBill.php?userPayBill&userID=$userID&sumOfBill=<?php echo $sum ?>";
+                                                    location = "index/payBill.php?userPayBill&userID=<?php echo $_SESSION['userID']?>&billID=<?php echo $pullinfo['billID'] ?>&sumOfBill=<?php echo $pullinfo['amount'] ?>&periot=<?php echo $pullinfo['periot'] ?>&type=<?php echo $pullinfo['billType'] ?>";
                                                 }
                                             }
                                         </script>
@@ -181,11 +174,12 @@ ob_start();
                             <table class = 'table table-light'>
                                 <thead>
                                 <tr>
-                                    <th scope='col'>Invoice Number</th>
+                                    <th scope='col'>Bill ID</th>
                                     <th scope='col'>Payer Date</th>
-                                    <th scope='col'>Payer ID</th>
                                     <th scope='col'>Payer Name</th>
                                     <th scope='col'>Payer Flat No</th>
+                                    <th scope='col'>Periot</th>
+                                    <th scope='col'>Type</th>
                                     <th scope='col'>Amount Paid</th>
                                 </tr>
                                 </thead>
@@ -196,11 +190,12 @@ ob_start();
                         while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
                     ?>
                             <tr>
-                                <td><?php echo $pullinfo['uniquePayerID'] ?></td>
+                                <td><?php echo $pullinfo['billID'] ?></td>
                                 <td><?php echo $pullinfo['payerDate'] ?></td>
-                                <td><?php echo $pullinfo['payerID'] ?></td>
                                 <td><?php echo $pullinfo['payerName'] ?></td>
                                 <td><?php echo $pullinfo['payerFlat'] ?></td>
+                                <td><?php echo $pullinfo['periot'] ?></td>
+                                <td><?php echo $pullinfo['paymentType'] ?></td>
                                 <td><?php echo $pullinfo['payerMuch'] ?></td>
                             </tr>
                     <?php

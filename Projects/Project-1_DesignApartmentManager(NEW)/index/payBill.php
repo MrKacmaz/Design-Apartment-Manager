@@ -124,43 +124,33 @@ ob_start();
                 $bilgilerimcek = $bilgilerimsor->fetch(PDO::FETCH_ASSOC);
                 $billID = $bilgilerimcek['billID'];
                 $billDate = $bilgilerimcek['billDate'];
-                $rent = $bilgilerimcek['rent'];
-                $corridorLight = $bilgilerimcek['corridorLight'];
-                $corridorWater = $bilgilerimcek['corridorWater'];
-                $corridorCleaning = $bilgilerimcek['corridorCleaning'];
-                $fuel = $bilgilerimcek['fuel'];
+                $periot = $bilgilerimcek['periot'];
+                $billType = $bilgilerimcek['billType'];
+                $amount = $bilgilerimcek['amount'];
                 $isOK = $bilgilerimcek['isOK'];
 
                 echo "
                     <div class = 'main-update'>
                         <form action='payBill.php?billID=$billID' method='POST'>
                             <div class='input-group mb-3'>
-                                <span class='input-group-text' id='basic-addon1'>RENT</span>
-                                <input type='text' class='form-control' name='rent' id='rent' value='$billID' disabled>
+                                <span class='input-group-text' id='basic-addon1'>billID</span>
+                                <input type='text' class='form-control' name='billID' id='billID' value='$billID' disabled>
                             </div>
                             <div class='input-group mb-3'>
-                                <span class='input-group-text' id='basic-addon1'>RENT</span>
-                                <input type='text' class='form-control' name='rent' id='rent' value='$billDate' disabled>
+                                <span class='input-group-text' id='basic-addon1'>Bill Date</span>
+                                <input type='text' class='form-control' name='billDate' id='billDate' value='$billDate' disabled>
                             </div>
                             <div class='input-group mb-3'>
-                                <span class='input-group-text' id='basic-addon1'>RENT</span>
-                                <input type='text' class='form-control' name='rent' id='rent' value='$rent'>
+                                <span class='input-group-text' id='basic-addon1'>periot</span>
+                                <input type='text' class='form-control' name='periot' id='periot' value='$periot'>
                             </div>
                             <div class='input-group mb-3'>
-                                <span class='input-group-text' id='basic-addon1'>LIGHT</span>
-                                <input type='int' class='form-control' name='corridorLight' id='corridorLight' value='$corridorLight'>
+                                <span class='input-group-text' id='basic-addon1'>billType</span>
+                                <input type='int' class='form-control' name='billType' id='billType' value='$billType'>
                             </div>
                             <div class='input-group mb-3'>
-                                <span class='input-group-text' id='basic-addon1'>WATER</span>
-                                <input type='int' class='form-control' name='corridorWater' id='corridorWater' value='$corridorWater'>
-                            </div>
-                            <div class='input-group mb-3'>
-                                <span class='input-group-text' id='basic-addon1'>CLEANING</span>
-                                <input type='int' class='form-control' name='corridorCleaning' id='corridorCleaning' value='$corridorCleaning'>
-                            </div>
-                            <div class='input-group mb-3'>
-                                <span class='input-group-text' id='basic-addon1'>FUEL</span>
-                                <input type='int' class='form-control' name='fuel' id='fuel' value='$fuel'>
+                                <span class='input-group-text' id='basic-addon1'>amount</span>
+                                <input type='int' class='form-control' name='amount' id='amount' value='$amount'>
                             </div>
                             <div class='input-group mb-3'>
                             <span class='input-group-text' id='basic-addon1'>Show the Content</span>
@@ -185,22 +175,20 @@ ob_start();
             if (isset($_POST['updateBill'])) {
 
                 $kaydet = $db->prepare("UPDATE bills set
-		    rent=:rent,
-		    corridorLight=:corridorLight,
-		    corridorWater=:corridorWater,
-		    corridorCleaning=:corridorCleaning,
-            fuel =:fuel,
+		    billDate=:billDate,
+		    periot=:periot,
+		    billType=:billType,
+		    amount=:amount,
             isOK =:isOK
 
 		where billID={$billID}
 		");
 
                 $insert = $kaydet->execute(array(
-                    'rent' => $_POST['rent'],
-                    'corridorLight' => $_POST['corridorLight'],
-                    'corridorWater' => $_POST['corridorWater'],
-                    'corridorCleaning' => $_POST['corridorCleaning'],
-                    'fuel' => $_POST['fuel'],
+                    'billDate' => $_POST['billDate'],
+                    'periot' => $_POST['periot'],
+                    'billType' => $_POST['billType'],
+                    'amount' => $_POST['amount'],
                     'isOK' => $_POST['isOK']
                 ));
 
@@ -225,17 +213,23 @@ ob_start();
             if (isset($_GET['userPayBill'])) {
 
                 $kaydet = $db->prepare("INSERT into billpayers set
-		payerID=:payerID,
-		payerName=:payerName,
-		payerFlat=:payerFlat,
-		payerMuch=:payerMuch
+		            billID=:billID,
+		            payerID=:payerID,
+		            payerName=:payerName,
+		            payerFlat=:payerFlat,
+                    periot=:periot,
+		            paymentType=:paymentType,
+		            payerMuch=:payerMuch
 
-        ");
+                    ");
 
                 $insert = $kaydet->execute(array(
+                    'billID' => $_GET['billID'],
                     'payerID' => $_SESSION['userID'],
                     'payerName' => $_SESSION['userName'],
                     'payerFlat' => $_SESSION['userFlatno'],
+                    'periot' => $_GET['periot'],
+                    'paymentType' => $_GET['type'],
                     'payerMuch' => $_GET['sumOfBill']
 
                 ));

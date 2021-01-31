@@ -117,21 +117,24 @@ if (isset($_POST['register-btn'])) {
 
 // ADMIN LOG IN SLIDE
 if (isset($_POST['admin-btn'])) {
-    $adminUSERNAME = $_POST['adminUSERNAME'];
-    $adminPASSWORD = md5($_POST['adminPASSWORD']);
-    $checkUserInDB = $db->prepare("SELECT * FROM adminpanel WHERE
-    adminUSERNAME=:adminUSERNAME AND adminPASSWORD=:adminPASSWORD");
+    $userUsername = $_POST['userUsername'];
+    $userPassword = md5($_POST['userPassword']);
+    $isAdmin = 'admin';
+
+    $checkUserInDB = $db->prepare("SELECT * FROM usersinfo WHERE
+    userUsername=:userUsername AND userPassword=:userPassword AND isAdmin=:isAdmin");
     $checkUserInDB->execute(array(
-        'adminUSERNAME' => $adminUSERNAME,
-        'adminPASSWORD' => $adminPASSWORD
+        'userUsername' => $userUsername,
+        'userPassword' => $userPassword,
+        'isAdmin' => $isAdmin
     ));
     $int = $checkUserInDB->rowCount();
 
     if ($int == 1) {
         $pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC);
-        $_SESSION['adminUSERNAME'] = $adminUSERNAME;
-        $_SESSION['adminNAME'] = $pullinfo['adminNAME'];
-        $_SESSION['adminSURNAME'] = $pullinfo['adminSURNAME'];
+        $_SESSION['adminUSERNAME'] = $userUsername;
+        $_SESSION['adminNAME'] = $pullinfo['userName'];
+        $_SESSION['adminSURNAME'] = $pullinfo['userSurname'];
         header("Location:../admin/adminPanel.php");
         exit;
     } elseif ($int == 0) {
@@ -140,7 +143,7 @@ if (isset($_POST['admin-btn'])) {
         if ($adminPASSWORD != $pullinfo2['adminPASSWORD']) {
             header("Location:../log.php?fail=ADMINpassword");
             exit;
-        } elseif ($adminUSERNAME != $pullinfo2['adminUSERNAME']) {
+        } elseif ($userUsername != $pullinfo2['userPassword']) {
             header("Location:../log.php?fail=ADMINusername");
             exit;
         } else {
