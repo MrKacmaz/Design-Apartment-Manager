@@ -45,11 +45,11 @@ ob_start();
                 <?php
                 if (isset($_GET['fail'])) {
                     if ($_GET['fail'] == "username") {
-                        echo "<b style='color: red;'>username WRONG Login Failed</b>";
+                        echo "<div class='alert'>USERNAME WRONG - Login Failed</div>";
                     } elseif ($_GET['fail'] == "password") {
-                        echo "<b style='color: red;'>userpassword WRONG Login Failed</b>";
+                        echo "<div class='alert'>PASSWORD WRONG - Login Failed</div>";
                     } elseif ($_GET['fail'] == "fail") {
-                        echo "<b style='color: red;'>WRONG ENTRY</b>";
+                        echo "<div class='alert' role='alert'>WRONG ENTRY</div>";
                     }
                 }
                 if (isset($_GET['sign'])) {
@@ -90,11 +90,11 @@ ob_start();
                 <?php
                 if (isset($_GET['fail'])) {
                     if ($_GET['fail'] == "ADMINpassword") {
-                        echo "<b style='color: red;'>your sign Failed(password)</b>";
+                        echo "<div class='alert'>PASSWORD WRONG - Login Failed</div>";
                     } elseif ($_GET['fail'] == "ADMINusername") {
-                        echo "<b style='color: red;'>your sign Failed(user name)</b>";
+                        echo "<div class='alert'>USERNAME WRONG - Login Failed</div>";
                     } elseif ($_GET['fail'] == "ADMINfail") {
-                        echo "<b style='color: red;'>your sign Failed(DATABASE ERROR !!)</b>";
+                        echo "<div class='alert'>ERROR IN DATABASE - Login Failed</div>";
                     }
                 }
                 ?>
