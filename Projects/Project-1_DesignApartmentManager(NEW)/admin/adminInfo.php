@@ -58,6 +58,13 @@ ob_start();
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                             <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
                         </svg></a></li>
+                <li class="nav-item"><a class="nav-link" href="adminExpense.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cash-stack" viewBox="0 0 16 16">
+                            <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                            <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z" />
+                        </svg></a></li>
+                <li class="nav-item"><a class="nav-link" href="adminReport.php"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-file-earmark-bar-graph-fill" viewBox="0 0 16 16">
+                            <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zm.5 10v-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-2.5.5a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1zm-3 0a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-1z" />
+                        </svg> </a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
@@ -153,7 +160,6 @@ ob_start();
                                                     function alertFun() {
                                                         var bol = confirm("ARE YOU SURE TO MOVE OUT THE PERSON ?");
                                                         if (bol) {
-                                                            alert("PERSON HAS BEEN MOVED OUT");
                                                             location = "../index/delete.php?userID=<?php echo $pullinfo['userID'] ?>&userIDdelete=delete";
                                                         }
                                                     }
@@ -170,13 +176,18 @@ ob_start();
                                     if ($_GET['durum'] == "ok") {
                                         echo "<div class='alert alert-primary' role='alert'>Update Successfully</div>";
                                     } elseif ($_GET['durum'] == "no") {
-                                        echo "<div class='alert alert-danger' role='alert'>Update Failed</div>";
+                                        echo "<div class='alert alert-warning' role='alert'>Update Failed</div>";
                                     }
                                 if (isset($_GET['delete'])) {
                                     if ($_GET['delete'] == "ok") {
                                         echo "<div class='alert alert-info' role='alert'>Moved Out Successfully</div>";
                                     } else {
-                                        echo "<div class='alert alert-danger' role='alert'>Moved Out Failed</div>";
+                                        echo "<div class='alert alert-warning' role='alert'>Moved Out Failed</div>";
+                                    }
+                                }
+                                if (isset($_GET['unpaidbills'])) {
+                                    if ($_GET['unpaidbills'] = "true") {
+                                        echo "<div class='alert alert-danger' role='alert'>User have Unpaid Bills</div>";
                                     }
                                 }
                                 ?>

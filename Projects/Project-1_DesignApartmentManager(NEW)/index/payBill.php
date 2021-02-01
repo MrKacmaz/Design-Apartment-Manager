@@ -138,7 +138,7 @@ ob_start();
                             </div>
                             <div class='input-group mb-3'>
                                 <span class='input-group-text' id='basic-addon1'>Bill Date</span>
-                                <input type='text' class='form-control' name='billDate' id='billDate' value='$billDate' disabled>
+                                <input type='date' class='form-control' name='billDate' id='billDate' value='$billDate'>
                             </div>
                             <div class='input-group mb-3'>
                                 <span class='input-group-text' id='basic-addon1'>periot</span>

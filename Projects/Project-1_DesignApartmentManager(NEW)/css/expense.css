@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.welcome {
+  background-image: linear-gradient(
+    to left,
+    rgba(237, 66, 100, 0.25),
+    rgba(255, 237, 189, 0.25)
+  );
+  text-align: center;
+  color: #333;
+}
+#welcome {
+  text-shadow: 2px 1.5px #ffedbc;
+}
+#upper {
+  text-transform: uppercase;
+}
+#h2Expenses {
+  text-align: center;
+  color: #da4167;
+  margin: 2%;
+}
+
+.section{
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.main-content {
+  display: flex;
+  padding: 2%;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.main-item {
+  padding: 2%;
+  line-height: 1.5;
+  text-align: center;
+  flex: 1;
+  flex-grow: 1;
+  flex-basis: 0;
+}
+.main-item h2 {
+  color: #da4167;
+}
+.main-item p {
+  margin-top: 0.5rem;
+}
+#expenseForm {
+  margin: 0 65% 0 0;
+}
+
+.links {
+  position: fixed;
+  width: 100%;
+  height: 7.5%;
+  bottom: 0;
+  background-color: #212529;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.links ul {
+  margin: 0;
+  list-style: none;
+  display: flex;
+}
+.links ul li {
+  padding: 0.5rem;
+}
+
+.links ul li a {
+  text-decoration: none;
+  color: inherit;
+}

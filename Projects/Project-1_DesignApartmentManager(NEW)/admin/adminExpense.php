@@ -45,7 +45,7 @@ ob_start();
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
 
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a class="nav-link active" href="adminPanel.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+                <li class="nav-item"><a class="nav-link" href="adminPanel.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
                             <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
                         </svg></a></li>
@@ -59,7 +59,7 @@ ob_start();
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                             <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
                         </svg></a></li>
-                <li class="nav-item"><a class="nav-link" href="adminExpense.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cash-stack" viewBox="0 0 16 16">
+                <li class="nav-item"><a class="nav-link active" href="adminExpense.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cash-stack" viewBox="0 0 16 16">
                             <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
                             <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z" />
                         </svg></a></li>
@@ -100,36 +100,170 @@ ob_start();
     </nav>
 
 
-    <main class="main-content">
-        <?php
-        $checkUserInDB = $db->prepare("SELECT * FROM maintopics");
-        $checkUserInDB->execute();
-        while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
-        ?>
-            <div class="main-item">
-                <div class="mb-3">
-                    <h2><span class="badge bg-primary"><?php echo $pullinfo['mainTopicsTitle'] ?></span></h2>
+    <main>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        SHOW THE EXPENSES
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="section">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Expense ID</th>
+                                        <th scope="col">Expense Title</th>
+                                        <th scope="col">Expense Detail</th>
+                                        <th scope="col">Expense Amount</th>
+                                        <th scope="col">Expense Date</th>
+                                    </tr>
+                                </thead>
+                                <?php
+                                if (isset($_GET['dateSubmit'])) {
+                                    $firstDate = $_GET['startDate'];
+                                    $endDate = $_GET['endDate'];
+                                    $checkUserInDB = $db->prepare("SELECT * FROM expense WHERE expenseDate BETWEEN '$firstDate' AND '$endDate'");
+                                    $checkUserInDB->execute();
+                                    while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) { ?>
+                                        <tr>
+                                            <td><?php echo $pullinfo['expenseID'] ?></td>
+                                            <td><?php echo $pullinfo['expenseTitle'] ?></td>
+                                            <td><?php echo $pullinfo['expenseDetail'] ?></td>
+                                            <td><?php echo $pullinfo['expenseAmount'] ?></td>
+                                            <td><?php echo $pullinfo['expenseDate'] ?></td>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+
+                                    <?php
+                                } else {
+                                    $checkUserInDB = $db->prepare("SELECT * FROM expense");
+                                    $checkUserInDB->execute();
+                                    while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
+                                    ?>
+
+                                        <tr>
+                                            <td><?php echo $pullinfo['expenseID'] ?></td>
+                                            <td><?php echo $pullinfo['expenseTitle'] ?></td>
+                                            <td><?php echo $pullinfo['expenseDetail'] ?></td>
+                                            <td><?php echo $pullinfo['expenseAmount'] ?></td>
+                                            <td><?php echo $pullinfo['expenseDate'] ?></td>
+                                        </tr>
+                                <?php
+                                    }
+                                }
+                                /*                                Start:<input class="date" type="date" name="startDate" id="startDate">
+                                End:<input type="date" name="endDate" id="endDate">*/
+                                ?>
+                            </table>
+                            <form method="GET" action="">
+                                <div id="expenseForm">
+                                    <div class="input-group mb-3 flex-nowrap">
+                                        <span class="input-group-text" type="date" name="startDate" id="startDate">Start Date</span>
+                                        <input type="date" class="form-control" type="date" name="startDate" id="startDate">
+                                    </div>
+                                    <div class="input-group mb-3 flex-nowrap">
+                                        <span class="input-group-text" type="date" name="endDate" id="endDate">End Date</span>
+                                        <input type="date" class="form-control" type="date" name="endDate" id="endDate">
+                                    </div>
+                                    <button type="submit" name="dateSubmit" id="dateSubmit" class="btn - btn-primary">SUBMIT</button>
+                                </div>
+                            </form><br>
+                            <?php
+                            if (isset($_GET['expenseAdd'])) {
+                                if ($_GET['expenseAdd'] == "true") {
+                                    echo "<div class='alert alert-success' role='alert'>ADDED NEW EXPENSE</div>";
+                                } elseif ($_GET['expenseAdd'] == "false") {
+                                    echo "<div class='alert alert-danger' role='alert'>NOT ADDED NEW EXPENSE</div>";
+                                }
+                            }
+                            ?>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <p class="lead"> <?php echo $pullinfo['mainTopicsContent'] ?> </p>
-                </div>
-                <a href="../index/mainTopics.php?mainTopicsID=<?php echo $pullinfo['mainTopicsID'] ?>"><button type="button" class="btn btn-outline-success">UPDATE</button></a>
             </div>
-        <?php
-        }
-        ?>
+
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        ADD NEW EXPENSES
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class='main-update'>
+                            <form action='' method='POST'>
+                                <div class='input-group mb-3'>
+                                    <span class='input-group-text' id='basic-addon1'>Title</span>
+                                    <input type='text' class='form-control' name='expenseTitle' id='expenseTitle' placeholder="Expense Title">
+                                </div>
+                                <div class='input-group mb-3'>
+                                    <span class='input-group-text' id='basic-addon1'>Detail</span>
+                                    <input type='int' class='form-control' name='expenseDetail' id='expenseDetail' placeholder="Expense Detail">
+                                </div>
+                                <div class='input-group mb-3'>
+                                    <span class='input-group-text' id='basic-addon1'>Expense Date</span>
+                                    <input type='date' class='form-control' name='expenseDate' id='expenseDate' value="<?php echo date('Y-m-d') ?>">
+                                </div>
+                                <div class='input-group mb-3'>
+                                    <span class='input-group-text' id='basic-addon1'>Amount</span>
+                                    <input type='int' class='form-control' name='expenseAmount' id='expenseAmount' placeholder="Expense Amount">
+                                </div>
+
+
+                                <button type='submit' name='expenseSubmit' id='expenseSubmit' class='btn btn-primary btn-lg'>Submit</button>
+                                <button type='reset' name='reset' id='reset' class='btn btn-danger btn-lg'>Reset</button><br><br>
+                                <?php
+                                if (isset($_GET['expenseAdd'])) {
+                                    if ($_GET['expenseAdd'] == "true") {
+                                        echo "<div class='alert alert-success' role='alert'>ADDED NEW EXPENSE</div>";
+                                    } elseif ($_GET['expenseAdd'] == "false") {
+                                        echo "<div class='alert alert-danger' role='alert'>NOT ADDED NEW EXPENSE</div>";
+                                    }
+                                }
+                                ?>
+                            </form>
+
+                            <?php
+                            //INSERTION
+                            if (isset($_POST['expenseSubmit'])) {
+                                $kaydet = $db->prepare("INSERT into expense set
+                                    expenseTitle=:expenseTitle,
+                                    expenseDetail=:expenseDetail,
+                                    expenseDate=:expenseDate,
+                                    expenseAmount=:expenseAmount
+                                    ");
+
+                                $insert = $kaydet->execute(array(
+                                    'expenseTitle' => $_POST['expenseTitle'],
+                                    'expenseDetail' => $_POST['expenseDetail'],
+                                    'expenseDate' => $_POST['expenseDate'],
+                                    'expenseAmount' => $_POST['expenseAmount']
+                                ));
+                                if ($insert) {
+                                    header("Location:adminExpense.php?expenseAdd=true");
+                                    exit;
+                                } else {
+                                    header("Location:adminExpense.php?expenseAdd=false");
+                                    exit;
+                                }
+                            }
+                            ?>
+                            <!-- END ADMIN ADD NEW EXPENSE IN DATABASE-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </main>
-    <?php
-    if (isset($_GET['mainTopicsUpdated'])) {
-        if ($_GET['mainTopicsUpdated'] == "ok") {
-            echo "<div class='alert alert-info alert-pop' role='alert'>SUCCESSFULLY UPDATED</div>";
-        } elseif ($_GET['mainTopicsUpdated'] == "no") {
-            echo "<div class='alert alert-danger alert-pop' role='alert'>FAILED</div>";
-        } else {
-            echo "SIKINTI BÜYÜK";
-        }
-    }
-    ?>
+
 
 
     <footer class="mt-auto text-white-50">

@@ -63,6 +63,10 @@ ob_start();
                                 <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z" />
                             </svg></a>
                     </li>
+                    <li class="nav-item"><a class="nav-link" href="expense.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-wallet-fill" viewBox="0 0 16 16">
+                                <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v2h6a.5.5 0 0 1 .5.5c0 .253.08.644.306.958.207.288.557.542 1.194.542.637 0 .987-.254 1.194-.542.226-.314.306-.705.306-.958a.5.5 0 0 1 .5-.5h6v-2A1.5 1.5 0 0 0 14.5 2h-13z" />
+                                <path d="M16 6.5h-5.551a2.678 2.678 0 0 1-.443 1.042C9.613 8.088 8.963 8.5 8 8.5c-.963 0-1.613-.412-2.006-.958A2.679 2.679 0 0 1 5.551 6.5H0v6A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-6z" />
+                            </svg></a></li>
                     <li class="nav-item">
                         <a class="nav-link" href="complaint.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-megaphone" viewBox="0 0 16 16">
                                 <path d="M13 2.5a1.5 1.5 0 0 1 3 0v11a1.5 1.5 0 0 1-3 0v-.214c-2.162-1.241-4.49-1.843-6.912-2.083l.405 2.712A1 1 0 0 1 5.51 15.1h-.548a1 1 0 0 1-.916-.599l-1.85-3.49a68.14 68.14 0 0 0-.202-.003A2.014 2.014 0 0 1 0 9V7a2.02 2.02 0 0 1 1.992-2.013 74.663 74.663 0 0 0 2.483-.075c3.043-.154 6.148-.849 8.525-2.199V2.5zm1 0v11a.5.5 0 0 0 1 0v-11a.5.5 0 0 0-1 0zm-1 1.35c-2.344 1.205-5.209 1.842-8 2.033v4.233c.18.01.359.022.537.036 2.568.189 5.093.744 7.463 1.993V3.85zm-9 6.215v-4.13a95.09 95.09 0 0 1-1.992.052A1.02 1.02 0 0 0 1 7v2c0 .55.448 1.002 1.006 1.009A60.49 60.49 0 0 1 4 10.065zm-.657.975l1.609 3.037.01.024h.548l-.002-.014-.443-2.966a68.019 68.019 0 0 0-1.722-.082z" />
@@ -130,14 +134,14 @@ ob_start();
                         while (($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC))) {
                         ?>
                             <tr>
-                                <td><?php echo $pullinfo['billID']?></td>
+                                <td><?php echo $pullinfo['billID'] ?></td>
                                 <td><?php echo $pullinfo['billDate'] ?></td>
                                 <td><?php echo $pullinfo['periot'] ?></td>
                                 <td><?php echo $pullinfo['billType'] ?></td>
                                 <td><?php echo $pullinfo['amount'] ?></td>
                                 <td><?php echo $pullinfo['amount'] ?></td>
                                 <td>
-                                    <button class=" btn btn-success"> <a style="color: white; text-decoration: none;" href = "index/payBill.php?userPayBill&userID=<?php echo $_SESSION['userID'];?>&billPayersID=<?php echo $pullinfo['billID'];?>&sumOfBill=<?php echo $pullinfo['amount'];?>&periot=<?php echo $pullinfo['periot'];?>&type=<?php echo $pullinfo['billType'];?>">PAY</a></button>
+                                    <button class=" btn btn-success"> <a style="color: white; text-decoration: none;" href="index/payBill.php?userPayBill&userID=<?php echo $_SESSION['userID']; ?>&billPayersID=<?php echo $pullinfo['billID']; ?>&sumOfBill=<?php echo $pullinfo['amount']; ?>&periot=<?php echo $pullinfo['periot']; ?>&type=<?php echo $pullinfo['billType']; ?>">PAY</a></button>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -172,9 +176,16 @@ ob_start();
                                 </tr>
                                 </thead>
                                 ";
+
                         $payerID = $_SESSION['userID'];
-                        $checkUserInDB = $db->prepare("SELECT DISTINCT billID,billDate,payerDate,periot,billType,amount,userName,userSurname,userFlatno FROM billpayers bp, bills b, usersinfo ui WHERE bp.payerID = $payerID and ui.userID = payerID");
+
+
+                        $checkUserInDB = $db->prepare("SELECT DISTINCT billID,billDate,payerDate,periot,billType,amount,userName,userSurname,userFlatno 
+                        FROM billpayers bp, bills b, usersinfo ui 
+                        WHERE bp.payerID = $payerID and ui.userID = bp.payerID and bp.billPayersID = b.billID AND bp.payerDate  IS NOT NULL ");
                         $checkUserInDB->execute();
+
+
                         while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
                     ?>
                             <tr>

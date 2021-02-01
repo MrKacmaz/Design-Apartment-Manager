@@ -10,8 +10,8 @@ ob_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Information</title>
-    <link rel="stylesheet" href="css/information.css">
+    <title>Main</title>
+    <link rel="stylesheet" href="css/expense.css">
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="bootstrap/js/bootstrap.js" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -24,8 +24,8 @@ ob_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
 
 
-
 </head>
+
 
 <body>
 
@@ -45,13 +45,13 @@ ob_start();
 
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="main.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+                        <a class="nav-link" aria-current="page" href="main.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
                                 <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
                             </svg></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="information.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-info-square" viewBox="0 0 16 16">
+                        <a class="nav-link" href="information.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-info-square" viewBox="0 0 16 16">
                                 <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
                                 <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                             </svg></a>
@@ -62,7 +62,7 @@ ob_start();
                                 <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z" />
                             </svg></a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="expense.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-wallet-fill" viewBox="0 0 16 16">
+                    <li class="nav-item"><a class="nav-link active" href="expense.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-wallet-fill" viewBox="0 0 16 16">
                                 <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v2h6a.5.5 0 0 1 .5.5c0 .253.08.644.306.958.207.288.557.542 1.194.542.637 0 .987-.254 1.194-.542.226-.314.306-.705.306-.958a.5.5 0 0 1 .5-.5h6v-2A1.5 1.5 0 0 0 14.5 2h-13z" />
                                 <path d="M16 6.5h-5.551a2.678 2.678 0 0 1-.443 1.042C9.613 8.088 8.963 8.5 8 8.5c-.963 0-1.613-.412-2.006-.958A2.679 2.679 0 0 1 5.551 6.5H0v6A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-6z" />
                             </svg></a></li>
@@ -99,44 +99,81 @@ ob_start();
         </div>
     </nav>
 
-
-    <main class="main-content">
-        <div class="main-item">
-            <h2>List of All Tenant </h2>
-        </div>
-    </main>
-
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">User Name</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">#Flat</th>
-                <th scope="col">E-mail</th>
-                <th scope="col">GSM</th>
-            </tr>
-            <thead>
-                <?php
-                $checkUserInDB = $db->prepare("SELECT * FROM usersinfo");
-                $checkUserInDB->execute();
-                $say = 0;
-                while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
-                    $say++
-                ?>
+    <main>
+        <div class="section">
+            <h2 id="h2Expenses">List of All Expenses</h2>
+            <table class="table">
+                <thead>
                     <tr>
-                        <td><?php echo $say; ?></td>
-                        <td><?php echo $pullinfo['userUsername']; ?></td>
-                        <td><?php echo $pullinfo['userName']; ?></td>
-                        <td><?php echo $pullinfo['userSurname']; ?></td>
-                        <td><?php echo $pullinfo['userFlatno']; ?></td>
-                        <td><?php echo $pullinfo['userEmail']; ?></td>
-                        <td><?php echo $pullinfo['userGSM']; ?></td>
+                        <th scope="col">Expense ID</th>
+                        <th scope="col">Expense Title</th>
+                        <th scope="col">Expense Detail</th>
+                        <th scope="col">Expense Amount</th>
+                        <th scope="col">Expense Date</th>
                     </tr>
-                <?php } ?>
-    </table>
+                </thead>
+                <?php
+                if (isset($_GET['dateSubmit'])) {
+                    $firstDate = $_GET['startDate'];
+                    $endDate = $_GET['endDate'];
+                    $checkUserInDB = $db->prepare("SELECT * FROM expense WHERE expenseDate BETWEEN '$firstDate' AND '$endDate'");
+                    $checkUserInDB->execute();
+                    while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) { ?>
+                        <tr>
+                            <td><?php echo $pullinfo['expenseID'] ?></td>
+                            <td><?php echo $pullinfo['expenseTitle'] ?></td>
+                            <td><?php echo $pullinfo['expenseDetail'] ?></td>
+                            <td><?php echo $pullinfo['expenseAmount'] ?></td>
+                            <td><?php echo $pullinfo['expenseDate'] ?></td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+
+                    <?php
+                } else {
+                    $checkUserInDB = $db->prepare("SELECT * FROM expense");
+                    $checkUserInDB->execute();
+                    while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
+                    ?>
+
+                        <tr>
+                            <td><?php echo $pullinfo['expenseID'] ?></td>
+                            <td><?php echo $pullinfo['expenseTitle'] ?></td>
+                            <td><?php echo $pullinfo['expenseDetail'] ?></td>
+                            <td><?php echo $pullinfo['expenseAmount'] ?></td>
+                            <td><?php echo $pullinfo['expenseDate'] ?></td>
+                        </tr>
+                <?php
+                    }
+                }
+                ?>
+            </table>
+            <form method="GET" action="">
+                <div id="expenseForm">
+                    <div class="input-group mb-3 flex-nowrap">
+                        <span class="input-group-text" type="date" name="startDate" id="startDate">Start Date</span>
+                        <input type="date" class="form-control" type="date" name="startDate" id="startDate">
+                    </div>
+                    <div class="input-group mb-3 flex-nowrap">
+                        <span class="input-group-text" type="date" name="endDate" id="endDate">End Date</span>
+                        <input type="date" class="form-control" type="date" name="endDate" id="endDate">
+                    </div>
+                    <button type="submit" name="dateSubmit" id="dateSubmit" class="btn - btn-primary">SUBMIT</button>
+                </div>
+            </form><br>
+            <?php
+            if (isset($_GET['expenseAdd'])) {
+                if ($_GET['expenseAdd'] == "true") {
+                    echo "<div class='alert alert-success' role='alert'>ADDED NEW EXPENSE</div>";
+                } elseif ($_GET['expenseAdd'] == "false") {
+                    echo "<div class='alert alert-danger' role='alert'>NOT ADDED NEW EXPENSE</div>";
+                }
+            }
+            ?>
+        </div>
+
+    </main>
 
 
     <footer class="mt-auto text-white-50">
@@ -155,6 +192,7 @@ ob_start();
             </ul>
         </div>
     </footer>
+
 </body>
 
 </html>

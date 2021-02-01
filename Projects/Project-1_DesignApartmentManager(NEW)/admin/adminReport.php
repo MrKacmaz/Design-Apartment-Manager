@@ -45,7 +45,7 @@ ob_start();
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
 
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a class="nav-link active" href="adminPanel.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+                <li class="nav-item"><a class="nav-link" href="adminPanel.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
                             <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
                         </svg></a></li>
@@ -63,9 +63,11 @@ ob_start();
                             <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
                             <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z" />
                         </svg></a></li>
-                <li class="nav-item"><a class="nav-link" href="adminReport.php"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-file-earmark-bar-graph-fill" viewBox="0 0 16 16">
+                        
+                <li class="nav-item"><a class="nav-link active" href="adminReport.php"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-file-earmark-bar-graph-fill" viewBox="0 0 16 16">
                             <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zm.5 10v-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-2.5.5a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1zm-3 0a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-1z" />
                         </svg> </a></li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="adminExpense.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
@@ -100,36 +102,132 @@ ob_start();
     </nav>
 
 
-    <main class="main-content">
-        <?php
-        $checkUserInDB = $db->prepare("SELECT * FROM maintopics");
-        $checkUserInDB->execute();
-        while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
-        ?>
-            <div class="main-item">
-                <div class="mb-3">
-                    <h2><span class="badge bg-primary"><?php echo $pullinfo['mainTopicsTitle'] ?></span></h2>
+    <main>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        SHOW THE EXPENSES
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="section">
+
+                            <?php
+                            if (isset($_GET['dateSubmit2'])) {
+                                if (isset($_GET['startDate2']) && isset($_GET['endDate2'])) {
+                            ?>
+                                    <div>
+                                        <?php
+                                        $day1 = $_GET['startDate2'];
+                                        $day2 = $_GET['endDate2'];
+                                        $kontrol = $db->prepare("SELECT SUM(amount) FROM bills b , billpayers bp WHERE payerDate BETWEEN '$day1' AND '$day2' and b.billID = bp.billPayersID and bp.payerDate IS NOT NULL");
+                                        $kontrol->execute();
+                                        ?>
+                                        <div class="alert alert-success" role="alert">
+                                            PAID :
+                                            <?php
+                                            while ($pullinfo = $kontrol->fetch(PDO::FETCH_ASSOC)) {
+                                                echo $pullinfo['SUM(amount)'];
+                                            }
+                                            ?>
+
+                                        </div>
+                                        <?php
+                                        $kontrol = $db->prepare("SELECT SUM(amount) FROM bills b , billpayers bp WHERE payerDate BETWEEN '$day1' AND '$day2' and b.billID = bp.billPayersID and bp.payerDate IS NULL");
+                                        $kontrol->execute();
+                                        ?>
+                                        <div class="alert alert-warning" role="alert">
+                                            UNPAID :
+                                            <?php
+                                            while ($pullinfo = $kontrol->fetch(PDO::FETCH_ASSOC)) {
+                                                echo $pullinfo['SUM(amount)'];
+                                            }
+                                            ?>
+                                        </div>
+                                        <?php
+                                        $kontrol = $db->prepare("SELECT SUM(expenseAmount) FROM expense e WHERE expenseDate BETWEEN '$day1' AND '$day2' and e.expenseAmount");
+                                        $kontrol->execute();
+                                        ?>
+                                        <div class="alert alert-danger" role="alert">
+                                            EXPENSE :
+                                            <?php
+                                            while ($pullinfo = $kontrol->fetch(PDO::FETCH_ASSOC)) {
+                                                echo $pullinfo['SUM(expenseAmount)'];
+                                            }
+
+                                            ?>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                            } else {
+                                ?>
+                                <div>
+                                    <?php
+                                    $kontrol = $db->prepare("SELECT SUM(amount) FROM bills b , billpayers bp WHERE b.billID = bp.billPayersID and bp.payerDate IS NOT NULL");
+                                    $kontrol->execute();
+                                    ?>
+                                    <div class="alert alert-success" role="alert">
+                                        PAID :
+                                        <?php
+                                        while ($pullinfo = $kontrol->fetch(PDO::FETCH_ASSOC)) {
+                                            echo $pullinfo['SUM(amount)'];
+                                        }
+                                        ?>
+
+                                    </div>
+                                    <?php
+                                    $kontrol = $db->prepare("SELECT SUM(amount) FROM bills b , billpayers bp WHERE b.billID = bp.billPayersID and bp.payerDate IS NULL");
+                                    $kontrol->execute();
+                                    ?>
+                                    <div class="alert alert-warning" role="alert">
+                                        UNPAID :
+                                        <?php
+                                        while ($pullinfo = $kontrol->fetch(PDO::FETCH_ASSOC)) {
+                                            echo $pullinfo['SUM(amount)'];
+                                        }
+                                        ?>
+                                    </div>
+                                    <?php
+                                    $kontrol = $db->prepare("SELECT SUM(expenseAmount) FROM expense e WHERE e.expenseAmount");
+                                    $kontrol->execute();
+                                    ?>
+                                    <div class="alert alert-danger" role="alert">
+                                        EXPENSE :
+                                        <?php
+                                        while ($pullinfo = $kontrol->fetch(PDO::FETCH_ASSOC)) {
+                                            echo $pullinfo['SUM(expenseAmount)'];
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                            <?php
+                            }
+                            ?>
+
+                            <form method="GET" action="">
+                                <div id="expenseForm">
+                                    <div class="input-group mb-3 flex-nowrap">
+                                        <span class="input-group-text" type="date" name="startDate2" id="startDate2">Start Date</span>
+                                        <input type="date" class="form-control" type="date" name="startDate2" id="startDate2">
+                                    </div>
+                                    <div class="input-group mb-3 flex-nowrap">
+                                        <span class="input-group-text" type="date" name="endDate2" id="endDate2">End Date</span>
+                                        <input type="date" class="form-control" type="date" name="endDate2" id="endDate2">
+                                    </div>
+                                    <button type="submit" name="dateSubmit2" id="dateSubmit2" class="btn - btn-primary">SUBMIT</button>
+                                </div>
+                            </form><br>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <p class="lead"> <?php echo $pullinfo['mainTopicsContent'] ?> </p>
-                </div>
-                <a href="../index/mainTopics.php?mainTopicsID=<?php echo $pullinfo['mainTopicsID'] ?>"><button type="button" class="btn btn-outline-success">UPDATE</button></a>
             </div>
-        <?php
-        }
-        ?>
+        </div>
     </main>
-    <?php
-    if (isset($_GET['mainTopicsUpdated'])) {
-        if ($_GET['mainTopicsUpdated'] == "ok") {
-            echo "<div class='alert alert-info alert-pop' role='alert'>SUCCESSFULLY UPDATED</div>";
-        } elseif ($_GET['mainTopicsUpdated'] == "no") {
-            echo "<div class='alert alert-danger alert-pop' role='alert'>FAILED</div>";
-        } else {
-            echo "SIKINTI BÜYÜK";
-        }
-    }
-    ?>
+
 
 
     <footer class="mt-auto text-white-50">

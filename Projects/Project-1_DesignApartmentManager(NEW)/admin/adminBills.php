@@ -60,6 +60,13 @@ ob_start();
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                             <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
                         </svg></a></li>
+                <li class="nav-item"><a class="nav-link" href="adminExpense.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cash-stack" viewBox="0 0 16 16">
+                            <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                            <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z" />
+                        </svg></a></li>
+                <li class="nav-item"><a class="nav-link" href="adminReport.php"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-file-earmark-bar-graph-fill" viewBox="0 0 16 16">
+                            <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zm.5 10v-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-2.5.5a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1zm-3 0a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-1z" />
+                        </svg> </a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
@@ -189,11 +196,25 @@ ob_start();
                             <form action='' method='POST'>
                                 <div class='input-group mb-3'>
                                     <span class='input-group-text' id='basic-addon1'>Bill Date</span>
-                                    <input type='text' class='form-control' name='billDate' id='billDate' placeholder="2020-12-31">
+                                    <input type='date' class='form-control' name='billDate' id='billDate' placeholder="2020-12-31">
                                 </div>
                                 <div class='input-group mb-3'>
                                     <span class='input-group-text' id='basic-addon1'>Periot</span>
-                                    <input type='int' class='form-control' name='periot' id='periot' placeholder="Month">
+                                    <select name='periot' id='periot' class="form-select" aria-label="Default select example">
+                                        <option selected>Choose Periot</option>
+                                        <option value="January">January</option>
+                                        <option value="February">February</option>
+                                        <option value="March">March</option>
+                                        <option value="April">April</option>
+                                        <option value="May">May</option>
+                                        <option value="June">June</option>
+                                        <option value="July">July</option>
+                                        <option value="August">August</option>
+                                        <option value="September">September</option>
+                                        <option value="October">October</option>
+                                        <option value="November">November</option>
+                                        <option value="December">December</option>
+                                    </select>
                                 </div>
                                 <div class='input-group mb-3'>
                                     <span class='input-group-text' id='basic-addon1'>Bill Type</span>
@@ -262,7 +283,7 @@ ob_start();
                                     }
                                     echo "Connected successfully";
                                     $userArrays = array();
-                                    $query = "SELECT ui.userID FROM usersInfo ui";
+                                    $query = "SELECT ui.userID FROM usersInfo ui WHERE deregistrationTime IS NULL ";
                                     $result = mysqli_query($conn, $query);
                                     while ($pullinfo = mysqli_fetch_assoc($result)) {
                                         $userID = $pullinfo["userID"];
@@ -338,7 +359,7 @@ ob_start();
 
                     </div>
                 </div>
-            </div> 
+            </div>
 
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingFour">

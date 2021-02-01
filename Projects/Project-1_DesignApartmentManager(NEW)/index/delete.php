@@ -7,23 +7,40 @@ ob_start();
 
 if ($_GET['userIDdelete'] == "delete") {
 
-	$sil = $db->prepare("UPDATE usersinfo SET 
-	deregistrationTime=:deregistrationTime
-	WHERE userID = {$_GET['userID']}
-	");
+	if (isset($_GET['userID'])) {
+		$userID = $_GET['userID'];
+		$checkUserInDB = $db->prepare("SELECT * FROM billpayers WHERE payerDate IS NULL AND payerID = $userID");
+		$checkUserInDB->execute(array(
+			'userID' => $userID,
+		));
+		$int = $checkUserInDB->rowCount();
+		if ($int > 0) {
+			//CANT MOVED OUT
+			Header("Location:../admin/adminInfo.php?unpaidbills=true");
+			exit;
+		} else {
+			$sil = $db->prepare("UPDATE usersinfo SET 
+			deregistrationTime=:deregistrationTime
+			WHERE userID = {$_GET['userID']}
+			");
 
-	$kontrol = $sil->execute(array(
-		'deregistrationTime' => date('Y-m-d')
-	));
-	if ($kontrol) {
+			$kontrol = $sil->execute(array(
+				'deregistrationTime' => date('Y-m-d')
+			));
+			if ($kontrol) {
 
-		Header("Location:../admin/adminInfo.php?delete=ok");
-		exit;
-	} else {
-		Header("Location:../admin/adminInfo.php?durum=no");
-		exit;
+				Header("Location:../admin/adminInfo.php?delete=ok");
+				exit;
+			} else {
+				Header("Location:../admin/adminInfo.php?durum=no");
+				exit;
+			}
+		}
 	}
 }
+
+
+
 if ($_GET['userComplaintdelete'] == "delete") {
 	$sil = $db->prepare("DELETE from complains where complainID=:complainID");
 	$kontrol = $sil->execute(array(
