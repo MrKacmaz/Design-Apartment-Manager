@@ -126,10 +126,10 @@ ob_start();
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">GSM-2</span>
-                        <input type="text" name="adminGSM_2" id="adminGSM_2" class="form-control" required placeholder="5551234567">
+                        <span class="input-group-text" id="basic-addon1">#Flat No</span>
+                        <input type="text" name="userFlatno" id="userFlatno" class="form-control" required placeholder="#4">
                         <div class="invalid-feedback">
-                            Please enter a Different GSM in the textarea
+                            Please enter the Flat Number in the textarea
                         </div>
                     </div>
                     <div class="input-group mb-3">
@@ -155,6 +155,8 @@ ob_start();
                 if (isset($_GET['adminNewAdmin'])) {
                     if ($_GET['adminNewAdmin'] == "success") {
                         echo "<div class='alert alert-success' role='alert'>Successfully Added</div>";
+                        header("Location:adminInfo.php?successful");
+                        exit;
                     } elseif ($_GET['adminNewAdmin'] == "failed") {
                         echo "<div class='alert alert-danger' role='alert'>Failed</div>";
                     }

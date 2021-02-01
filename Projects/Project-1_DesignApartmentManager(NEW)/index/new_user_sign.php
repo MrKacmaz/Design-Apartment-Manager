@@ -194,24 +194,27 @@ if (isset($_POST['adminSignUser-btn'])) {
 //ADMIN PAGE
 //NEW ADMIN ADD 
 if (isset($_POST['adminSignAdmin-btn'])) {
-    $kaydet = $db->prepare("INSERT into adminpanel set
-    adminUSERNAME=:adminUSERNAME,
-    adminNAME=:adminNAME,
-    adminSURNAME=:adminSURNAME,
-    adminGSM=:adminGSM,
-    adminGSM_2 =:adminGSM_2,
-    adminPASSWORD =:adminPASSWORD,
-    adminEMAIL =:adminEMAIL
+
+    $kaydet = $db->prepare("INSERT INTO usersinfo set
+		isAdmin=:isAdmin,
+        userName=:userName,
+		userSurname=:userSurname,
+		userUsername=:userUsername,
+		userFlatno=:userFlatno,
+        userGSM =:userGSM,
+        userEmail =:userEmail,
+        userPassword =:userPassword
     ");
 
     $insert = $kaydet->execute(array(
-        'adminUSERNAME' => htmlspecialchars($_POST['adminUSERNAME']),
-        'adminNAME' => htmlspecialchars(strtolower($_POST['adminNAME'])),
-        'adminSURNAME' => htmlspecialchars(strtoupper($_POST['adminSURNAME'])),
-        'adminGSM' => htmlspecialchars($_POST['adminGSM']),
-        'adminGSM_2' => htmlspecialchars($_POST['adminGSM_2']),
-        'adminPASSWORD' => md5(htmlspecialchars($_POST['adminPASSWORD'])),
-        'adminEMAIL' => htmlspecialchars($_POST['adminEMAIL'])
+        'isAdmin' =>'admin',
+        'userName' => htmlspecialchars(strtolower($_POST['adminNAME'])),
+        'userSurname' => htmlspecialchars(strtoupper($_POST['adminSURNAME'])),
+        'userUsername' => htmlspecialchars($_POST['adminUSERNAME']),
+        'userFlatno' => htmlspecialchars($_POST['userFlatno']),
+        'userGSM' => htmlspecialchars($_POST['adminGSM']),
+        'userEmail' => htmlspecialchars($_POST['adminEMAIL']),
+        'userPassword' => md5(htmlspecialchars($_POST['adminPASSWORD']))
     ));
 
     if ($insert) {

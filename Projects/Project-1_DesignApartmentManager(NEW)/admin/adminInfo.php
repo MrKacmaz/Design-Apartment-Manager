@@ -92,85 +92,159 @@ ob_start();
     </nav>
 
 
-    <main class="main-content">
-        <div class="main-item">
-            <h2>List of All Tenant </h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Surname</th>
-                        <th scope="col">User Name</th>
-                        <th scope="col">Flat</th>
-                        <th scope="col">E-mail</th>
-                        <th scope="col">GSM</th>
-                        <th scope="col">Register Time</th>
-                        <th scope="col">Update</th>
-                        <th scope="col">Delete</th>
-                    </tr>
-                </thead>
-                <?php
-                $checkUserInDB = $db->prepare("SELECT * FROM usersinfo");
-                $checkUserInDB->execute();
-                $say = 0;
-                while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
-                    $say++
-                ?>
-                    <tbody>
-                        <tr>
-                            <td><?php echo $say; ?></td>
-                            <td><?php echo $pullinfo['userID']; ?></td>
-                            <td><?php echo $pullinfo['userName']; ?></td>
-                            <td><?php echo $pullinfo['userSurname']; ?></td>
-                            <td><?php echo $pullinfo['userUsername']; ?></td>
-                            <td><?php echo $pullinfo['userFlatno']; ?></td>
-                            <td><?php echo $pullinfo['userEmail']; ?></td>
-                            <td><?php echo $pullinfo['userGSM']; ?></td>
-                            <td><?php echo $pullinfo['registerTime']; ?></td>
-                            <td><a href="../index/update.php?userID=<?php echo $pullinfo['userID'] ?>&userIDupdate=ok"><button type="button" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
-                                            <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
-                                            <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z" />
-                                        </svg></button></td></a>
-                            <td><button type="button" class="btn btn-danger" onclick="alertFun()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">
-                                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
-                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                    </svg></button></td>
 
-                            <script>
-                                function alertFun() {
-                                    var bol = confirm("ARE YOU SURE TO DELETE PERSON ?");
-                                    if (bol) {
-                                        alert("PERSON HAS BEEN DELETED");
-                                        location = "../index/delete.php?userID=<?php echo $pullinfo['userID'] ?>&userIDdelete=delete";
+    <main>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        <h3>List of Active Users </h3>
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class='main-update'>
+                            <div class="main-item">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Surname</th>
+                                            <th scope="col">User Name</th>
+                                            <th scope="col">Flat</th>
+                                            <th scope="col">E-mail</th>
+                                            <th scope="col">GSM</th>
+                                            <th scope="col">Register Time</th>
+                                            <th scope="col">Update</th>
+                                            <th scope="col">Move Out</th>
+                                        </tr>
+                                    </thead>
+                                    <?php
+                                    $checkUserInDB = $db->prepare("SELECT * FROM usersinfo WHERE deregistrationTime IS NULL ORDER BY userFlatno");
+                                    $checkUserInDB->execute();
+                                    $say = 0;
+                                    while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
+                                        $say++
+                                    ?>
+                                        <tbody>
+                                            <tr>
+                                                <td><?php echo $say; ?></td>
+                                                <td><?php echo $pullinfo['userID']; ?></td>
+                                                <td><?php echo $pullinfo['userName']; ?></td>
+                                                <td><?php echo $pullinfo['userSurname']; ?></td>
+                                                <td><?php echo $pullinfo['userUsername']; ?></td>
+                                                <td><?php echo $pullinfo['userFlatno']; ?></td>
+                                                <td><?php echo $pullinfo['userEmail']; ?></td>
+                                                <td><?php echo $pullinfo['userGSM']; ?></td>
+                                                <td><?php echo $pullinfo['registerTime']; ?></td>
+                                                <td><a href="../index/update.php?userID=<?php echo $pullinfo['userID'] ?>&userIDupdate=ok"><button type="button" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                                                                <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
+                                                                <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z" />
+                                                            </svg></button></td></a>
+                                                <td><button type="button" class="btn btn-danger" onclick="alertFun()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">
+                                                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                                        </svg></button></td>
+
+                                                <script>
+                                                    function alertFun() {
+                                                        var bol = confirm("ARE YOU SURE TO MOVE OUT THE PERSON ?");
+                                                        if (bol) {
+                                                            alert("PERSON HAS BEEN MOVED OUT");
+                                                            location = "../index/delete.php?userID=<?php echo $pullinfo['userID'] ?>&userIDdelete=delete";
+                                                        }
+                                                    }
+                                                </script>
+                                            </tr>
+                                        <?php } ?>
+                                        </tbody>
+                                </table>
+                                <?php
+                                if (isset($_GET['successful'])) {
+                                    echo "<div class='alert alert-success' role='alert'>Successfully Added</div>";
+                                }
+                                if (isset($_GET['durum']))
+                                    if ($_GET['durum'] == "ok") {
+                                        echo "<div class='alert alert-primary' role='alert'>Update Successfully</div>";
+                                    } elseif ($_GET['durum'] == "no") {
+                                        echo "<div class='alert alert-danger' role='alert'>Update Failed</div>";
+                                    }
+                                if (isset($_GET['delete'])) {
+                                    if ($_GET['delete'] == "ok") {
+                                        echo "<div class='alert alert-info' role='alert'>Moved Out Successfully</div>";
+                                    } else {
+                                        echo "<div class='alert alert-danger' role='alert'>Moved Out Failed</div>";
                                     }
                                 }
-                            </script>
-                        </tr>
-                    <?php } ?>
-                    </tbody>
-            </table>
-            <?php
-            if(isset($_GET['successful'])){
-                echo "<div class='alert alert-success' role='alert'>Successfully Added</div>";
-            }
-            if (isset($_GET['durum']))
-                if ($_GET['durum'] == "ok") {
-                    echo "<div class='alert alert-primary' role='alert'>Update Successfully</div>";
-                } elseif ($_GET['durum'] == "no") {
-                    echo "<div class='alert alert-danger' role='alert'>Update Failed</div>";
-                }
-            if (isset($_GET['delete'])) {
-                if ($_GET['delete'] == "ok") {
-                    echo "<div class='alert alert-info' role='alert'>Deleted Successfully</div>";
-                } else {
-                    echo "<div class='alert alert-danger' role='alert'>Deleted Failed</div>";
-                }
-            }
-            ?>
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingThree">
+                    <button class="accordion-button collapsed btn-info btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        <h3> List of Old Users</h>
+                    </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+
+                        <div class="main-item">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Is Admin</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Surname</th>
+                                        <th scope="col">User Name</th>
+                                        <th scope="col">Flat</th>
+                                        <th scope="col">E-mail</th>
+                                        <th scope="col">GSM</th>
+                                        <th scope="col">Register Time</th>
+                                        <th scope="col">Move Out Time</th>
+                                    </tr>
+                                </thead>
+                                <?php
+                                $checkUserInDB = $db->prepare("SELECT * FROM usersinfo WHERE deregistrationTime IS NOT NULL");
+                                $checkUserInDB->execute();
+                                $say = 0;
+                                while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
+                                    $say++
+                                ?>
+                                    <tbody>
+                                        <tr>
+                                            <td><?php echo $say; ?></td>
+                                            <td><?php echo $pullinfo['userID']; ?></td>
+                                            <td><?php echo $pullinfo['isAdmin']; ?></td>
+                                            <td><?php echo $pullinfo['userName']; ?></td>
+                                            <td><?php echo $pullinfo['userSurname']; ?></td>
+                                            <td><?php echo $pullinfo['userUsername']; ?></td>
+                                            <td><?php echo $pullinfo['userFlatno']; ?></td>
+                                            <td><?php echo $pullinfo['userEmail']; ?></td>
+                                            <td><?php echo $pullinfo['userGSM']; ?></td>
+                                            <td><?php echo $pullinfo['registerTime']; ?></td>
+                                            <td><?php echo $pullinfo['deregistrationTime']; ?></td>
+                                        </tr>
+                                    <?php } ?>
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
+
 
     <footer class="mt-auto text-white-50">
         <div class="links">

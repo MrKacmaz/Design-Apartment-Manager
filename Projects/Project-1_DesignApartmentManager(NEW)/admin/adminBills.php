@@ -93,6 +93,7 @@ ob_start();
         </div>
     </nav>
 
+
     <main>
         <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
@@ -291,7 +292,7 @@ ob_start();
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingThree">
                     <button class="accordion-button collapsed btn-info btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                        SHOW PAYERS
+                        SHOW PAID HISTORY
                     </button>
                 </h2>
                 <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
@@ -304,28 +305,81 @@ ob_start();
                                     <thead>
                                     <tr>
                                     <th scope='col'>Invoice Number</th>
-                                    <th scope='col'>Date</th>
+                                    <th scope='col'>Payer Date</th>
+                                    <th scope='col'>Bill Date</th>
                                     <th scope='col'>Periot</th>
-                                    <th scope='col'>Payer ID</th>
+                                    <th scope='col'>User ID</th>
                                     <th scope='col'>Name</th>
                                     <th scope='col'>#Flat</th>
                                     <th scope='col'>Type</th>
                                     <th scope='col'>Amount</th>
                                     </tr>
                                     </thead>";
-                            $checkUserInDB = $db->prepare('SELECT * FROM billpayers');
+                            $checkUserInDB = $db->prepare('SELECT DISTINCT billPayersID,payerDate,billDate,periot,userID,userName,userFlatno,billType,amount FROM billpayers bp, usersinfo ui, bills b WHERE bp.payerID = ui.userID AND b.billID = bp.billPayersID AND payerDate IS NOT NULL');
                             $checkUserInDB->execute();
                             while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
                             ?>
                                 <tr>
-                                    <td><?php echo $pullinfo['uniquePayerID'] ?></td>
+                                    <td><?php echo $pullinfo['billPayersID'] ?></td>
                                     <td><?php echo $pullinfo['payerDate'] ?></td>
+                                    <td><?php echo $pullinfo['billDate'] ?></td>
                                     <td><?php echo $pullinfo['periot'] ?></td>
-                                    <td><?php echo $pullinfo['payerID'] ?></td>
-                                    <td><?php echo $pullinfo['payerName'] ?></td>
-                                    <td><?php echo $pullinfo['payerFlat'] ?></td>
-                                    <td><?php echo $pullinfo['paymentType'] ?></td>
-                                    <td><?php echo $pullinfo['payerMuch'] ?></td>
+                                    <td><?php echo $pullinfo['userID'] ?></td>
+                                    <td><?php echo $pullinfo['userName'] ?></td>
+                                    <td><?php echo $pullinfo['userFlatno'] ?></td>
+                                    <td><?php echo $pullinfo['billType'] ?></td>
+                                    <td><?php echo $pullinfo['amount'] ?></td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div> 
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingFour">
+                    <button class="accordion-button collapsed btn-info btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseThree">
+                        SHOW UNPAID HISTORY
+                    </button>
+                </h2>
+                <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="section">
+                            <!--ADMIN SEES THE ALL PAYERS-->
+                            <?phP
+                            echo "
+                                <table class='table'>
+                                    <thead>
+                                    <tr>
+                                    <th scope='col'>Invoice Number</th>
+                                    <th scope='col'>Payer Date</th>
+                                    <th scope='col'>Bill Date</th>
+                                    <th scope='col'>Periot</th>
+                                    <th scope='col'>User ID</th>
+                                    <th scope='col'>Name</th>
+                                    <th scope='col'>#Flat</th>
+                                    <th scope='col'>Type</th>
+                                    <th scope='col'>Amount</th>
+                                    </tr>
+                                    </thead>";
+                            $checkUserInDB = $db->prepare('SELECT DISTINCT billPayersID,payerDate,billDate,periot,userID,userName,userFlatno,billType,amount FROM billpayers bp, usersinfo ui, bills b WHERE bp.payerID = ui.userID AND b.billID = bp.billPayersID AND payerDate IS NULL');
+                            $checkUserInDB->execute();
+                            while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
+                            ?>
+                                <tr>
+                                    <td><?php echo $pullinfo['billPayersID'] ?></td>
+                                    <td><?php echo $pullinfo['payerDate'] ?></td>
+                                    <td><?php echo $pullinfo['billDate'] ?></td>
+                                    <td><?php echo $pullinfo['periot'] ?></td>
+                                    <td><?php echo $pullinfo['userID'] ?></td>
+                                    <td><?php echo $pullinfo['userName'] ?></td>
+                                    <td><?php echo $pullinfo['userFlatno'] ?></td>
+                                    <td><?php echo $pullinfo['billType'] ?></td>
+                                    <td><?php echo $pullinfo['amount'] ?></td>
                                 </tr>
                             <?php
                             }
@@ -336,6 +390,7 @@ ob_start();
                     </div>
                 </div>
             </div>
+        </div>
     </main>
 
 

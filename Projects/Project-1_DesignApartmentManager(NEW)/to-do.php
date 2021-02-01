@@ -124,7 +124,7 @@ ob_start();
                         <?php
                         $userID = $_SESSION['userID'];
 
-                        $checkUserInDB = $db->prepare("SELECT * FROM billpayers bp, bills b WHERE b.billID = bp.billPayersID AND bp.payerDate IS NULL AND bp.payerID = $userID");
+                        $checkUserInDB = $db->prepare("SELECT * FROM billpayers bp, bills b WHERE b.billID = bp.billPayersID AND bp.payerDate IS NULL AND bp.payerID = $userID ORDER BY billDate ASC");
 
                         $checkUserInDB->execute();
                         while (($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC))) {
@@ -137,7 +137,7 @@ ob_start();
                                 <td><?php echo $pullinfo['amount'] ?></td>
                                 <td><?php echo $pullinfo['amount'] ?></td>
                                 <td>
-                                    <button class=" btn btn-success"> <a href = "index/payBill.php?userPayBill&userID=<?php echo $_SESSION['userID'];?>&billPayersID=<?php echo $pullinfo['billID'];?>&sumOfBill=<?php echo $pullinfo['amount'];?>&periot=<?php echo $pullinfo['periot'];?>&type=<?php echo $pullinfo['billType'];?>">PAY</a></button>
+                                    <button class=" btn btn-success"> <a style="color: white; text-decoration: none;" href = "index/payBill.php?userPayBill&userID=<?php echo $_SESSION['userID'];?>&billPayersID=<?php echo $pullinfo['billID'];?>&sumOfBill=<?php echo $pullinfo['amount'];?>&periot=<?php echo $pullinfo['periot'];?>&type=<?php echo $pullinfo['billType'];?>">PAY</a></button>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -173,7 +173,7 @@ ob_start();
                                 </thead>
                                 ";
                         $payerID = $_SESSION['userID'];
-                        $checkUserInDB = $db->prepare("SELECT * FROM billpayers bp, bills b, usersinfo ui WHERE bp.payerID = 36 and ui.userID = payerID");
+                        $checkUserInDB = $db->prepare("SELECT DISTINCT billID,billDate,payerDate,periot,billType,amount,userName,userSurname,userFlatno FROM billpayers bp, bills b, usersinfo ui WHERE bp.payerID = $payerID and ui.userID = payerID");
                         $checkUserInDB->execute();
                         while ($pullinfo = $checkUserInDB->fetch(PDO::FETCH_ASSOC)) {
                     ?>
@@ -196,16 +196,6 @@ ob_start();
                 </div>
             </div>
 
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingThree">
-                    <button class="accordion-button collapsed btn-danger btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                        EMPTY
-                    </button>
-                </h2>
-                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                </div>
-            </div>
         </div>
     </main>
 
