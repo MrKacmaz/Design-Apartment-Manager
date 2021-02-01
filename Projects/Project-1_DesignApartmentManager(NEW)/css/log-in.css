@@ -12,99 +12,17 @@
   background-size: cover;
   position: absolute;
 }
-.infoHero {
-  height: 100%;
-  width: 100%;
-  background-image: linear-gradient(to left, #ed4264, #ffedbc);
-  background-position: center;
-  position: absolute;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-}
-.pay-hero {
-  height: 100%;
-  width: 100%;
-  background-image: linear-gradient(to left, #ed4264, #ffedbc);
-  background-position: center;
-  position: absolute;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-}
-.complaint {
-  width: 320px;
-  height: 480px;
-  background-color: #fff;
-  position: relative;
-  padding: 5px;
-  border-radius: 30px;
-  top: -475px;
-  left: 1215px;
-}
-.userId {
-  width: 480px;
-  height: 280px;
-  background-color: #fff;
-  position: relative;
-  padding: 5px;
-  border-radius: 30px;
-  top: -400px;
-  left: 720px;
-}
-.bill-rent-table {
-  width: 700px;
-  height: 400px;
-  position: relative;
-  margin: 6% auto;
-  background-color: #fff;
-  padding: 5px;
-  overflow: hidden;
-  border-radius: 30px;
-  top: -65px;
-}
-.to-do {
-  width: 320px;
-  height: 480px;
-  background-color: #fff;
-  position: relative;
-  padding: 5px;
-  border-radius: 30px;
-  top: 15px;
-  left: 415px;
-}
-.comp-pay {
-  width: 380px;
-  height: 225px;
-  position: relative;
-  margin: 6% auto;
-  background-color: #fff;
-  padding: 5px;
-  overflow: hidden;
-  border-radius: 30px;
-  top: -120px;
-}
-.cop-pay-but {
-  top: 0;
-  left: 0;
-  position: relative;
-  width: 50px;
-  height: 25px;
-  background-image: linear-gradient(to left, #ed4264, #ffedbc);
-  border-radius: 30px;
-  transition: 0.5s;
-}
-.list-to-do {
-  font-size: 24px;
-}
-h2 {
-  font-size: 36px;
+
+h3 {
+  margin: 2%;
   text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #ed4264;
 }
 
 .form-box {
-  width: 380px;
-  height: 600px;
+  width: 350px;
+  height: 500px;
   position: relative;
   margin: 6% auto;
   background-color: #fff;
@@ -112,41 +30,19 @@ h2 {
   overflow: hidden;
   border-radius: 30px;
 }
-.infoApt {
-  width: 380px;
-  height: 325px;
-  position: relative;
-  margin: 6% auto;
-  background-color: #fff;
-  padding: 5px;
-  overflow: hidden;
-  color: #555555;
-  border-radius: 30px;
-  font-size: 14px;
-}
+
 .alert {
-    position: relative;
-    padding: 1rem 1rem;
-    margin-bottom: 1rem;
-    border: 1px solid transparent;
-    border-radius: 0.25rem;
-    background-color: #f5c2c7;
-    color: #842029;
-}
-
-
-.github {
-  width: 380px;
-  height: 100px;
   position: relative;
-  margin: 6% auto;
-  padding: 5px;
-  overflow: hidden;
-  left: 150px;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  background-color: #f5c2c7;
+  color: #842029;
 }
 
 .button-box {
-  width: 320px;
+  width: 220px;
   margin: 35px auto;
   position: relative;
   box-shadow: 0 0 10px 3px #ffedbc;
@@ -183,7 +79,7 @@ h2 {
 .input-field {
   width: 100%;
   padding: 10px 0;
-  margin: 5px 0;
+  margin: 5px 0 15px 0;
   border-left: 0;
   border-top: 0;
   border-right: 0;
@@ -202,27 +98,6 @@ h2 {
   outline: none;
   border-radius: 30px;
   border: 0;
-}
-.info-com-btn {
-  top: 70px;
-  left: 5px;
-  position: relative;
-  width: 45%;
-  height: 25px;
-  background-image: linear-gradient(to left, #ed4264, #ffedbc);
-  border-radius: 30px;
-  transition: 0.5s;
-}
-.flat-btn {
-  top: 5px;
-  left: 175px;
-  position: relative;
-  width: 20%;
-  height: 25px;
-  padding: 5px;
-  background-image: linear-gradient(to left, #ed4264, #ffedbc);
-  border-radius: 30px;
-  transition: 0.5s;
 }
 
 .chechk-box {

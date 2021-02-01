@@ -19,13 +19,12 @@ ob_start();
 <body>
     <div class="hero">
         <div class="form-box">
+            <h3>Welcome to Management System</h3>
             <div class="button-box">
                 <div id="btn"></div>
                 <button type="button" class="toggle-b" onclick="login()">Log-in</button>
-                <button type="button" class="toggle-b" onclick="register()">Register</button>
                 <button type="button" class="toggle-b" onclick="admin()">Admin</button>
             </div>
-
 
             <!--USER LOG-IN-->
             <form id="log-in" action="index/new_user_sign.php" method="POST" class="input-group">
@@ -65,7 +64,7 @@ ob_start();
             </form>
 
 
-            <!--NEW USER SIGN-IN-->
+            <!--NEW USER SIGN-IN
             <form id="register" action="index/new_user_sign.php" method="POST" class="input-group">
                 <input type="text" class="input-field" name="userName" placeholder="Name" required>
                 <input type="text" class="input-field" name="userSurname" placeholder="Surname" required>
@@ -77,7 +76,7 @@ ob_start();
                 <input type="checkbox" class="chechk-box">
                 <p id="terms">I agree to the terms</p>
                 <button type="submit" class="submit-b" name="register-btn">Register</button>
-            </form>
+            </form>-->
 
 
 
@@ -106,29 +105,19 @@ ob_start();
 
     <script>
         var x = document.getElementById("log-in");
-        var y = document.getElementById("register");
-        var a = document.getElementById("admin");
+        var y = document.getElementById("admin");
         var z = document.getElementById("btn");
 
         function login() {
             x.style.left = "50px";
             y.style.left = "450px";
-            a.style.left = "850px";
             z.style.left = "0px";
         }
 
-        function register() {
+        function admin() {
             x.style.left = "-480px";
             y.style.left = "50px";
-            a.style.left = "450px"
             z.style.left = "110px";
-        }
-
-        function admin() {
-            x.style.left = "-1210px";
-            y.style.left = "-350px";
-            a.style.left = "50px";
-            z.style.left = "220px";
         }
     </script>
 
